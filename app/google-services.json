@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "907747704828",
+    "firebase_url": "https://theparker-ed06b.firebaseio.com",
+    "project_id": "theparker-ed06b",
+    "storage_bucket": "theparker-ed06b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907747704828:android:93b4d999817b4835",
+        "android_client_info": {
+          "package_name": "com.service.parking.theparker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907747704828-49b0396agrudhknj4t8ikqibm42i22vl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.service.parking.theparker",
+            "certificate_hash": "3aa89324c4808f4adf3e0d64de097bfd1a67c56f"
+          }
+        },
+        {
+          "client_id": "907747704828-aklv3kaju7a9kpbcn7llqjotmqipom05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzp2x7PefS9ikLJ6l8r3vYyXfe0430c7Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907747704828-aklv3kaju7a9kpbcn7llqjotmqipom05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

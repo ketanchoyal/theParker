@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OtpVerifyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:background="@color/colorPrimary"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_main"
+                android:scaleType="center"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#d99a0007">
+
+                <ImageButton
+                    android:id="@+id/otp_verify_back_btn"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/ic_back_svg" />
+
+                <ImageButton
+                    android:layout_width="180sp"
+                    android:layout_height="160sp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_message_svg" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:background="#00000000"
+            android:layout_weight="0.8"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginEnd="15sp"
+            android:layout_marginBottom="15sp"
+            android:layout_weight="1.2"
+            android:background="@android:drawable/dialog_holo_light_frame">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_phone_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    android:gravity="center"
+                    android:text="@string/activity_otp_message" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16sp"
+                    android:layout_marginTop="16sp"
+                    android:paddingStart="10sp"
+                    android:paddingEnd="10sp"
+                    android:background="@drawable/button_background_transparent"
+                    android:layout_marginRight="16sp">
+
+                    <EditText
+                        android:id="@+id/et_otp_num1"
+                        style="@style/CodeEditText" />
+
+                    <EditText
+                        android:id="@+id/et_otp_num2"
+                        style="@style/CodeEditText" />
+
+                    <EditText
+                        android:id="@+id/et_otp_num3"
+                        style="@style/CodeEditText" />
+
+                    <EditText
+                        android:id="@+id/et_otp_num4"
+                        style="@style/CodeEditText" />
+
+                    <EditText
+                        android:id="@+id/et_otp_num5"
+                        style="@style/CodeEditText" />
+
+                    <EditText
+                        android:id="@+id/et_otp_num6"
+                        style="@style/CodeEditText" />
+
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    android:gravity="center"
+                    android:text="@string/activity_otp_don_t_receive_otp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16sp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btn_otp_resend"
+                        android:layout_width="130.0dip"
+                        android:layout_height="40sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/ef_btn_rectangle_rounded_disenable"
+                        android:text="@string/activity_otp_btn_resend"
+                        android:enabled="false"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite" />
+
+                    <Button
+                        android:id="@+id/btn_otp_change_number"
+                        android:layout_width="130.0dip"
+                        android:layout_height="40sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/bg_rectangle_rounded_green_ripple"
+                        android:text="@string/activity_otp_btn_change_number"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite" />
+
+                </LinearLayout>
+
+                <at.markushi.ui.CircleButton
+                    android:id="@+id/btn_otp_verify_next"
+                    style="@style/NextButton"
+                    android:layout_marginTop="65.0dip"
+                    app:cb_color="@color/colorPrimary"
+                    app:cb_pressedRingWidth="2.0dip" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Theparker</string>
+    <string name="activity_login_already_a_user">"Already a user? "</string>
+    <string name="activity_login_continue_with">Continue with</string>
+    <string name="activity_login_or">or</string>
+    <string name="activity_login_sign_in_here"><u>Sign in here</u></string>
+    <string name="activity_login_sign_up">Continue with Mobile No</string>
+    <string name="agree_terms">By signing in, you agree to our Terms and Condition and Privacy Policy</string>
+    <string name="activity_phone_verify_bottom_message">We will send you OTP Message, carrier rates may apply</string>
+    <string name="activity_phone_verify_confirm_message">Please confirm your phone number before clicking next</string>
+    <string name="activity_phone_verify_ext">"Ext  "</string>
+    <string name="activity_phone_verify_your_phone_number">Your Phone Number</string>
+    <string name="activity_otp_btn_change_number">Change Number</string>
+    <string name="activity_otp_btn_resend">Resend</string>
+    <string name="activity_otp_don_t_receive_otp">"Didn't receive code?"</string>
+    <string name="activity_otp_message">"Please enter below the verification code sent to "</string>
+    <string name="activity_otp_we_r_almost_done">"We'r almost done!"</string>
+</resources>
