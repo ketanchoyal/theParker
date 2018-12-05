@@ -44,8 +44,10 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
 
-        mProfileName.setText(Theparker.Person_name);
-        mProfileMobileNo.setText(Theparker.Mobile_no);
+//        mProfileName.setText(Theparker.Person_name);
+//        mProfileMobileNo.setText(Theparker.Mobile_no);
+
+        NetworkServices.ProfileData.init(mProfileName, mProfileEmail, mProfileMobileNo, this);
 
         Log.d("Name Mobile_No : ", Theparker.Person_name + Theparker.Mobile_no);
 
