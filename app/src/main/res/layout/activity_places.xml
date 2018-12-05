@@ -6,13 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".Controller.PlacesActivity">
 
+    <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Places"
         android:textSize="25sp"
+        android:id="@+id/name"
         android:layout_centerInParent="true"
         android:textColor="@color/colorOrange"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lb"
+        android:layout_below="@id/name"
+        android:text="Login"
+        android:layout_centerHorizontal="true"/>
 
     <include
         android:id="@+id/bottomNavView_Bar"

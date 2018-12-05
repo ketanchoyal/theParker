@@ -24,14 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public abstract class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
 {
 
-//    @BindView(R.id.lb)
-//    Button mlogin;
 
-    //private FirebaseUser firebaseUser;
-
-    //private Toolbar mTopBar;
-
-    //private CircleImageView mProfileView;
 
     public abstract int getContentViewId();
 
