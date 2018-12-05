@@ -1,4 +1,4 @@
-package com.service.parking.theparker;
+package com.service.parking.theparker.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.service.parking.theparker.R;
+import com.service.parking.theparker.Theparker;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
@@ -35,8 +38,8 @@ public class MobileVerifyActivity extends Activity {
         setContentView(R.layout.activity_mobile_verify);
         ButterKnife.bind(this);
 
-        sh=getSharedPreferences("myinfo",MODE_PRIVATE);
-        edit=sh.edit();
+        sh = getSharedPreferences("myinfo",MODE_PRIVATE);
+        edit = sh.edit();
 
         mMobile_verify_back_btn.setOnClickListener(v -> startActivity(new Intent(MobileVerifyActivity.this, LoginActivity.class)));
 

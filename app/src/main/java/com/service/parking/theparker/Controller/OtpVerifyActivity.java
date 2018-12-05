@@ -1,4 +1,4 @@
-package com.service.parking.theparker;
+package com.service.parking.theparker.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.os.CountDownTimer;
 import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -19,6 +18,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.service.parking.theparker.R;
+import com.service.parking.theparker.Theparker;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -6,17 +6,17 @@ import android.content.SharedPreferences;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.service.parking.theparker.Controller.LoginActivity;
 
 public class Theparker extends Application {
 
-    static String Mobile_no;
-    static String Person_name;
+    public static String Mobile_no;
+    public static String Person_name;
     private DatabaseReference mProfileReference;
 
-    static String SP_Name = "PersonName";
-    static String SP_Mobileno = "Mobile_no";
-    static String SP_User_id = "user_id";
+    public static String SP_Name = "PersonName";
+    public static String SP_Mobileno = "Mobile_no";
+    public static String SP_User_id = "user_id";
 
     private SharedPreferences sh;
 

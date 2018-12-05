@@ -1,15 +1,15 @@
-package com.service.parking.theparker;
+package com.service.parking.theparker.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.service.parking.theparker.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

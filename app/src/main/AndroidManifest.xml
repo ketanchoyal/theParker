@@ -10,17 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MobileVerifyActivity" />
-        <activity android:name=".OtpVerifyActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".Controller.LoginActivity" />
+        <activity android:name=".Controller.MobileVerifyActivity" />
+        <activity android:name=".Controller.OtpVerifyActivity" />
+        <activity android:name=".Controller.ProfileActivity"></activity>
     </application>
 
 </manifest>
