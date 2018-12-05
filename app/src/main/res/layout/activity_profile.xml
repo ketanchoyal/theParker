@@ -7,15 +7,6 @@
     android:orientation="vertical"
     tools:context=".Controller.ProfileActivity">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".Controller.ProfileActivity">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="140sp"
@@ -77,6 +68,7 @@
                     android:layout_marginBottom="12sp"
                     android:textColor="@color/colorPrimary"
                     android:inputType="text"
+                    android:enabled="false"
                     android:paddingLeft="12sp"
                     android:paddingRight="12sp"
                     android:textSize="18sp" />
@@ -96,6 +88,7 @@
                     android:id="@+id/myProfile_email_et"
                     android:layout_width="match_parent"
                     android:layout_height="44sp"
+                    android:enabled="false"
                     android:layout_marginBottom="12sp"
                     android:textColor="@color/colorPrimary"
                     android:inputType="textEmailAddress"
@@ -121,6 +114,7 @@
                     android:layout_marginBottom="12sp"
                     android:textColor="@color/colorPrimary"
                     android:inputType="phone"
+                    android:enabled="false"
                     android:paddingLeft="12sp"
                     android:paddingRight="12sp"
                     android:textSize="18sp" />
@@ -167,7 +161,5 @@
                     android:textSize="18sp" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-
-    </LinearLayout>
 
 </LinearLayout>

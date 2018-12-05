@@ -26,4 +26,9 @@
         <item name="android:src">@drawable/ic_arrow_forward</item>
     </style>
 
+    <style name="FOL_Theme_SnackbarWrapper" parent="@style/Theme.AppCompat">
+        <!--Insert customization here-->
+    </style>
+
+
 </resources>

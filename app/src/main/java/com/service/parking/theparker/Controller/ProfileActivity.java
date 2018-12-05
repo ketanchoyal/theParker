@@ -1,12 +1,17 @@
 package com.service.parking.theparker.Controller;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.service.parking.theparker.R;
+import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 
 import butterknife.BindView;
@@ -30,15 +35,14 @@ public class ProfileActivity extends Activity {
     ImageButton mProfileBackbtn;
 
     //Constants
-    private Boolean isEditEnable = false;
+    private Boolean isEditEnable = true;
+    public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 5469;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
-
-        UI_Update();
 
         mProfileName.setText(Theparker.Person_name);
         mProfileMobileNo.setText(Theparker.Mobile_no);
@@ -47,7 +51,13 @@ public class ProfileActivity extends Activity {
 
         mProfileEditbtn.setOnClickListener(v -> {
 
+            //checkPermission();
+
+            //NetworkServices.ProfileData.init(mProfileName.getText().toString(), mProfileEmail.getText().toString(), getApplicationContext());
+
+            Log.d("Name : ", mProfileName.getText().toString());
             UI_Update();
+
 
         });
 
@@ -55,6 +65,16 @@ public class ProfileActivity extends Activity {
             finish();
         });
 
+    }
+
+    public void checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+            }
+        }
     }
 
     void UI_Update() {
@@ -66,8 +86,10 @@ public class ProfileActivity extends Activity {
             mProfileEmail.setFocusable(true);
             mProfileName.setEnabled(true);
             mProfileName.setFocusable(true);
-            mProfileMobileNo.setEnabled(true);
-            mProfileMobileNo.setFocusable(true);
+
+            mProfileEditbtn.setBackgroundResource(R.drawable.icon_save);
+
+            //NetworkServices.ProfileData.init(mProfileName.getText().toString(), mProfileEmail.getText().toString(), this);
 
         } else {
 
@@ -76,8 +98,11 @@ public class ProfileActivity extends Activity {
             mProfileEmail.setFocusable(false);
             mProfileName.setEnabled(false);
             mProfileName.setFocusable(false);
-            mProfileMobileNo.setEnabled(false);
-            mProfileMobileNo.setFocusable(false);
+
+            NetworkServices.ProfileData.init(mProfileName.getText().toString(), mProfileEmail.getText().toString(), this);
+
+            mProfileEditbtn.setBackgroundResource(R.drawable.icon_edit);
+
 
         }
 

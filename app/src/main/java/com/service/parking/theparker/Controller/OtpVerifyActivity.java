@@ -112,7 +112,7 @@ public class OtpVerifyActivity extends Activity {
             @Override
             public void onVerificationFailed(FirebaseException e) {
 
-                Snackbar.make(findViewById(android.R.id.content),e.getMessage(),Snackbar.LENGTH_INDEFINITE);
+                Snackbar.make(findViewById(android.R.id.content),e.getMessage(),Snackbar.LENGTH_LONG).show();
 
             }
 
@@ -120,7 +120,7 @@ public class OtpVerifyActivity extends Activity {
             public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
 
-                Snackbar.make(findViewById(android.R.id.content),"Code is Sent on "+Mobile_no,Snackbar.LENGTH_INDEFINITE);
+                Snackbar.make(findViewById(android.R.id.content),"Code is Sent on "+Mobile_no,Snackbar.LENGTH_LONG).show();
 
                 mVerificationId = s;
                 mResendToken = forceResendingToken;

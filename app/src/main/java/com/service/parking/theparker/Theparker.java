@@ -12,7 +12,6 @@ public class Theparker extends Application {
 
     public static String Mobile_no;
     public static String Person_name;
-    private DatabaseReference mProfileReference;
 
     public static String SP_Name = "PersonName";
     public static String SP_Mobileno = "Mobile_no";
@@ -38,7 +37,7 @@ public class Theparker extends Application {
             Mobile_no = sh.getString(SP_Mobileno,"");
             Person_name = sh.getString(SP_Name,"");
 
-            //mProfileReference = FirebaseDatabase.getInstance().getReference().child(Mobile_no).child("Profile");
+
         }
 
     }
