@@ -1,4 +1,4 @@
-package com.service.parking.theparker.Controller;
+package com.service.parking.theparker.Controller.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -369,7 +369,7 @@ public class OtpVerifyActivity extends Activity {
                         mUserDatabase.child(Theparker.Mobile_no).child("Profile").setValue(UserdataMap).addOnCompleteListener(task1 -> {
                             if(task1.isSuccessful())
                             {
-                                Intent mainIntent=new Intent(OtpVerifyActivity.this,MainActivity.class);
+                                Intent mainIntent=new Intent(OtpVerifyActivity.this,StartActivity.class);
                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainIntent);
                                 finish();

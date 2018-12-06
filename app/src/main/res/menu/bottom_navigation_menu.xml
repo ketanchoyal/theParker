@@ -2,31 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/places_activity"
+        android:id="@+id/places_fragment"
         android:icon="@drawable/icons_places"
         android:title="Places"
         />
 
     <item
-        android:id="@+id/map_activity"
+        android:id="@+id/map_fragment"
         android:icon="@drawable/icon_map"
         android:title="Map"
         />
 
     <item
-        android:id="@+id/bookings_activity"
+        android:id="@+id/bookings_fragment"
         android:icon="@drawable/icon_booking"
         android:title="Bookings"
         />
 
     <item
-        android:id="@+id/wallet_activity"
+        android:id="@+id/wallet_fragment"
         android:icon="@drawable/icon_wallet"
         android:title="E-Wallet"
         />
 
     <item
-        android:id="@+id/setting_activity"
+        android:id="@+id/setting_fragment"
         android:icon="@drawable/icon_settings"
         android:title="Setting"
         />

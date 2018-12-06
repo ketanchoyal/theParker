@@ -1,10 +1,10 @@
-package com.service.parking.theparker.Controller;
+package com.service.parking.theparker.Controller.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.R;
@@ -13,19 +13,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PlacesActivity extends MainActivity {
+public class PlacesActivity extends AppCompatActivity {
 
     @BindView(R.id.lb)
     Button mlogin;
-
-    private Toolbar mTopBar;
 
     private CircleImageView mProfileView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentViewId());
+        setContentView(R.layout.activity_places);
 
         ButterKnife.bind(this);
 
@@ -49,14 +47,5 @@ public class PlacesActivity extends MainActivity {
 
     }
 
-    @Override
-    public int getContentViewId() {
-        return R.layout.activity_places;
-    }
-
-    @Override
-    public int getNavigationMenuItemId() {
-        return R.id.places_activity;
-    }
 
 }

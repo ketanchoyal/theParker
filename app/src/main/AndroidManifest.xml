@@ -17,17 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.PlacesActivity">
+        <activity android:name=".Controller.Activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controller.LoginActivity" />
-        <activity android:name=".Controller.MobileVerifyActivity" />
-        <activity android:name=".Controller.OtpVerifyActivity" />
-        <activity android:name=".Controller.ProfileActivity" />
+        <activity android:name=".Controller.Activity.LoginActivity" />
+        <activity android:name=".Controller.Activity.MobileVerifyActivity" />
+        <activity android:name=".Controller.Activity.OtpVerifyActivity" />
+        <activity android:name=".Controller.Activity.ProfileActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,10 +39,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".Controller.MapActivity"
-            android:label="@string/title_activity_map"></activity>
     </application>
 
 </manifest>

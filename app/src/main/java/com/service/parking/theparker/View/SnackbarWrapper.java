@@ -75,7 +75,7 @@ public class SnackbarWrapper {
 
     private void onSnackbarContainerAttached(final View rootView, final CoordinatorLayout snackbarContainer) {
         Snackbar snackbar = Snackbar.make(snackbarContainer, text, duration);
-        snackbar.setCallback(new Snackbar.Callback() {
+        snackbar.addCallback(new Snackbar.Callback() {
             @Override
             public void onDismissed(Snackbar snackbar, int event) {
                 super.onDismissed(snackbar, event);

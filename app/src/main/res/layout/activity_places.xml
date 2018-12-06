@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.PlacesActivity">
+    tools:context=".Controller.Activity.PlacesActivity">
 
     <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
 
@@ -24,13 +24,5 @@
         android:layout_below="@id/name"
         android:text="Login"
         android:layout_centerHorizontal="true"/>
-
-    <include
-        android:id="@+id/bottomNavView_Bar"
-        layout="@layout/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        />
 
 </RelativeLayout>

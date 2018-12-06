@@ -15,5 +15,5 @@
     <string name="activity_otp_don_t_receive_otp">"Didn't receive code?"</string>
     <string name="activity_otp_message">"Please enter below the verification code sent to "</string>
     <string name="activity_otp_we_r_almost_done">"We'r almost done!"</string>
-    <string name="title_activity_map">Map</string>
+
 </resources>
