@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import com.service.parking.theparker.Controller.Fragment.BookingFragment;
 import com.service.parking.theparker.Controller.Fragment.MapViewFragment;
 import com.service.parking.theparker.Controller.Fragment.PlacesFragment;
+import com.service.parking.theparker.Controller.Fragment.SettingFragment;
 import com.service.parking.theparker.Controller.Fragment.WalletFragment;
 import com.service.parking.theparker.R;
 
@@ -38,8 +39,8 @@ public class StartActivity extends AppCompatActivity {
                         break;
 
                     case R.id.setting_fragment:
-                        fragmentFrame.setBackgroundResource(R.color.colorLightOrange);
-                        return true;
+                        fragment = new SettingFragment();
+                        break;
                 }
                 return loadFragment(fragment);
             };
