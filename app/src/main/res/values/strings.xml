@@ -16,4 +16,7 @@
     <string name="activity_otp_message">"Please enter below the verification code sent to "</string>
     <string name="activity_otp_we_r_almost_done">"We'r almost done!"</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
