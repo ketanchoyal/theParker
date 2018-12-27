@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +26,7 @@ public class NetworkServices {
 
         private String Name = "";
         private String email = "";
-        private Context con = null;
+        private Context con;
 
         private EditText email_et;
         private EditText name_et;
@@ -66,7 +67,7 @@ public class NetworkServices {
             sh = con.getSharedPreferences("myinfo",MODE_PRIVATE);
             Mobile_no = sh.getString(Theparker.SP_Mobileno,"");
 
-            mProfileReference = FirebaseDatabase.getInstance().getReference().child("Users").child(Mobile_no).child("Profile");
+            mProfileReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
 
             final Map<String,Object> UserdataMap =new HashMap<>();
             UserdataMap.put("Name",Name);
@@ -88,7 +89,7 @@ public class NetworkServices {
             sh = con.getSharedPreferences("myinfo",MODE_PRIVATE);
             Mobile_no = sh.getString(Theparker.SP_Mobileno,"");
 
-            mProfileReference = FirebaseDatabase.getInstance().getReference().child("Users").child(Mobile_no).child("Profile");
+            mProfileReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
 
             mProfileReference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -108,8 +109,6 @@ public class NetworkServices {
                 }
             });
         }
-
-
 
     }
 

@@ -1,20 +1,31 @@
 package com.service.parking.theparker.Controller.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.service.parking.theparker.Controller.Activity.LoginActivity;
+import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class PlacesFragment extends Fragment {
 
-    public PlacesFragment() {
-        // Required empty public constructor
-    }
+    @BindView(R.id.lb)
+    Button mlogin;
+
+    private CircleImageView mProfileView;
 
 
     @Override
@@ -23,8 +34,31 @@ public class PlacesFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_places, container, false);
 
+        ButterKnife.bind(this,v);
+
+        mProfileView = v.findViewById(R.id.custom_bar_image);
+
+
+        mlogin.setOnClickListener(v1 -> startActivity(new Intent(getContext(), LoginActivity.class)));
+
+        mlogin.setOnLongClickListener(v1 -> {
+
+            SharedPreferences sh = getContext().getSharedPreferences("myinfo",MODE_PRIVATE);
+            SharedPreferences.Editor edit = sh.edit();
+            edit.clear();
+
+            FirebaseAuth.getInstance().signOut();
+
+            return false;
+        });
+
+        mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
 
         return v;
+    }
+
+    public PlacesFragment() {
+        // Required empty public constructor
     }
 
 }

@@ -52,8 +52,12 @@ public class StartActivity extends AppCompatActivity {
 
         fragmentFrame = findViewById(R.id.framelayout);
 
+        //TODO : Google Transition
+        overridePendingTransition(0,0);
+
         BottomNavigationView navigation = findViewById(R.id.bottomNavView_Bar);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        loadFragment(new MapViewFragment());
     }
 
     private boolean loadFragment(Fragment fragment) {

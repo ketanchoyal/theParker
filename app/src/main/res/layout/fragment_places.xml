@@ -5,11 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".Controller.Fragment.PlacesFragment">
 
-    <include android:id="@+id/profile_bar" layout="@layout/top_custom_bar"/>
+    <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Places Fragment" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lb"
+        android:layout_centerInParent="true"
+        android:text="Login"/>
 
 </RelativeLayout>

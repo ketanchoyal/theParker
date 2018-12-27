@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -37,12 +38,15 @@ public class ProfileActivity extends Activity {
     //Constants
     private Boolean isEditEnable = true;
     public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 5469;
+    Boolean fromLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
+
+        overridePendingTransition(0,0);
 
 //        mProfileName.setText(Theparker.Person_name);
 //        mProfileMobileNo.setText(Theparker.Mobile_no);
@@ -62,6 +66,15 @@ public class ProfileActivity extends Activity {
 
 
         });
+
+        fromLogin = getIntent().getBooleanExtra("from",false);
+
+        if (fromLogin) {
+            mProfileBackbtn.setVisibility(View.INVISIBLE);
+        }
+        else {
+            mProfileBackbtn.setVisibility(View.VISIBLE);
+        }
 
         mProfileBackbtn.setOnClickListener(v ->{
             finish();
@@ -105,6 +118,10 @@ public class ProfileActivity extends Activity {
 
             mProfileEditbtn.setBackgroundResource(R.drawable.icon_edit);
 
+            if (fromLogin) {
+                startActivity(new Intent(this,StartActivity.class));
+                finish();
+            }
 
         }
 

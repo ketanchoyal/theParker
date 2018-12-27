@@ -346,6 +346,7 @@ public class OtpVerifyActivity extends Activity {
                 .addOnCompleteListener(this, task -> {
                     if(task.isSuccessful())
                     {
+                        //task.getResult().getAdditionalUserInfo().isNewUser()
                         final Map<String,String> UserdataMap =new HashMap<>();
                         UserdataMap.put("Name",Theparker.Person_name);
                         UserdataMap.put("Mobile_no",Theparker.Mobile_no);
@@ -365,21 +366,26 @@ public class OtpVerifyActivity extends Activity {
 
                         });
 
-
-                        mUserDatabase.child(Theparker.Mobile_no).child("Profile").setValue(UserdataMap).addOnCompleteListener(task1 -> {
-                            if(task1.isSuccessful())
-                            {
-                                Intent mainIntent=new Intent(OtpVerifyActivity.this,StartActivity.class);
-                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(mainIntent);
-                                finish();
-                            }
-                            else
-                            {
-                                Snackbar.make(findViewById(android.R.id.content), Objects.requireNonNull(task1.getException()).getMessage(), Snackbar.LENGTH_LONG).show();
-                            }
-                        });
-
+                        if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                            mUserDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile").setValue(UserdataMap).addOnCompleteListener(task1 -> {
+                                if(task1.isSuccessful())
+                                {
+                                    Intent profileIntent=new Intent(OtpVerifyActivity.this,ProfileActivity.class);
+                                    profileIntent.putExtra("from",true);
+                                    startActivity(profileIntent);
+                                    finish();
+                                }
+                                else
+                                {
+                                    Snackbar.make(findViewById(android.R.id.content), Objects.requireNonNull(task1.getException()).getMessage(), Snackbar.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            Intent mainIntent=new Intent(OtpVerifyActivity.this,StartActivity.class);
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(mainIntent);
+                            finish();
+                        }
 
                     }
                     else {
