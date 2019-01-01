@@ -67,14 +67,14 @@
             android:layout_height="0sp"
             android:layout_marginStart="15sp"
             android:layout_marginEnd="15sp"
-            android:layout_marginBottom="15sp"
+            android:layout_marginBottom="10sp"
             android:layout_weight="1.2"
             android:background="@android:drawable/dialog_holo_light_frame">
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16sp"
+                android:layout_margin="12sp"
                 android:orientation="vertical">
 
 
@@ -138,7 +138,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15.0dip"
+                    android:layout_marginTop="10.0dip"
                     android:text="@string/activity_phone_verify_bottom_message"
                     android:textSize="16.0sp" />
 

@@ -4,13 +4,7 @@
     <item
         android:id="@+id/places_fragment"
         android:icon="@drawable/icons_places"
-        android:title="Places"
-        />
-
-    <item
-        android:id="@+id/map_fragment"
-        android:icon="@drawable/icon_map"
-        android:title="Map"
+        android:title="Spots"
         />
 
     <item
@@ -26,9 +20,15 @@
         />
 
     <item
-        android:id="@+id/setting_fragment"
+        android:id="@+id/offer_place_fragment"
         android:icon="@drawable/icon_settings"
-        android:title="Setting"
+        android:title="Offer Place"
+        />
+
+    <item
+        android:id="@+id/packages_fragment"
+        android:icon="@drawable/packages"
+        android:title="Packages"
         />
 
 </menu>

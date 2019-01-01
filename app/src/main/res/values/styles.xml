@@ -26,6 +26,13 @@
         <item name="android:src">@drawable/ic_arrow_forward</item>
     </style>
 
+    <style name="BuyButton">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">64sp</item>
+        <item name="android:layout_height">64sp</item>
+        <item name="android:src">@drawable/buy</item>
+    </style>
+
     <style name="FOL_Theme_SnackbarWrapper" parent="@style/Theme.AppCompat">
         <!--Insert customization here-->
     </style>

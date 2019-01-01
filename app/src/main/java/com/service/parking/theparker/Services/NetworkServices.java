@@ -3,71 +3,39 @@ package com.service.parking.theparker.Services;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.service.parking.theparker.Controller.Adapters.PackageAdapter;
+import com.service.parking.theparker.Model.PackageModel;
 import com.service.parking.theparker.Model.ProfileModel;
 import com.service.parking.theparker.Theparker;
+import com.service.parking.theparker.Utils.Constants;
 import com.service.parking.theparker.View.SnackbarWrapper;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class NetworkServices {
+    static private DatabaseReference REF = FirebaseDatabase.getInstance().getReference();
 
     public static class ProfileData {
 
-        private String Name = "";
-        private String email = "";
-        private Context con;
+        static DatabaseReference mProfileReference = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
 
-        private EditText email_et;
-        private EditText name_et;
-        private EditText mobile_et;
-
-        @NonNull
-        public static ProfileData init(@NonNull String Name, @NonNull String email, @NonNull Context con) {
-            return new ProfileData(Name, email, con);
-        }
-
-        public static ProfileData init(@NonNull EditText name_et, @NonNull EditText email_et, @NonNull EditText mobile_et, @NonNull Context con) {
-            return new ProfileData(name_et, email_et, mobile_et, con);
-        }
-
-        ProfileData(String Name, String email, Context con) {
-            this.Name = Name;
-            this.email = email;
-            this.con = con;
-
-            updateData();
-        }
-
-        ProfileData(EditText name_et, EditText email_et, EditText mobile_et, Context con) {
-            this.name_et = name_et;
-            this.email_et = email_et;
-            this.mobile_et = mobile_et;
-            this.con = con;
-
-            setData();
-        }
-
-        static private SharedPreferences sh;
-        static private String Mobile_no;
-        static private DatabaseReference mProfileReference;
-
-        public void updateData() {
-
-            sh = con.getSharedPreferences("myinfo",MODE_PRIVATE);
-            Mobile_no = sh.getString(Theparker.SP_Mobileno,"");
-
-            mProfileReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
+        public static void updateData(String Name, String email, Context con) {
 
             final Map<String,Object> UserdataMap =new HashMap<>();
             UserdataMap.put("Name",Name);
@@ -85,11 +53,7 @@ public class NetworkServices {
 
         }
 
-        void setData() {
-            sh = con.getSharedPreferences("myinfo",MODE_PRIVATE);
-            Mobile_no = sh.getString(Theparker.SP_Mobileno,"");
-
-            mProfileReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
+        public static void setData(EditText name_et, EditText email_et, EditText mobile_et, Context con) {
 
             mProfileReference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -110,6 +74,60 @@ public class NetworkServices {
             });
         }
 
+    }
+
+    public static class Packages {
+        static DatabaseReference mPackageRef = REF.child("packages");
+
+        public static void getPackages(List<PackageModel> list, PackageAdapter adapter) {
+            mPackageRef.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    Map<String, Object> data = (Map<String, Object>) dataSnapshot.getValue();
+
+                    Log.d("ID : ",dataSnapshot.getKey());
+
+                    PackageModel cm = new PackageModel(data.get(Constants.FB_package_name),data.get(Constants.FB_no_of_cars),data.get(Constants.FB_no_of_bike),
+                            data.get(Constants.FB_package_price),data.get(Constants.FB_package_status),dataSnapshot.getKey());
+                    list.add(cm);
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
+                {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot)
+                {
+//                    Toast.makeText(getApplicationContext(),""+dataSnapshot,Toast.LENGTH_LONG).show();
+
+                    String keyID =dataSnapshot.getKey();
+                    for(int i = 0;i<=list.size()-1;i++)
+                    {
+                        PackageModel object = list.get(i);
+                        if(object.getId().equals(keyID))
+                        {
+                            list.remove(object);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
 }

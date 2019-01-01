@@ -51,7 +51,7 @@ public class ProfileActivity extends Activity {
 //        mProfileName.setText(Theparker.Person_name);
 //        mProfileMobileNo.setText(Theparker.Mobile_no);
 
-        NetworkServices.ProfileData.init(mProfileName, mProfileEmail, mProfileMobileNo, this);
+        NetworkServices.ProfileData.setData(mProfileName, mProfileEmail, mProfileMobileNo, this);
 
         Log.d("Name Mobile_No : ", Theparker.Person_name + Theparker.Mobile_no);
 
@@ -114,7 +114,7 @@ public class ProfileActivity extends Activity {
             mProfileName.setEnabled(false);
             mProfileName.setFocusable(false);
 
-            NetworkServices.ProfileData.init(mProfileName.getText().toString(), mProfileEmail.getText().toString(), this);
+            NetworkServices.ProfileData.updateData(mProfileName.getText().toString(), mProfileEmail.getText().toString(), this);
 
             mProfileEditbtn.setBackgroundResource(R.drawable.icon_edit);
 

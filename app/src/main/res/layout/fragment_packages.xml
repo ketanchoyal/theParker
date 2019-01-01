@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.Fragment.PlacesFragment">
+    tools:context=".Controller.Fragment.PackagesFragment">
 
     <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lb"
-        android:layout_centerInParent="true"
-        android:text="Login"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/package_recyclerView"/>
 
 </RelativeLayout>

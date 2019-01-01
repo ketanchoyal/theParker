@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
 import com.service.parking.theparker.Controller.Fragment.BookingFragment;
-import com.service.parking.theparker.Controller.Fragment.MapViewFragment;
+import com.service.parking.theparker.Controller.Fragment.PackagesFragment;
 import com.service.parking.theparker.Controller.Fragment.PlacesFragment;
-import com.service.parking.theparker.Controller.Fragment.SettingFragment;
+import com.service.parking.theparker.Controller.Fragment.OfferPlaceFragment;
 import com.service.parking.theparker.Controller.Fragment.WalletFragment;
 import com.service.parking.theparker.R;
 
@@ -26,8 +26,8 @@ public class StartActivity extends AppCompatActivity {
                         fragment = new PlacesFragment();
                         break;
 
-                    case R.id.map_fragment:
-                        fragment = new MapViewFragment();
+                    case R.id.packages_fragment:
+                        fragment = new PackagesFragment();
                         break;
 
                     case R.id.bookings_fragment:
@@ -38,8 +38,8 @@ public class StartActivity extends AppCompatActivity {
                         fragment = new WalletFragment();
                         break;
 
-                    case R.id.setting_fragment:
-                        fragment = new SettingFragment();
+                    case R.id.offer_place_fragment:
+                        fragment = new OfferPlaceFragment();
                         break;
                 }
                 return loadFragment(fragment);
@@ -57,7 +57,7 @@ public class StartActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.bottomNavView_Bar);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        loadFragment(new MapViewFragment());
+        loadFragment(new PackagesFragment());
     }
 
     private boolean loadFragment(Fragment fragment) {
