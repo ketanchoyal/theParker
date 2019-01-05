@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.service.parking.theparker.ActivityAnimator;
 import com.service.parking.theparker.R;
 
 import butterknife.BindView;
@@ -20,6 +21,10 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        try {
+            ActivityAnimator.fadeAnimation(this);
+        } catch (Exception ignore) {}
 
         mLogin_btn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, MobileVerifyActivity.class)));
     }

@@ -8,6 +8,7 @@
     <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
 
         <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="2sp"
             android:layout_below="@id/top_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

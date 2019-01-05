@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.service.parking.theparker.ActivityAnimator;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 
@@ -37,6 +38,10 @@ public class MobileVerifyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_verify);
         ButterKnife.bind(this);
+
+        try {
+            ActivityAnimator.fadeAnimation(this);
+        } catch (Exception ignore) {}
 
         sh = getSharedPreferences("myinfo",MODE_PRIVATE);
         edit = sh.edit();

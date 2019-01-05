@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.service.parking.theparker.ActivityAnimator;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
@@ -46,7 +47,11 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
 
-        overridePendingTransition(0,0);
+        try {
+            ActivityAnimator.fadeAnimation(this);
+        } catch (Exception ignore) {}
+
+//        overridePendingTransition(0,0);
 
 //        mProfileName.setText(Theparker.Person_name);
 //        mProfileMobileNo.setText(Theparker.Mobile_no);

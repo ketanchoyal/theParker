@@ -18,6 +18,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.service.parking.theparker.ActivityAnimator;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 
@@ -76,6 +77,10 @@ public class OtpVerifyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_verify);
         ButterKnife.bind(this);
+
+        try {
+            ActivityAnimator.fadeAnimation(this);
+        } catch (Exception ignore) {}
 
         firebaseAuth=FirebaseAuth.getInstance();
         mUserDatabase= FirebaseDatabase.getInstance().getReference().child("Users");

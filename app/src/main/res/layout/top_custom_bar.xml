@@ -4,19 +4,22 @@
     android:id="@+id/top_bar"
     android:layout_width="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:layout_height="40sp"
+    android:layout_height="50sp"
+    android:elevation="10sp"
     app:contentInsetLeft="0dp"
     app:contentInsetStart="0dp"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/fragment_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toStartOf="@id/relativeLayout"
+            android:layout_toEndOf="@id/relativeLayout"
+            android:layout_marginEnd="40sp"
             android:fontFamily="@font/averia_sans_libre_bold"
             android:gravity="center_vertical"
             android:paddingStart="10sp"
@@ -27,14 +30,17 @@
         <RelativeLayout
             android:layout_width="40sp"
             android:layout_height="40sp"
-            android:layout_gravity="end"
+            android:layout_gravity="center"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
             android:id="@+id/relativeLayout"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentStart="true">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/custom_bar_image"
-                android:layout_width="38sp"
-                android:layout_height="38sp"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/icon_user" />
         </RelativeLayout>

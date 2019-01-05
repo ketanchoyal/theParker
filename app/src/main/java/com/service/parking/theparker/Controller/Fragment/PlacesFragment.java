@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.Controller.Activity.LoginActivity;
@@ -25,7 +26,11 @@ public class PlacesFragment extends Fragment {
     @BindView(R.id.lb)
     Button mlogin;
 
-    private CircleImageView mProfileView;
+    @BindView(R.id.fragment_name)
+    TextView mFragmentName;
+
+    @BindView(R.id.custom_bar_image)
+    CircleImageView mProfileView;
 
 
     @Override
@@ -36,8 +41,7 @@ public class PlacesFragment extends Fragment {
 
         ButterKnife.bind(this,v);
 
-        mProfileView = v.findViewById(R.id.custom_bar_image);
-
+        mFragmentName.setText("Places");
 
         mlogin.setOnClickListener(v1 -> startActivity(new Intent(getContext(), LoginActivity.class)));
 
