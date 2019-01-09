@@ -1,6 +1,8 @@
-package com.service.parking.theparker;
+package com.service.parking.theparker.View;
 
 import android.app.Activity;
+
+import com.service.parking.theparker.R;
 
 public class ActivityAnimator {
     public static void flipHorizontalAnimation(Activity a)

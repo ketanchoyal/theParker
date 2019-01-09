@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.service.parking.theparker.ActivityAnimator;
+import com.service.parking.theparker.View.ActivityAnimator;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 
@@ -39,9 +39,7 @@ public class MobileVerifyActivity extends Activity {
         setContentView(R.layout.activity_mobile_verify);
         ButterKnife.bind(this);
 
-        try {
-            ActivityAnimator.fadeAnimation(this);
-        } catch (Exception ignore) {}
+        Theparker.animate(this);
 
         sh = getSharedPreferences("myinfo",MODE_PRIVATE);
         edit = sh.edit();
@@ -66,6 +64,7 @@ public class MobileVerifyActivity extends Activity {
                     Intent otpActivity = new Intent(MobileVerifyActivity.this,OtpVerifyActivity.class);
                     startActivity(otpActivity);
                     finish();
+                    Theparker.animate(this);
                 }
 
             }

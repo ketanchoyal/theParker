@@ -14,4 +14,12 @@
         android:layout_centerInParent="true"
         android:text="Login"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/add_parking"
+        android:layout_below="@id/lb"
+        android:text="Add Parking"/>
+
 </RelativeLayout>

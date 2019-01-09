@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.service.parking.theparker.ActivityAnimator;
+import com.service.parking.theparker.View.ActivityAnimator;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
@@ -47,9 +47,7 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
 
-        try {
-            ActivityAnimator.fadeAnimation(this);
-        } catch (Exception ignore) {}
+        Theparker.animate(this);
 
 //        overridePendingTransition(0,0);
 
@@ -82,7 +80,8 @@ public class ProfileActivity extends Activity {
         }
 
         mProfileBackbtn.setOnClickListener(v ->{
-            finish();
+            onBackPressed();
+            Theparker.animate(this);
         });
 
     }
@@ -126,6 +125,7 @@ public class ProfileActivity extends Activity {
             if (fromLogin) {
                 startActivity(new Intent(this,StartActivity.class));
                 finish();
+                Theparker.animate(this);
             }
 
         }

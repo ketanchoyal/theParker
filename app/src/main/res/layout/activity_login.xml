@@ -31,6 +31,7 @@
         <ImageView
             android:layout_width="160.0dip"
             android:layout_height="160.0dip"
+            android:visibility="visible"
             android:paddingLeft="@dimen/activity_login_logo_horizontal_padding"
             android:paddingRight="@dimen/activity_login_logo_horizontal_padding"
             app:srcCompat="@drawable/ic_house_black_24dp" />

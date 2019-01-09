@@ -1,5 +1,6 @@
 package com.service.parking.theparker.Controller.Activity;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -7,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.service.parking.theparker.ActivityAnimator;
+import com.service.parking.theparker.View.ActivityAnimator;
 import com.service.parking.theparker.Controller.Fragment.BookingFragment;
 import com.service.parking.theparker.Controller.Fragment.PackagesFragment;
 import com.service.parking.theparker.Controller.Fragment.PlacesFragment;
@@ -64,9 +65,6 @@ public class StartActivity extends AppCompatActivity {
         } catch (Exception ignore) {}
 
         fragmentFrame = findViewById(R.id.framelayout);
-
-//        //TODO : Google Transition
-//        overridePendingTransition(0,0);
 
         navigation = findViewById(R.id.bottomNavView_Bar);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

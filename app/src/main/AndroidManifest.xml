@@ -42,6 +42,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".Controller.Activity.ParkingPinActivity" />
+        <activity android:name=".Controller.Activity.ParkingDetailsActivity" />
+        <activity android:name=".Controller.Activity.PriceAndAdditionalDetailsActivity"></activity>
     </application>
 
 </manifest>

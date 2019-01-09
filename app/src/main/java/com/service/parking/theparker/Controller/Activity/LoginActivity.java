@@ -1,11 +1,13 @@
 package com.service.parking.theparker.Controller.Activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.service.parking.theparker.ActivityAnimator;
+import com.service.parking.theparker.Theparker;
+import com.service.parking.theparker.View.ActivityAnimator;
 import com.service.parking.theparker.R;
 
 import butterknife.BindView;
@@ -22,9 +24,9 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        try {
-            ActivityAnimator.fadeAnimation(this);
-        } catch (Exception ignore) {}
+//        ActionBar actionBar = getActionBar();
+//        actionBar.hide();
+        Theparker.animate(this);
 
         mLogin_btn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, MobileVerifyActivity.class)));
     }

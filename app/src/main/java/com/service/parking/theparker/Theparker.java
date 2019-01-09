@@ -1,11 +1,14 @@
 package com.service.parking.theparker;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.Controller.Activity.LoginActivity;
+import com.service.parking.theparker.View.ActivityAnimator;
 
 public class Theparker extends Application {
 
@@ -36,6 +39,12 @@ public class Theparker extends Application {
 
         }
 
+    }
+
+    public static void animate(Activity activity) {
+        try {
+            ActivityAnimator.fadeAnimation(activity);
+        } catch (Exception ignore) {}
     }
 
     

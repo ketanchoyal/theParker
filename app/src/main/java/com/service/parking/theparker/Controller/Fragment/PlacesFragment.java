@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.Controller.Activity.LoginActivity;
+import com.service.parking.theparker.Controller.Activity.ParkingPinActivity;
 import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.R;
 
@@ -26,6 +27,9 @@ public class PlacesFragment extends Fragment {
     @BindView(R.id.lb)
     Button mlogin;
 
+    @BindView(R.id.add_parking)
+    Button mAddParkingBtn;
+
     @BindView(R.id.fragment_name)
     TextView mFragmentName;
 
@@ -37,15 +41,15 @@ public class PlacesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_places, container, false);
+        View view = inflater.inflate(R.layout.fragment_places, container, false);
 
-        ButterKnife.bind(this,v);
+        ButterKnife.bind(this,view);
 
         mFragmentName.setText("Places");
 
-        mlogin.setOnClickListener(v1 -> startActivity(new Intent(getContext(), LoginActivity.class)));
+        mlogin.setOnClickListener(v -> startActivity(new Intent(getContext(), LoginActivity.class)));
 
-        mlogin.setOnLongClickListener(v1 -> {
+        mlogin.setOnLongClickListener(v -> {
 
             SharedPreferences sh = getContext().getSharedPreferences("myinfo",MODE_PRIVATE);
             SharedPreferences.Editor edit = sh.edit();
@@ -56,9 +60,11 @@ public class PlacesFragment extends Fragment {
             return false;
         });
 
+        mAddParkingBtn.setOnClickListener(v -> startActivity(new Intent(getContext(), ParkingPinActivity.class)));
+
         mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
 
-        return v;
+        return view;
     }
 
     public PlacesFragment() {
