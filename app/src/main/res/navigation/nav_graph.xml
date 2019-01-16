@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginActivity">
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/mobileVerifyActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.MobileVerifyActivity"
+        android:label="activity_mobile_verify"
+        tools:layout="@layout/activity_mobile_verify" />
+    <activity
+        android:id="@+id/otpVerifyActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.OtpVerifyActivity"
+        android:label="activity_otp_verify"
+        tools:layout="@layout/activity_otp_verify" />
+    <activity
+        android:id="@+id/profileActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
+    <activity
+        android:id="@+id/startActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.StartActivity"
+        android:label="activity_start"
+        tools:layout="@layout/activity_start" />
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="com.service.parking.theparker.Controller.Fragment.BookingFragment"
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking" >
+        <action
+            android:id="@+id/action_bookingFragment_to_startActivity"
+            app:destination="@id/startActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/offerPlaceFragment"
+        android:name="com.service.parking.theparker.Controller.Fragment.OfferPlaceFragment"
+        android:label="fragment_offer_place"
+        tools:layout="@layout/fragment_offer_place" >
+        <action
+            android:id="@+id/action_offerPlaceFragment_to_startActivity"
+            app:destination="@id/startActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/packagesFragment"
+        android:name="com.service.parking.theparker.Controller.Fragment.PackagesFragment"
+        android:label="fragment_packages"
+        tools:layout="@layout/fragment_packages" >
+        <action
+            android:id="@+id/action_packagesFragment_to_startActivity"
+            app:destination="@id/startActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/placesFragment"
+        android:name="com.service.parking.theparker.Controller.Fragment.PlacesFragment"
+        android:label="fragment_places"
+        tools:layout="@layout/fragment_places" >
+        <action
+            android:id="@+id/action_placesFragment_to_startActivity"
+            app:destination="@id/startActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.service.parking.theparker.Controller.Fragment.WalletFragment"
+        android:label="fragment_wallet"
+        tools:layout="@layout/fragment_wallet" >
+        <action
+            android:id="@+id/action_walletFragment_to_startActivity"
+            app:destination="@id/startActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/parkingPinActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.ParkingPinActivity"
+        android:label="activity_parking_pin"
+        tools:layout="@layout/activity_parking_pin" />
+    <activity
+        android:id="@+id/parkingDetailsActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.ParkingDetailsActivity"
+        android:label="activity_parking_details"
+        tools:layout="@layout/activity_parking_details" />
+</navigation>
