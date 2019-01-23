@@ -345,18 +345,6 @@
             app:cb_color="@color/colorPrimary"
             app:cb_pressedRingWidth="2.0dip" />
 
-        <!--<Button-->
-            <!--android:id="@+id/next_btn"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:fontFamily="monospace"-->
-            <!--android:text="Next ->"-->
-            <!--android:textColor="@color/colorWhite"-->
-            <!--android:textSize="18dp"-->
-            <!--android:textStyle="bold" />-->
     </RelativeLayout>
 
 </RelativeLayout>

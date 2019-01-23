@@ -4,16 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.Activity.ParkingPinActivity">
+    tools:context=".Controller.Activity.AreaAndAddressActivity">
 
     <include android:id="@+id/action_bar" layout="@layout/top_custom_action_bar" />
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_below="@id/action_bar"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"

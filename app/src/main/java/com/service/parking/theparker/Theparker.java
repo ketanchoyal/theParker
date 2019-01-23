@@ -46,6 +46,4 @@ public class Theparker extends Application {
             ActivityAnimator.fadeAnimation(activity);
         } catch (Exception ignore) {}
     }
-
-    
 }

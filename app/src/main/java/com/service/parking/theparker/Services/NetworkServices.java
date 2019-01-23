@@ -130,4 +130,8 @@ public class NetworkServices {
         }
     }
 
+    public static class ParkingPin {
+
+    }
+
 }
