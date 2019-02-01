@@ -1,14 +1,12 @@
 package com.service.parking.theparker.Controller.Activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.service.parking.theparker.Theparker;
-import com.service.parking.theparker.View.ActivityAnimator;
 import com.service.parking.theparker.R;
+import com.service.parking.theparker.Theparker;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

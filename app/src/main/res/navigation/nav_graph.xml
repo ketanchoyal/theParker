@@ -85,4 +85,14 @@
         android:name="com.service.parking.theparker.Controller.Activity.ParkingDetailsActivity"
         android:label="activity_parking_details"
         tools:layout="@layout/activity_parking_details" />
+    <activity
+        android:id="@+id/areaAndAddressActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.AreaAndAddressActivity"
+        android:label="activity_area_and_address"
+        tools:layout="@layout/activity_area_and_address" />
+    <activity
+        android:id="@+id/priceAndAdditionalDetailsActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.PriceAndAdditionalDetailsActivity"
+        android:label="activity_price_and_additional_details"
+        tools:layout="@layout/activity_price_and_additional_details" />
 </navigation>

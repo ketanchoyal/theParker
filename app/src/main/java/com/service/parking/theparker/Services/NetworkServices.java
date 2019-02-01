@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +32,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class NetworkServices {
     static private DatabaseReference REF = FirebaseDatabase.getInstance().getReference();
 
+    public static ProfileModel profileModel;
+
     public static class ProfileData {
 
         static DatabaseReference mProfileReference = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
@@ -53,18 +56,68 @@ public class NetworkServices {
 
         }
 
-        public static void setData(EditText name_et, EditText email_et, EditText mobile_et, Context con) {
+        public static void setData(Object name_et, Object email_et, Object mobile_et) {
 
             mProfileReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     ProfileModel profileModel = dataSnapshot.getValue(ProfileModel.class);
+                    NetworkServices.profileModel = profileModel;
 
-                    email_et.setText(profileModel.Email);
-                    name_et.setText(profileModel.Name);
-                    mobile_et.setText(profileModel.Mobile_no);
+                    if(name_et != null) {
+                        if(name_et instanceof EditText) {
+                            EditText name = (EditText) name_et;
+                            name.setText(profileModel.Name);
+                        }
+                        if(name_et instanceof TextView) {
+                            TextView name = (TextView) name_et;
+                            name.setText(profileModel.Name);
+                        }
+                    }
 
+
+                    if(email_et != null) {
+                        if(email_et instanceof EditText) {
+                            EditText email = (EditText) email_et;
+                            email.setText(profileModel.Email);
+                        }
+                        if(email_et instanceof TextView) {
+                            TextView email = (TextView) email_et;
+                            email.setText(profileModel.Email);
+                        }
+                    }
+
+                    if(mobile_et != null) {
+                        if(mobile_et instanceof EditText) {
+                            EditText Mobile_no = (EditText) mobile_et;
+                            Mobile_no.setText(profileModel.Mobile_no);
+                        }
+                        if(mobile_et instanceof TextView) {
+                            TextView Mobile_no = (TextView) mobile_et;
+                            Mobile_no.setText(profileModel.Mobile_no);
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+        public static void getProfileData() {
+
+            mProfileReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    ProfileModel profileModel = dataSnapshot.getValue(ProfileModel.class);
+                    NetworkServices.profileModel = profileModel;
+
+                    Log.d("XYZ ABC",NetworkServices.profileModel.Email + " " + NetworkServices.profileModel.Mobile_no + " " + NetworkServices.profileModel.Name);
                 }
 
                 @Override

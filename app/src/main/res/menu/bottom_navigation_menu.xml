@@ -21,7 +21,7 @@
 
     <item
         android:id="@+id/offer_place_fragment"
-        android:icon="@drawable/icon_settings"
+        android:icon="@drawable/icon_offer_parking"
         android:title="Offer Place"
         />
 

@@ -152,18 +152,28 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/tv3">
-                <EditText
+
+                <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    android:id="@+id/price_text_field_boxes"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="15dp"
-                    android:fontFamily="monospace"
-                    android:inputType="number"
                     android:gravity="center_vertical"
-                    android:hint="Price would be displayed to buyers."/>
+                    app:panelBackgroundColor="@color/colorWhite"
+                    app:labelText="Price"
+                    app:helperText="This price would be displayed to buyers.">
+
+                    <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                        android:id="@+id/price_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:prefix="₹ " />
+
+                </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
             </RelativeLayout>
         </RelativeLayout>
 

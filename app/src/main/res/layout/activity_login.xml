@@ -22,7 +22,7 @@
         android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0.0dip"
         android:layout_weight="1.0"
         android:gravity="center"
@@ -31,9 +31,8 @@
         <ImageView
             android:layout_width="160.0dip"
             android:layout_height="160.0dip"
-            android:visibility="visible"
-            android:paddingLeft="@dimen/activity_login_logo_horizontal_padding"
-            android:paddingRight="@dimen/activity_login_logo_horizontal_padding"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
             app:srcCompat="@drawable/ic_house_black_24dp" />
 
         <Button

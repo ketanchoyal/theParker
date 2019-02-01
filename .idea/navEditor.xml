@@ -8,6 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="areaAndAddressActivity">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="813" />
+                            <option name="y" value="-220" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="bookingFragment">
                     <value>
                       <LayoutPositions>
@@ -112,8 +124,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="851" />
-                            <option name="y" value="-222" />
+                            <option name="x" value="979" />
+                            <option name="y" value="-221" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -148,6 +160,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="priceAndAdditionalDetailsActivity">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1163" />
+                            <option name="y" value="-219" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

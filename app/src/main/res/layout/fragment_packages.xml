@@ -7,9 +7,116 @@
 
     <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout2"
+        android:layout_above="@id/package_recyclerView"
+        android:layout_below="@id/top_bar">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@id/total_spots"
+                android:text="+"
+                android:gravity="bottom"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="38sp" />
+
+            <TextView
+                android:id="@+id/total_spots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:text="10"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/top_bar"
+        android:layout_height="80sp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/relativeLayout">
+
+        <RelativeLayout
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/spotAvai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Spots Available"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/spotAvai"
+                android:text="4"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="40sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/spotInUse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Spots in Use"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/spotInUse"
+                android:text="6"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="40sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:layout_marginTop="2sp"
-            android:layout_below="@id/top_bar"
+            android:layout_below="@id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/package_recyclerView"/>

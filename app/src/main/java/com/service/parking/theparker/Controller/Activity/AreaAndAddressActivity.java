@@ -8,6 +8,12 @@ import android.widget.TextView;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 
+import org.angmarch.views.NiceSpinner;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +29,11 @@ public class AreaAndAddressActivity extends AppCompatActivity {
 
     @BindView(R.id.next_btn)
     CircleButton mNextBtn;
+
+    @BindView(R.id.nice_spinner)
+    NiceSpinner niceSpinner;
+
+    List<String> dataset = new LinkedList<>(Arrays.asList("Waghodia Road Area", "Manjalpur Area", "Karelibagh Area", "Akota Area"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +52,8 @@ public class AreaAndAddressActivity extends AppCompatActivity {
         mNextBtn.setOnClickListener(v -> {
             startActivity(new Intent(AreaAndAddressActivity.this, ParkingDetailsActivity.class));
         });
+
+        niceSpinner.attachDataSource(dataset);
 
     }
 

@@ -49,7 +49,8 @@ public class ProfileActivity extends Activity {
 
         Theparker.animate(this);
 
-        NetworkServices.ProfileData.setData(mProfileName, mProfileEmail, mProfileMobileNo, this);
+        NetworkServices.ProfileData.setData(mProfileName, mProfileEmail, mProfileMobileNo);
+        NetworkServices.ProfileData.getProfileData();
 
         Log.d("Name Mobile_No : ", Theparker.Person_name + Theparker.Mobile_no);
 

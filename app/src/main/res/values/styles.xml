@@ -35,6 +35,13 @@
         <item name="android:src">@drawable/ic_arrow_forward</item>
     </style>
 
+    <style name="AddButton">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">64sp</item>
+        <item name="android:layout_height">64sp</item>
+        <item name="android:src">@drawable/icon_add</item>
+    </style>
+
     <style name="FinishButton">
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_width">64sp</item>

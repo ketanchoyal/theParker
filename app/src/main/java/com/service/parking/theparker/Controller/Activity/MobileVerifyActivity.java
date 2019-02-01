@@ -71,4 +71,10 @@ public class MobileVerifyActivity extends Activity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Theparker.animate(this);
+    }
 }

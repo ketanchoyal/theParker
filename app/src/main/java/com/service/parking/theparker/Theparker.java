@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.Controller.Activity.LoginActivity;
+import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.View.ActivityAnimator;
 
 public class Theparker extends Application {
@@ -29,11 +30,11 @@ public class Theparker extends Application {
         if(firebaseAuth.getCurrentUser() == null)
         {
             Intent LoginIntent = new Intent(this,LoginActivity.class);
+            LoginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(LoginIntent);
-
         }
         else  {
-
+            NetworkServices.ProfileData.getProfileData();
             Mobile_no = sh.getString(SP_Mobileno,"");
             Person_name = sh.getString(SP_Name,"");
 

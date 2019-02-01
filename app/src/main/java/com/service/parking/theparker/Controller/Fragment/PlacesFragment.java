@@ -17,6 +17,7 @@ import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.R;
 
 import androidx.navigation.Navigation;
+import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,9 +28,6 @@ public class PlacesFragment extends Fragment {
 
     @BindView(R.id.lb)
     Button mlogin;
-
-    @BindView(R.id.add_parking)
-    Button mAddParkingBtn;
 
     @BindView(R.id.fragment_name)
     TextView mFragmentName;
@@ -60,8 +58,6 @@ public class PlacesFragment extends Fragment {
 
             return false;
         });
-
-        mAddParkingBtn.setOnClickListener(v -> startActivity(new Intent(getContext(), ParkingPinActivity.class)));
 
         mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
 
