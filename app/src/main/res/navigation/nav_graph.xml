@@ -7,17 +7,17 @@
 
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.service.parking.theparker.Controller.Activity.LoginActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.Register.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <activity
         android:id="@+id/mobileVerifyActivity"
-        android:name="com.service.parking.theparker.Controller.Activity.MobileVerifyActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.Register.MobileVerifyActivity"
         android:label="activity_mobile_verify"
         tools:layout="@layout/activity_mobile_verify" />
     <activity
         android:id="@+id/otpVerifyActivity"
-        android:name="com.service.parking.theparker.Controller.Activity.OtpVerifyActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.Register.OtpVerifyActivity"
         android:label="activity_otp_verify"
         tools:layout="@layout/activity_otp_verify" />
     <activity
@@ -77,22 +77,22 @@
     </fragment>
     <activity
         android:id="@+id/parkingPinActivity"
-        android:name="com.service.parking.theparker.Controller.Activity.ParkingPinActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.OfferLocation.ParkingPinActivity"
         android:label="activity_parking_pin"
         tools:layout="@layout/activity_parking_pin" />
     <activity
         android:id="@+id/parkingDetailsActivity"
-        android:name="com.service.parking.theparker.Controller.Activity.ParkingDetailsActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.OfferLocation.ParkingDetailsActivity"
         android:label="activity_parking_details"
         tools:layout="@layout/activity_parking_details" />
     <activity
         android:id="@+id/areaAndAddressActivity"
-        android:name="com.service.parking.theparker.Controller.Activity.AreaAndAddressActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.OfferLocation.AreaAndAddressActivity"
         android:label="activity_area_and_address"
         tools:layout="@layout/activity_area_and_address" />
     <activity
         android:id="@+id/priceAndAdditionalDetailsActivity"
-        android:name="com.service.parking.theparker.Controller.Activity.PriceAndAdditionalDetailsActivity"
+        android:name="com.service.parking.theparker.Controller.Activity.OfferLocation.PriceAndAdditionalDetailsActivity"
         android:label="activity_price_and_additional_details"
         tools:layout="@layout/activity_price_and_additional_details" />
 </navigation>

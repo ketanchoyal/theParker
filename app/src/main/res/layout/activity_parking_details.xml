@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.Activity.ParkingDetailsActivity">
+    tools:context=".Controller.Activity.OfferLocation.ParkingDetailsActivity">
 
     <include android:id="@+id/action_bar" layout="@layout/top_custom_action_bar" />
 
@@ -42,7 +42,6 @@
                 android:layout_height="40sp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/segmentedButtonGroup"
-
                 android:layout_margin="3dp"
                 app:sbg_animateSelector="anticipateOvershoot"
                 app:sbg_animateSelectorDuration="900"

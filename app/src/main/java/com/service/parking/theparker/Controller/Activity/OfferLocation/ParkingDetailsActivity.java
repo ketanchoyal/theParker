@@ -1,6 +1,5 @@
-package com.service.parking.theparker.Controller.Activity;
+package com.service.parking.theparker.Controller.Activity.OfferLocation;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
-import com.service.parking.theparker.View.ActivityAnimator;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;

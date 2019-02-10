@@ -1,14 +1,10 @@
-package com.service.parking.theparker.Controller.Activity;
+package com.service.parking.theparker.Controller.Activity.OfferLocation;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -19,21 +15,22 @@ import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
+import com.service.parking.theparker.Utils.LocationConstants;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
@@ -63,6 +60,11 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
     GoogleMap map;
     private Location mLastKnownLocation;
 
+    private int count = 0;
+    private String area;
+    private String address;
+    private String pincode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,16 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
         });
 
         mNextBtn.setOnClickListener(v -> {
-            startActivity(new Intent(ParkingPinActivity.this, AreaAndAddressActivity.class));
+
+            if (count > 0) {
+                Intent areaAddress = new Intent(ParkingPinActivity.this, AreaAndAddressActivity.class);
+                areaAddress.putExtra(LocationConstants.address,address);
+                areaAddress.putExtra(LocationConstants.area,area);
+                areaAddress.putExtra(LocationConstants.pincode,pincode);
+                startActivity(areaAddress);
+            } else {
+                Toasty.error(this, "Please select parking first!").show();
+            }
         });
 
         supportMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
@@ -97,8 +108,32 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
         getLocationPermission();
         updateLocationUI();
         getDeviceLocation();
-        map.setOnMapClickListener(v -> {
-            Toasty.success(this, "Click Captured").show();
+//        map.setOnMapClickListener(v -> {
+//            Toasty.success(this, "Click Captured").show();
+//        });
+
+        map.setOnMapLongClickListener(v -> {
+
+            count += 1;
+
+            // Creating a marker
+            MarkerOptions markerOptions = new MarkerOptions();
+
+            // Setting the position for the marker
+            markerOptions.position(v);
+
+            // Setting the title for the marker.
+            // This will be displayed on taping the marker
+            markerOptions.title(v.latitude + " : " + v.longitude);
+
+            // Clears the previously touched position
+            map.clear();
+
+            // Animating to the touched position
+            map.animateCamera(CameraUpdateFactory.newLatLng(v));
+
+            // Placing a marker on the touched position
+            map.addMarker(markerOptions);
 
             Geocoder geocoder;
             List<Address> addresses = null;
@@ -110,12 +145,20 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
                 e.printStackTrace();
             }
 
-            Log.d("XYZ Location : ", v.latitude + " " + v.longitude);
-            Log.d("XYZ Address : ", addresses.toString());
-        });
+            address = addresses.get(0).getAddressLine(0);
+            pincode = addresses.get(0).getPostalCode();
+            area = addresses.get(0).getSubLocality();
 
-        map.setOnMapLongClickListener(v -> {
-            Toasty.success(this, "Long Click").show();
+            Map<String,Double> pinloc = new HashMap<>();
+            pinloc.put("lat",v.latitude);
+            pinloc.put("long",v.longitude);
+
+            Theparker.currentLocationpin.setPinloc(pinloc);
+
+            Log.d("XYZ Location : ", v.latitude + " " + v.longitude);
+            Log.d("XYZ Address : ", addresses.get(0).getSubLocality());
+
+            Toasty.success(this, "Parking Selected").show();
 
         });
 

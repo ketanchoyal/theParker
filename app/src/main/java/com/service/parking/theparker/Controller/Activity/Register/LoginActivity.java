@@ -1,4 +1,4 @@
-package com.service.parking.theparker.Controller.Activity;
+package com.service.parking.theparker.Controller.Activity.Register;
 
 import android.app.Activity;
 import android.content.Intent;

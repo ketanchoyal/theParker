@@ -1,7 +1,6 @@
 package com.service.parking.theparker.Controller.Fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,18 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.service.parking.theparker.Controller.Activity.LoginActivity;
-import com.service.parking.theparker.Controller.Activity.ParkingPinActivity;
+import com.service.parking.theparker.Controller.Activity.Register.LoginActivity;
 import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.R;
 
-import androidx.navigation.Navigation;
-import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class PlacesFragment extends Fragment {
 

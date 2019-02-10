@@ -1,4 +1,4 @@
-package com.service.parking.theparker.Controller.Activity;
+package com.service.parking.theparker.Controller.Activity.Register;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +18,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.service.parking.theparker.View.ActivityAnimator;
+import com.service.parking.theparker.Controller.Activity.ProfileActivity;
+import com.service.parking.theparker.Controller.Activity.StartActivity;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 
@@ -69,8 +70,8 @@ public class OtpVerifyActivity extends Activity {
     private String OTP = null;
     private String mVerificationId = null;
 
-    private SharedPreferences sh;
-    private SharedPreferences.Editor edit;
+//    private SharedPreferences sh;
+//    private SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +84,11 @@ public class OtpVerifyActivity extends Activity {
         firebaseAuth=FirebaseAuth.getInstance();
         mUserDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
 
-        sh = getSharedPreferences("myinfo",MODE_PRIVATE);
-        edit = sh.edit();
-        edit.apply();
+//        sh = getSharedPreferences("myinfo",MODE_PRIVATE);
+//        edit = sh.edit();
+//        edit.apply();
 
-        final String Mobile_no = sh.getString(Theparker.SP_Mobileno,"");  //Theparker.Mobile_no;
+        final String Mobile_no = Theparker.Mobile_no;
 
         //Log.d("Mobile no : ",Mobile_no);
 
@@ -357,8 +358,8 @@ public class OtpVerifyActivity extends Activity {
                         String User_id = FirebaseAuth.getInstance().getUid();
 
                         //Log.d("User id : ",User_id);
-                        edit.putString(Theparker.SP_User_id,User_id);
-                        edit.apply();
+//                        edit.putString(Theparker.SP_User_id,User_id);
+//                        edit.apply();
 
                         //final String[] device_token = new String[1];
                         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(instanceIdResult -> {
@@ -373,7 +374,7 @@ public class OtpVerifyActivity extends Activity {
                             mUserDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile").setValue(UserdataMap).addOnCompleteListener(task1 -> {
                                 if(task1.isSuccessful())
                                 {
-                                    Intent profileIntent=new Intent(OtpVerifyActivity.this,ProfileActivity.class);
+                                    Intent profileIntent=new Intent(OtpVerifyActivity.this, ProfileActivity.class);
                                     profileIntent.putExtra("from",true);
                                     startActivity(profileIntent);
                                     finish();
@@ -385,7 +386,7 @@ public class OtpVerifyActivity extends Activity {
                                 }
                             });
                         } else {
-                            Intent mainIntent=new Intent(OtpVerifyActivity.this,StartActivity.class);
+                            Intent mainIntent=new Intent(OtpVerifyActivity.this, StartActivity.class);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
                             finish();

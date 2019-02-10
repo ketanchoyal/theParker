@@ -1,4 +1,4 @@
-package com.service.parking.theparker.Controller.Activity;
+package com.service.parking.theparker.Controller.Activity.OfferLocation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

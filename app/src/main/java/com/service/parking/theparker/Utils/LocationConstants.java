@@ -13,4 +13,6 @@ public class LocationConstants {
     public static final String pinloc  = "pinloc";
     public static final String address = "address";
     public static final String mobile = "mobile";
+    public static final String area = "area";
+    public static final String pincode = "pincode";
 }

@@ -4,25 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.Activity.AreaAndAddressActivity">
+    tools:context=".Controller.Activity.OfferLocation.AreaAndAddressActivity">
 
     <include android:id="@+id/action_bar" layout="@layout/top_custom_action_bar" />
 
-    <org.angmarch.views.NiceSpinner
-        android:id="@+id/nice_spinner"
+    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+        android:id="@+id/area_text_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/action_bar"
+        android:layout_marginTop="20sp"
         android:layout_marginStart="30sp"
         android:layout_marginEnd="30sp"
-        android:layout_marginTop="16dp"
-        app:textTint="@color/colorAccent"/>
+        app:panelBackgroundColor="@color/colorWhite"
+        app:labelText="Area"
+        app:hasClearButton="false"
+        app:helperText="This area will be used to filter your parking">
+
+        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+            android:id="@+id/area_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            />
+
+    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
     <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
         android:id="@+id/address_text_field_boxes"
         android:layout_width="match_parent"
         android:layout_height="150sp"
-        android:layout_below="@id/nice_spinner"
+        android:layout_below="@id/area_text_field"
         android:layout_marginTop="20sp"
         android:layout_marginStart="30sp"
         android:layout_marginEnd="30sp"
@@ -49,13 +61,14 @@
         android:layout_marginEnd="30sp"
         app:panelBackgroundColor="@color/colorWhite"
         app:labelText="Pincode"
-        app:hasClearButton="true"
+        app:hasClearButton="false"
         app:helperText="">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/pincode_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="false"
             />
 
     </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -71,12 +84,15 @@
         app:panelBackgroundColor="@color/colorWhite"
         app:labelText="Mobile No"
         app:hasClearButton="true"
-        app:helperText="To help the customer contacting the placeholder">
+        app:maxCharacters="10"
+        app:helperText="To help the customer to reach the placeholder">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/mobileno_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="10"
             />
 
     </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>

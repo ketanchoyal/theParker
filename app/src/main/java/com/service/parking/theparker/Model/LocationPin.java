@@ -1,13 +1,11 @@
 package com.service.parking.theparker.Model;
 
-import com.google.firebase.auth.FirebaseAuth;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class LocationPin {
 
-    private String by  = (Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+    private String by;
     private String description;
     private String price;
     private String type;
@@ -22,21 +20,6 @@ public class LocationPin {
     private String area;
 
     public LocationPin() { }
-
-    public LocationPin(String description, String price, String type, String visibility, String numberofspot, String pinkey, Map<String, Boolean> features, String photos, Map<String, Double> pinloc, String address, String mobile, String area) {
-        this.description = description;
-        this.price = price;
-        this.type = type;
-        this.visibility = visibility;
-        this.numberofspot = numberofspot;
-        this.pinkey = pinkey;
-        this.features = features;
-        this.photos = photos;
-        this.pinloc = pinloc;
-        this.address = address;
-        this.mobile = mobile;
-        this.area = area;
-    }
 
     public LocationPin(String by, String description, String price, String type, String visibility, String numberofspot, String pinkey, Map<String, Boolean> features, String photos, Map<String, Double> pinloc, String address, String mobile, String area) {
         this.by = by;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.Activity.ParkingPinActivity">
+    tools:context=".Controller.Activity.OfferLocation.ParkingPinActivity">
 
     <include android:id="@+id/action_bar" layout="@layout/top_custom_action_bar" />
 

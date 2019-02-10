@@ -19,7 +19,7 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-        <activity android:name=".Controller.Activity.AreaAndAddressActivity"></activity>
+        <activity android:name=".Controller.Activity.OfferLocation.AreaAndAddressActivity"></activity>
         <activity android:name=".Controller.Activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,9 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controller.Activity.LoginActivity" />
-        <activity android:name=".Controller.Activity.MobileVerifyActivity" />
-        <activity android:name=".Controller.Activity.OtpVerifyActivity" />
+        <activity android:name=".Controller.Activity.Register.LoginActivity" />
+        <activity android:name=".Controller.Activity.Register.MobileVerifyActivity" />
+        <activity android:name=".Controller.Activity.Register.OtpVerifyActivity" />
         <activity android:name=".Controller.Activity.ProfileActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -46,9 +46,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Controller.Activity.ParkingPinActivity" />
-        <activity android:name=".Controller.Activity.ParkingDetailsActivity" />
-        <activity android:name=".Controller.Activity.PriceAndAdditionalDetailsActivity" />
+        <activity android:name=".Controller.Activity.OfferLocation.ParkingPinActivity" />
+        <activity android:name=".Controller.Activity.OfferLocation.ParkingDetailsActivity" />
+        <activity android:name=".Controller.Activity.OfferLocation.PriceAndAdditionalDetailsActivity" />
     </application>
 
 </manifest>

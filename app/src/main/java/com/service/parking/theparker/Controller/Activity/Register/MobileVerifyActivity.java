@@ -1,14 +1,12 @@
-package com.service.parking.theparker.Controller.Activity;
+package com.service.parking.theparker.Controller.Activity.Register;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.service.parking.theparker.View.ActivityAnimator;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 

@@ -1,7 +1,6 @@
 package com.service.parking.theparker.Controller.Activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.service.parking.theparker.Controller.Activity.Register.LoginActivity;
 import com.service.parking.theparker.Controller.Fragment.BookingFragment;
 import com.service.parking.theparker.Controller.Fragment.OfferPlaceFragment;
 import com.service.parking.theparker.Controller.Fragment.PackagesFragment;
