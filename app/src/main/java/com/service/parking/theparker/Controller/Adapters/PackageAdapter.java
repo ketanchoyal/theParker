@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.database.FirebaseDatabase;
-import com.service.parking.theparker.Model.PackageModel;
+import com.service.parking.theparker.Model.Packages;
 import com.service.parking.theparker.R;
 
 import java.util.List;
@@ -20,11 +19,11 @@ import butterknife.ButterKnife;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageViewHolder> {
 
-    private List<PackageModel>  packagelist;
+    private List<Packages>  packagelist;
     private Context con;
     private Object packageStatus;
 
-    public PackageAdapter(List<PackageModel> packagelist){
+    public PackageAdapter(List<Packages> packagelist){
         this.packagelist= packagelist;
     }
     @NonNull
@@ -37,7 +36,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
 
     @Override
     public void onBindViewHolder(@NonNull final PackageViewHolder myViewHolder, final int i) {
-        final PackageModel model = packagelist.get(i);
+        final Packages model = packagelist.get(i);
 
         //Log.d("Firebase : ",model.package_name+" "+model.bikes_selected+" "+model.cars_selected +" "+model.price);
 

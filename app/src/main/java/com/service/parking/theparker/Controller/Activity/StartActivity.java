@@ -51,7 +51,7 @@ public class StartActivity extends AppCompatActivity {
             = menuItem -> {
         switch (menuItem.getItemId()) {
             case R.id.profile_activity:
-                return false;
+                return profileActivity();
 
             case R.id.setting_activity:
                 return false;
@@ -67,10 +67,15 @@ public class StartActivity extends AppCompatActivity {
         }
     };
 
+    private boolean profileActivity() {
+        startActivity(new Intent(this, ProfileActivity.class));
+        return false;
+    }
+
     private boolean logout() {
-        SharedPreferences sh = getSharedPreferences("myinfo",MODE_PRIVATE);
-        SharedPreferences.Editor edit = sh.edit();
-        edit.clear();
+//        SharedPreferences sh = getSharedPreferences("myinfo",MODE_PRIVATE);
+//        SharedPreferences.Editor edit = sh.edit();
+//        edit.clear();
 
         FirebaseAuth.getInstance().signOut();
         gotToLogin();

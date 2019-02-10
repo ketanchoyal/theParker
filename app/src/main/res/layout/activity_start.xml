@@ -16,11 +16,12 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavView_Bar"
+        android:layout_marginBottom="50sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="wrap_content"
+        android:id="@+id/layoutt"
         android:layout_height="wrap_content">
 
         <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx

@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.Controller.Adapters.PackageAdapter;
-import com.service.parking.theparker.Model.PackageModel;
+import com.service.parking.theparker.Model.Packages;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 
@@ -32,7 +32,7 @@ public class PackagesFragment extends Fragment {
     RecyclerView mPackageRecyclerView;
 
     PackageAdapter packageAdapter;
-    List<PackageModel> packageModelList;
+    List<Packages> packagesList;
 
     @BindView(R.id.fragment_name)
     TextView mFragmentName;
@@ -52,15 +52,15 @@ public class PackagesFragment extends Fragment {
 
         mFragmentName.setText("Packages");
 
-        packageModelList= new ArrayList<>();
-        packageAdapter = new PackageAdapter(packageModelList);
+        packagesList = new ArrayList<>();
+        packageAdapter = new PackageAdapter(packagesList);
 
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getContext());
         mPackageRecyclerView.setLayoutManager(mLayoutmanager);
         mPackageRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mPackageRecyclerView.setAdapter(packageAdapter);
 
-        NetworkServices.Packages.getPackages(packageModelList,packageAdapter);
+        NetworkServices.Packages.getPackages(packagesList,packageAdapter);
 
         mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
         return rootView;

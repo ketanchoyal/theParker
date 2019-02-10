@@ -50,9 +50,9 @@ public class PlacesFragment extends Fragment {
 
         mlogin.setOnLongClickListener(v -> {
 
-            SharedPreferences sh = getContext().getSharedPreferences("myinfo",MODE_PRIVATE);
-            SharedPreferences.Editor edit = sh.edit();
-            edit.clear();
+//            SharedPreferences sh = getContext().getSharedPreferences("myinfo",MODE_PRIVATE);
+//            SharedPreferences.Editor edit = sh.edit();
+//            edit.clear();
 
             FirebaseAuth.getInstance().signOut();
 

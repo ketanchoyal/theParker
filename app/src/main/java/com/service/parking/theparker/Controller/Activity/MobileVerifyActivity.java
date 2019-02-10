@@ -30,8 +30,8 @@ public class MobileVerifyActivity extends Activity {
     @BindView(R.id.et_name)
     EditText mPersonName;
 
-    private SharedPreferences sh;
-    private SharedPreferences.Editor edit;
+//    private SharedPreferences sh;
+//    private SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,8 @@ public class MobileVerifyActivity extends Activity {
 
         Theparker.animate(this);
 
-        sh = getSharedPreferences("myinfo",MODE_PRIVATE);
-        edit = sh.edit();
+//        sh = getSharedPreferences("myinfo",MODE_PRIVATE);
+//        edit = sh.edit();
 
         mMobile_verify_back_btn.setOnClickListener(v -> startActivity(new Intent(MobileVerifyActivity.this, LoginActivity.class)));
 
@@ -54,9 +54,9 @@ public class MobileVerifyActivity extends Activity {
 
                 if(Mobile_no.length()==10 || !PersonName.isEmpty())
                 {
-                    edit.putString(Theparker.SP_Mobileno,Mobile_no);
-                    edit.putString(Theparker.SP_Name,PersonName);
-                    edit.apply();
+//                    edit.putString(Theparker.SP_Mobileno,Mobile_no);
+//                    edit.putString(Theparker.SP_Name,PersonName);
+//                    edit.apply();
 
                     Theparker.Mobile_no = Mobile_no;
                     Theparker.Person_name = PersonName;

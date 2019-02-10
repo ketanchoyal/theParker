@@ -36,7 +36,7 @@ public class ProfileActivity extends Activity {
     @BindView(R.id.myProfile_back_btn)
     ImageButton mProfileBackbtn;
 
-    //Constants
+    //PackageConstants
     private Boolean isEditEnable = true;
     public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 5469;
     Boolean fromLogin;

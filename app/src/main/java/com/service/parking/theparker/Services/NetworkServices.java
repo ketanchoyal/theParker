@@ -1,13 +1,11 @@
 package com.service.parking.theparker.Services;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -17,22 +15,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.service.parking.theparker.Controller.Adapters.PackageAdapter;
-import com.service.parking.theparker.Model.PackageModel;
-import com.service.parking.theparker.Model.ProfileModel;
-import com.service.parking.theparker.Theparker;
-import com.service.parking.theparker.Utils.Constants;
+import com.service.parking.theparker.Model.LocationPin;
+import com.service.parking.theparker.Model.UserProfile;
+import com.service.parking.theparker.Utils.LocationConstants;
+import com.service.parking.theparker.Utils.PackageConstants;
 import com.service.parking.theparker.View.SnackbarWrapper;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.content.Context.MODE_PRIVATE;
-
 public class NetworkServices {
     static private DatabaseReference REF = FirebaseDatabase.getInstance().getReference();
 
-    public static ProfileModel profileModel;
+    public static UserProfile userProfile;
 
     public static class ProfileData {
 
@@ -62,17 +58,17 @@ public class NetworkServices {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    ProfileModel profileModel = dataSnapshot.getValue(ProfileModel.class);
-                    NetworkServices.profileModel = profileModel;
+                    UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+                    NetworkServices.userProfile = userProfile;
 
                     if(name_et != null) {
                         if(name_et instanceof EditText) {
                             EditText name = (EditText) name_et;
-                            name.setText(profileModel.Name);
+                            name.setText(userProfile.Name);
                         }
                         if(name_et instanceof TextView) {
                             TextView name = (TextView) name_et;
-                            name.setText(profileModel.Name);
+                            name.setText(userProfile.Name);
                         }
                     }
 
@@ -80,22 +76,22 @@ public class NetworkServices {
                     if(email_et != null) {
                         if(email_et instanceof EditText) {
                             EditText email = (EditText) email_et;
-                            email.setText(profileModel.Email);
+                            email.setText(userProfile.Email);
                         }
                         if(email_et instanceof TextView) {
                             TextView email = (TextView) email_et;
-                            email.setText(profileModel.Email);
+                            email.setText(userProfile.Email);
                         }
                     }
 
                     if(mobile_et != null) {
                         if(mobile_et instanceof EditText) {
                             EditText Mobile_no = (EditText) mobile_et;
-                            Mobile_no.setText(profileModel.Mobile_no);
+                            Mobile_no.setText(userProfile.Mobile_no);
                         }
                         if(mobile_et instanceof TextView) {
                             TextView Mobile_no = (TextView) mobile_et;
-                            Mobile_no.setText(profileModel.Mobile_no);
+                            Mobile_no.setText(userProfile.Mobile_no);
                         }
                     }
 
@@ -114,10 +110,10 @@ public class NetworkServices {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    ProfileModel profileModel = dataSnapshot.getValue(ProfileModel.class);
-                    NetworkServices.profileModel = profileModel;
+                    UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+                    NetworkServices.userProfile = userProfile;
 
-                    Log.d("XYZ ABC",NetworkServices.profileModel.Email + " " + NetworkServices.profileModel.Mobile_no + " " + NetworkServices.profileModel.Name);
+                    Log.d("XYZ ABC",NetworkServices.userProfile.Email + " " + NetworkServices.userProfile.Mobile_no + " " + NetworkServices.userProfile.Name);
                 }
 
                 @Override
@@ -132,7 +128,7 @@ public class NetworkServices {
     public static class Packages {
         static DatabaseReference mPackageRef = REF.child("packages");
 
-        public static void getPackages(List<PackageModel> list, PackageAdapter adapter) {
+        public static void getPackages(List<com.service.parking.theparker.Model.Packages> list, PackageAdapter adapter) {
             mPackageRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -141,8 +137,8 @@ public class NetworkServices {
 
                     Log.d("ID : ",dataSnapshot.getKey());
 
-                    PackageModel cm = new PackageModel(data.get(Constants.FB_package_name),data.get(Constants.FB_no_of_cars),data.get(Constants.FB_no_of_bike),
-                            data.get(Constants.FB_package_price),data.get(Constants.FB_package_status),dataSnapshot.getKey());
+                    com.service.parking.theparker.Model.Packages cm = new com.service.parking.theparker.Model.Packages(data.get(PackageConstants.FB_package_name),data.get(PackageConstants.FB_no_of_cars),data.get(PackageConstants.FB_no_of_bike),
+                            data.get(PackageConstants.FB_package_price),data.get(PackageConstants.FB_package_status),dataSnapshot.getKey());
                     list.add(cm);
                     adapter.notifyDataSetChanged();
                 }
@@ -161,7 +157,7 @@ public class NetworkServices {
                     String keyID =dataSnapshot.getKey();
                     for(int i = 0;i<=list.size()-1;i++)
                     {
-                        PackageModel object = list.get(i);
+                        com.service.parking.theparker.Model.Packages object = list.get(i);
                         if(object.getId().equals(keyID))
                         {
                             list.remove(object);
@@ -184,6 +180,34 @@ public class NetworkServices {
     }
 
     public static class ParkingPin {
+        static DatabaseReference mGlobalLocationPinRef = REF.child("GlobalPins");
+        static DatabaseReference mUserLocationPinRef = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("MyLocationPins");
+
+        public static void setLocationPin(LocationPin locationPin) {
+
+            String area = locationPin.getArea();
+
+            Map<String,Object> locationpin = new HashMap<>();
+            locationpin.put(LocationConstants.by,locationPin.getBy());
+            locationpin.put(LocationConstants.price,locationPin.getPrice());
+            locationpin.put(LocationConstants.visibility,locationPin.getVisibility());
+            locationpin.put(LocationConstants.mobile,locationPin.getMobile());
+            locationpin.put(LocationConstants.pinloc,locationPin.getPinloc());
+            locationpin.put(LocationConstants.address,locationPin.getAddress());
+            locationpin.put(LocationConstants.features,locationPin.getFeatures());
+            locationpin.put(LocationConstants.type,locationPin.getType());
+            locationpin.put(LocationConstants.numberofspot,locationPin.getNumberofspot());
+            locationpin.put(LocationConstants.description,locationPin.getDescription());
+
+            String pinkey = mGlobalLocationPinRef.getKey();
+
+            mGlobalLocationPinRef.child(area).child(pinkey).setValue(locationpin, (databaseError, databaseReference) -> {
+                if (databaseError == null) {
+                    mUserLocationPinRef.child(pinkey).setValue(pinkey);
+                }
+            });
+
+        }
 
     }
 

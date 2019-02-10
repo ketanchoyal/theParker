@@ -1,6 +1,6 @@
 package com.service.parking.theparker.Model;
 
-public class PackageModel {
+public class Packages {
 
     private Object package_name;
     private Object cars_selected;
@@ -10,7 +10,7 @@ public class PackageModel {
     private Object id;
 
 
-    public PackageModel(Object package_name, Object cars_selected, Object bikes_selected, Object price, Object status, Object id) {
+    public Packages(Object package_name, Object cars_selected, Object bikes_selected, Object price, Object status, Object id) {
 
         this.package_name = package_name;
         this.cars_selected = cars_selected;
@@ -20,7 +20,7 @@ public class PackageModel {
         this.id = id;
     }
 
-    public PackageModel() {
+    public Packages() {
     }
 
     public String getPackage_name() {
