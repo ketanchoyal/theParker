@@ -15,11 +15,11 @@
         android:id="@+id/main">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:id="@+id/layer1">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50sp"
                 android:text="Choose the type of your Parking space"
                 android:textStyle="bold"
                 android:textSize="16sp"
@@ -98,39 +98,47 @@
             </co.ceryle.segmentedbutton.SegmentedButtonGroup>
 
         </LinearLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/layer3"-->
+            <!--android:layout_below="@+id/layer2"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:paddingTop="4dp"-->
+            <!--&gt;-->
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="How many Spots do you want to rent out?"-->
+                <!--android:textSize="16sp"-->
+                <!--android:paddingStart="15dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:fontFamily="monospace"/>-->
+        <!--</RelativeLayout>-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layer3"
             android:layout_below="@+id/layer2"
-            android:layout_marginTop="3dp"
-            android:paddingTop="4dp"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="How many Spots do you want to rent out?"
-                android:textSize="16sp"
-                android:paddingStart="15dp"
-                android:textStyle="bold"
-                android:fontFamily="monospace"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/layer3"
             android:paddingStart="10sp"
             android:paddingEnd="10sp"
             android:layout_marginTop="3dp">
-            <EditText
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/noOfSpots_text_field_boxes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Eg: 2"
-                android:textSize="18sp"
-                android:paddingLeft="18dp"
-                android:fontFamily="monospace"
-                android:inputType="number"
-                android:id="@+id/fl_edit_number"/>
+                android:layout_height="wrap_content"
+                app:panelBackgroundColor="@color/colorWhite"
+                app:labelText="Eg: 2"
+                app:hasClearButton="true"
+                app:maxCharacters="2"
+                app:helperText="How many Spots do you want to rent out?">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/noOfSpot_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
@@ -164,7 +172,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.8"
+                    android:layout_weight="1"
                     android:weightSum="3"
                     android:orientation="horizontal">
                     <RelativeLayout
@@ -196,6 +204,7 @@
                         android:paddingEnd="18sp">
 
                         <com.suke.widget.SwitchButton
+                            android:id="@+id/coveredSwitchBtn"
                             android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
                             android:layout_width="70sp"
@@ -206,7 +215,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.8"
+                    android:layout_weight="1"
                     android:weightSum="3"
                     android:orientation="horizontal">
                     <RelativeLayout
@@ -237,6 +246,7 @@
                         android:paddingEnd="18sp">
 
                         <com.suke.widget.SwitchButton
+                            android:id="@+id/cameraSwitchBtn"
                             android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
                             android:layout_width="70sp"
@@ -247,7 +257,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.8"
+                    android:layout_weight="1"
                     android:weightSum="3"
                     android:orientation="horizontal">
                     <RelativeLayout
@@ -278,6 +288,7 @@
                         android:paddingEnd="18sp">
 
                         <com.suke.widget.SwitchButton
+                            android:id="@+id/staffSwitchBtn"
                             android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
                             android:layout_width="70sp"
@@ -288,7 +299,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.8"
+                    android:layout_weight="1"
                     android:weightSum="3"
                     android:orientation="horizontal">
                     <RelativeLayout
@@ -319,6 +330,7 @@
                         android:paddingEnd="18sp">
 
                         <com.suke.widget.SwitchButton
+                            android:id="@+id/disabledAccessSwitchBtn"
                             android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
                             android:layout_width="70sp"
@@ -333,8 +345,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="75sp"
-        android:layout_alignParentBottom="true"
-        >
+        android:layout_alignParentBottom="true">
 
         <at.markushi.ui.CircleButton
             android:id="@+id/next_btn"

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 import com.service.parking.theparker.Utils.LocationConstants;
@@ -19,6 +20,7 @@ import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 
 public class AreaAndAddressActivity extends AppCompatActivity {
@@ -66,12 +68,25 @@ public class AreaAndAddressActivity extends AppCompatActivity {
         mActionBarName.setText("Area and Address");
 
         mBackBtn.setOnClickListener(v -> {
-            finish();
+            onBackPressed();
             Theparker.animate(this);
         });
 
         mNextBtn.setOnClickListener(v -> {
-            startActivity(new Intent(AreaAndAddressActivity.this, ParkingDetailsActivity.class));
+            String mobileno = mMobileNo.getEditableText().toString();
+            area = mArea.getEditableText().toString();
+            address = mAddress.getEditableText().toString();
+            pincode = mPinCode.getEditableText().toString();
+
+            if (mobileno.isEmpty() || area.isEmpty() || address.isEmpty() || pincode.isEmpty()) {
+                Toasty.error(this,"Please fill the information correctly").show();
+            } else {
+                LocationPin locationPin = Theparker.currentLocationpin;
+                locationPin.setAddress(address + " " + pincode);
+                locationPin.setArea(area);
+                locationPin.setMobile(mobileno);
+                startActivity(new Intent(AreaAndAddressActivity.this, ParkingDetailsActivity.class));
+            }
         });
 
     }

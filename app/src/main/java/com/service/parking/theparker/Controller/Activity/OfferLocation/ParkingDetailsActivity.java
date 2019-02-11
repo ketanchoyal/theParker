@@ -11,8 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
+import com.suke.widget.SwitchButton;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
@@ -20,6 +25,7 @@ import butterknife.ButterKnife;
 import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
+import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 
 public class ParkingDetailsActivity extends AppCompatActivity {
 
@@ -35,6 +41,31 @@ public class ParkingDetailsActivity extends AppCompatActivity {
     @BindView(R.id.segmentedButtonGroup)
     SegmentedButtonGroup segmentedButtonGroup;
 
+    @BindView(R.id.noOfSpot_edit_text)
+    ExtendedEditText mNoOfSpots;
+
+    @BindView(R.id.coveredSwitchBtn)
+    SwitchButton mCoveredSwitchBtn;
+
+    @BindView(R.id.staffSwitchBtn)
+    SwitchButton mStaffSwitchBtn;
+
+    @BindView(R.id.cameraSwitchBtn)
+    SwitchButton mCameraSwitchBtn;
+
+    @BindView(R.id.disabledAccessSwitchBtn)
+    SwitchButton mDisabledAcessSwitchBtn;
+
+    String parkingType = "carpool";
+    String noOFSpots = "";
+
+    Boolean coveredFeature = false;
+    Boolean staffFeature = false;
+    Boolean cameraFeature = false;
+    Boolean disabledAccessFeature = false;
+
+    int pos = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,23 +77,31 @@ public class ParkingDetailsActivity extends AppCompatActivity {
         mActionBarName.setText("Some Details");
 
         mBackBtn.setOnClickListener(v -> {
-            finish();
+            onBackPressed();
             Theparker.animate(this);
         });
 
         mNextBtn.setOnClickListener(v -> {
-            startActivity(new Intent(ParkingDetailsActivity.this, PriceAndAdditionalDetailsActivity.class));
+            if (checkData()) {
+                startActivity(new Intent(ParkingDetailsActivity.this, PriceAndAdditionalDetailsActivity.class));
+            }
         });
 
         segmentedButtonGroup.setOnClickedButtonListener(position -> {
             if(position == 0){
-                Toasty.success(getApplicationContext(),"You selected carpool",Toast.LENGTH_LONG).show();
+                pos = position;
+                parkingType = "carpool";
+                Toasty.info(getApplicationContext(),"Your parking type is Carpool",Toast.LENGTH_LONG).show();
             }
             else if(position == 1){
-                Toasty.success(getApplicationContext(),"You selected ground",Toast.LENGTH_LONG).show();
+                pos = position;
+                parkingType = "Empty Ground";
+                Toasty.info(getApplicationContext(),"Your parking type is ground",Toast.LENGTH_LONG).show();
             }
             else if(position == 2){
-                Toasty.success(getApplicationContext(),"You selected garage",Toast.LENGTH_LONG).show();
+                pos = position;
+                parkingType = "Garage";
+                Toasty.info(getApplicationContext(),"Your parking type is garage",Toast.LENGTH_LONG).show();
             }
             else if(position == 3){
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ParkingDetailsActivity.this);
@@ -74,19 +113,50 @@ public class ParkingDetailsActivity extends AppCompatActivity {
 
                 fl_other_btn.setOnClickListener(v -> {
                     if (fl_other_edit.getText().toString().isEmpty()){
-                        Toasty.error(getApplicationContext(),"Field cant be empty",Toast.LENGTH_LONG).show();
+                        segmentedButtonGroup.setPosition(pos);
+                        Toasty.error(getApplicationContext(),"Your parking type is "+parkingType,Toast.LENGTH_LONG).show();
                         dialog.dismiss();
                     }
                     else{
+                        pos = position;
+                        parkingType = fl_other_edit.getText().toString();
                         Toasty.info(getApplicationContext(),"Your parking type is "+fl_other_edit.getText().toString(),Toast.LENGTH_LONG).show();
                         dialog.dismiss();
                     }
                 });
              }
-
-
         });
 
+        mCameraSwitchBtn.setOnCheckedChangeListener((view, isChecked) -> cameraFeature = isChecked);
+
+        mCoveredSwitchBtn.setOnCheckedChangeListener((view, isChecked) -> coveredFeature = isChecked);
+
+        mDisabledAcessSwitchBtn.setOnCheckedChangeListener(((view, isChecked) -> disabledAccessFeature = isChecked));
+
+        mStaffSwitchBtn.setOnCheckedChangeListener(((view, isChecked) -> staffFeature = isChecked));
+
+    }
+
+    boolean checkData() {
+        noOFSpots = mNoOfSpots.getEditableText().toString();
+        if(parkingType.isEmpty() || noOFSpots.isEmpty()) {
+            Toasty.error(this,"Please fill the information correctly").show();
+            return false;
+        } else {
+            Map<String,Boolean> features = new HashMap<>();
+            features.put("Covered",coveredFeature);
+            features.put("Security Camera",cameraFeature);
+            features.put("Onsite Staff",staffFeature);
+            features.put("Disabled Access",disabledAccessFeature);
+
+            LocationPin locationPin = Theparker.currentLocationpin;
+
+            locationPin.setFeatures(features);
+            locationPin.setNumberofspot(noOFSpots);
+            locationPin.setType(parkingType);
+
+            return true;
+        }
     }
 
     @Override
