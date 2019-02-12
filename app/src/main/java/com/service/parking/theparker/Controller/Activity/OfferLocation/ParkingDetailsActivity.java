@@ -108,13 +108,14 @@ public class ParkingDetailsActivity extends AppCompatActivity {
                 View view = LayoutInflater.from(ParkingDetailsActivity.this).inflate(R.layout.custom_other_dialog,null);
                 final EditText fl_other_edit = view.findViewById(R.id.custom_type);
                 builder.setView(view);
+                builder.setCancelable(false);
                 final AlertDialog dialog = builder.show();
                 Button fl_other_btn = view.findViewById(R.id.custom_button);
 
                 fl_other_btn.setOnClickListener(v -> {
                     if (fl_other_edit.getText().toString().isEmpty()){
                         segmentedButtonGroup.setPosition(pos);
-                        Toasty.error(getApplicationContext(),"Your parking type is "+parkingType,Toast.LENGTH_LONG).show();
+                        Toasty.info(getApplicationContext(),"Your parking type is "+parkingType,Toast.LENGTH_LONG).show();
                         dialog.dismiss();
                     }
                     else{

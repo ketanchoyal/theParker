@@ -137,7 +137,10 @@ public class StartActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.enableAnimation(true);
         navigation.setTextVisibility(true);
-        navigation.setCurrentItem(0);
+
+        int position = getIntent().getIntExtra("position",0);
+
+        navigation.setCurrentItem(position);
 
         navigationView.setNavigationItemSelectedListener(mOnNavigationDrawerItemSelectedListener);
     }

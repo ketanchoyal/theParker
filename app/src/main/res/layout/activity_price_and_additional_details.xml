@@ -101,8 +101,8 @@
             android:id="@+id/layer5">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="10sp"
+                android:layout_height="30sp"
+                android:layout_margin="8sp"
                 android:fontFamily="monospace"
                 android:text="Add Description (Recommended)"
                 android:textSize="20dp"
@@ -116,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv2">
                 <EditText
+                    android:id="@+id/parking_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Add breif description/ selling points of yourspace Eg. 5 min walk from Bus Stand."

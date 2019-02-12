@@ -24,6 +24,7 @@ import com.service.parking.theparker.View.SnackbarWrapper;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class NetworkServices {
     static private DatabaseReference REF = FirebaseDatabase.getInstance().getReference();
@@ -199,14 +200,13 @@ public class NetworkServices {
             locationpin.put(LocationConstants.numberofspot,locationPin.getNumberofspot());
             locationpin.put(LocationConstants.description,locationPin.getDescription());
 
-            String pinkey = mGlobalLocationPinRef.getKey();
+            String pinkey = mGlobalLocationPinRef.push().getKey();
 
             mGlobalLocationPinRef.child(area).child(pinkey).setValue(locationpin, (databaseError, databaseReference) -> {
                 if (databaseError == null) {
                     mUserLocationPinRef.child(pinkey).setValue(pinkey);
                 }
             });
-
         }
 
     }
