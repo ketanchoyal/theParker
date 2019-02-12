@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#4d9a0007"
+    android:layout_height="100sp">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/spotMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:paddingTop="2sp"
+        android:paddingBottom="2sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="8sp"
+        android:layout_marginEnd="10sp"
+        android:background="@drawable/bg_rectangle_light"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/spot_type"
+        android:text="Garage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:layout_above="@id/spot_type"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5sp"
+        android:layout_marginEnd="10sp"
+        android:background="@drawable/bg_rectangle_light"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/spot_price"
+        android:text="₹ 50"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:layout_above="@id/spot_price"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5sp"
+        android:layout_marginEnd="10sp"
+        android:background="@drawable/bg_rectangle_light"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/no_of_spots"
+        android:text="5"/>
+
+</RelativeLayout>
