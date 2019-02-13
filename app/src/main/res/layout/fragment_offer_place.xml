@@ -8,23 +8,6 @@
 
     <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/add_parking_btn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        style="@style/AddButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15sp"
-        android:layout_marginEnd="15sp"
-        app:cb_color="@color/colorPrimary"
-        app:cb_pressedRingWidth="2.0dip" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mySpotRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/top_bar"/>
-
     <TextView
         android:id="@+id/no_parking_label"
         android:layout_width="wrap_content"
@@ -35,5 +18,23 @@
         android:textSize="18sp"
         android:textColor="@color/colorPrimaryDark"
         android:text="You haven't added any Parking spots yet!"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mySpotRecyclerView"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar"/>
+
+    <at.markushi.ui.CircleButton
+        android:id="@+id/add_parking_btn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        style="@style/AddButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15sp"
+        android:layout_marginEnd="15sp"
+        app:cb_color="@color/colorPrimary"
+        app:cb_pressedRingWidth="2.0dip" />
 
 </RelativeLayout>

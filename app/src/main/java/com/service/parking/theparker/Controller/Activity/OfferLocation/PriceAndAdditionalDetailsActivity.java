@@ -61,12 +61,14 @@ public class PriceAndAdditionalDetailsActivity extends AppCompatActivity {
 
         mFinishBtn.setOnClickListener(v -> {
             if (checkData()) {
+                mFinishBtn.setEnabled(false);
                 NetworkServices.ParkingPin.setLocationPin(locationPin);
                 int position = 3;
                 Intent toMain = new Intent(this, StartActivity.class);
                 toMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 toMain.putExtra("position",position);
                 startActivity(toMain);
+                mFinishBtn.setEnabled(true);
             }
         });
     }

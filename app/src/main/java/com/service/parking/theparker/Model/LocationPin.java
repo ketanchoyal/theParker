@@ -37,6 +37,20 @@ public class LocationPin {
         this.area = area;
     }
 
+    public LocationPin(String by, String description, String price, String type, String numberofspot, String pinkey, Map<String, Boolean> features, Map<String, Double> pinloc, String address, String mobile, String area) {
+        this.by = by;
+        this.description = description;
+        this.price = price;
+        this.type = type;
+        this.numberofspot = numberofspot;
+        this.pinkey = pinkey;
+        this.features = features;
+        this.pinloc = pinloc;
+        this.address = address;
+        this.mobile = mobile;
+        this.area = area;
+    }
+
     public String getBy() {
         return by;
     }

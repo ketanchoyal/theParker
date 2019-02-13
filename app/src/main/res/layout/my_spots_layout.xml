@@ -2,14 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#4d9a0007"
     android:layout_height="100sp">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/spotMap"
+    <com.google.android.gms.maps.MapView
+        android:layout_margin="5sp"
+        android:background="#1a9a0007"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/spotMap"/>
 
     <TextView
         android:layout_width="wrap_content"

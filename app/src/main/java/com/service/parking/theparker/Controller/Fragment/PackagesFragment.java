@@ -60,7 +60,7 @@ public class PackagesFragment extends Fragment {
         mPackageRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mPackageRecyclerView.setAdapter(packageAdapter);
 
-        NetworkServices.Packages.getPackages(packagesList,packageAdapter);
+        NetworkServices.PackagesData.getPackages(packagesList,packageAdapter);
 
         mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
         return rootView;
