@@ -4,12 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="100sp">
 
-    <com.google.android.gms.maps.MapView
+    <!--<com.google.android.gms.maps.MapView-->
+        <!--android:layout_margin="5sp"-->
+        <!--android:background="#1a9a0007"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/spotMap"/>-->
+
+    <ImageView
         android:layout_margin="5sp"
         android:background="#1a9a0007"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/spotMap"/>
+        android:id="@+id/spotMapImageView"/>
 
     <TextView
         android:layout_width="wrap_content"
