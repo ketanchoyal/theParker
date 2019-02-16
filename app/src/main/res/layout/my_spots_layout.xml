@@ -16,7 +16,9 @@
         android:background="#1a9a0007"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/spotMapImageView"/>
+        android:id="@+id/spotMapImageView"
+        android:scaleType="centerCrop"
+        android:contentDescription="Map Image" />
 
     <TextView
         android:layout_width="wrap_content"
