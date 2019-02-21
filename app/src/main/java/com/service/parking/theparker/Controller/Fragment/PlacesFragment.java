@@ -6,22 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.service.parking.theparker.Controller.Activity.Register.LoginActivity;
 import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.R;
+import com.service.parking.theparker.Services.NetworkServices;
+import com.service.parking.theparker.View.SearchableSpinner.SpinnerDialog;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
+
+import static com.service.parking.theparker.Services.NetworkServices.ParkingPin.parkingAreas;
 
 public class PlacesFragment extends Fragment {
-
-    @BindView(R.id.lb)
-    Button mlogin;
 
     @BindView(R.id.fragment_name)
     TextView mFragmentName;
@@ -29,29 +31,33 @@ public class PlacesFragment extends Fragment {
     @BindView(R.id.custom_bar_image)
     CircleImageView mProfileView;
 
+    @BindView(R.id.searchBtn)
+    ImageView mSearchBtn;
+
+    @BindView(R.id.areaNameField)
+    TextView mAreaNameField;
+
+    SpinnerDialog spinnerDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_places, container, false);
-
         ButterKnife.bind(this,view);
-
         mFragmentName.setText("Places");
 
-        mlogin.setOnClickListener(v -> startActivity(new Intent(getContext(), LoginActivity.class)));
+        spinnerDialog=new SpinnerDialog(getActivity(),parkingAreas,"Select or Search Area",R.style.DialogAnimations_SmileWindow,"Close");
 
-        mlogin.setOnLongClickListener(v -> {
+        spinnerDialog.setCancellable(true); // for cancellable
+        spinnerDialog.setShowKeyboard(false);// for open keyboard by default
 
-//            SharedPreferences sh = getContext().getSharedPreferences("myinfo",MODE_PRIVATE);
-//            SharedPreferences.Editor edit = sh.edit();
-//            edit.clear();
-
-            FirebaseAuth.getInstance().signOut();
-
-            return false;
+        spinnerDialog.bindOnSpinerListener((item, position) -> {
+            Toasty.info(getContext(), item + "  " + position).show();
+                mAreaNameField.setText(item + " Position: " + position);
         });
+
+        mSearchBtn.setOnClickListener(v -> spinnerDialog.showSpinerDialog());
 
         mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
 

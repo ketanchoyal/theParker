@@ -10,12 +10,6 @@ import com.service.parking.theparker.R;
 import com.service.parking.theparker.Theparker;
 import com.service.parking.theparker.Utils.LocationConstants;
 
-import org.angmarch.views.NiceSpinner;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;

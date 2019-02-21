@@ -17,6 +17,12 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
+    <style name="DialogAnimations" />
+    <style name="DialogAnimations.SmileWindow">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_top</item>
+    </style>
+
     <style name="CodeEditText">
         <item name="android:layout_width">0.0dip</item>
         <item name="android:layout_height">wrap_content</item>

@@ -31,13 +31,14 @@ public class Theparker extends Application {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null)
         {
-            String uid = firebaseAuth.getCurrentUser().getUid();
-            currentLocationpin.setBy(uid);
             Intent LoginIntent = new Intent(this,LoginActivity.class);
             LoginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(LoginIntent);
         }
         else  {
+            NetworkServices.ParkingPin.getParkingAreas();
+            String uid = firebaseAuth.getCurrentUser().getUid();
+            currentLocationpin.setBy(uid);
             NetworkServices.ProfileData.getProfileData();
 //            Mobile_no = sh.getString(SP_Mobileno,"");
 //            Person_name = sh.getString(SP_Name,"");
