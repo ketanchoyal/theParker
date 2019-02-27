@@ -348,6 +348,7 @@
         android:layout_alignParentBottom="true">
 
         <at.markushi.ui.CircleButton
+            android:transitionName="circleBtn"
             android:id="@+id/next_btn"
             style="@style/NextButton"
             android:layout_centerHorizontal="true"

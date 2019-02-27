@@ -1,9 +1,11 @@
 package com.service.parking.theparker.Controller.Activity.OfferLocation;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -83,7 +85,10 @@ public class ParkingDetailsActivity extends AppCompatActivity {
 
         mNextBtn.setOnClickListener(v -> {
             if (checkData()) {
-                startActivity(new Intent(ParkingDetailsActivity.this, PriceAndAdditionalDetailsActivity.class));
+                Intent toAdditionalDetailPage = new Intent(ParkingDetailsActivity.this, PriceAndAdditionalDetailsActivity.class);
+                Pair pair = new Pair<View, String>(mNextBtn,"circleBtn");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, pair);
+                startActivity(toAdditionalDetailPage,options.toBundle());
             }
         });
 

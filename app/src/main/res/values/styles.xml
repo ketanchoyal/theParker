@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowActivityTransitions">true</item>
     </style>
 
     <style name="ShowActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -55,6 +56,13 @@
         <item name="android:src">@drawable/ic_check_black_24dp</item>
     </style>
 
+    <style name="SearchButton">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">64sp</item>
+        <item name="android:layout_height">64sp</item>
+        <item name="android:src">@drawable/icon_search</item>
+    </style>
+
     <style name="BuyButton">
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_width">64sp</item>
@@ -65,6 +73,5 @@
     <style name="FOL_Theme_SnackbarWrapper" parent="@style/Theme.AppCompat">
         <!--Insert customization here-->
     </style>
-
 
 </resources>

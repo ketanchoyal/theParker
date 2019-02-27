@@ -27,7 +27,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+//import retrofit2.Retrofit;
 
 public class NetworkServices {
     static private DatabaseReference REF = FirebaseDatabase.getInstance().getReference();
@@ -127,6 +131,34 @@ public class NetworkServices {
             });
         }
 
+        public static UserProfile getProfileDataById(String id) {
+            CountDownLatch done = new CountDownLatch(1);
+            DatabaseReference userRef = REF.child("Users").child(id).child("Profile");
+            final UserProfile[] user = new UserProfile[1];
+
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    user[0] = dataSnapshot.getValue(UserProfile.class);
+                    done.countDown();
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            try {
+                done.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return user[0];
+        }
+
     }
 
     public static class PackagesData {
@@ -185,7 +217,7 @@ public class NetworkServices {
 
     public static class ParkingPin {
         static DatabaseReference mGlobalLocationPinRef = REF.child("GlobalPins");
-        static DatabaseReference mUserLocationPinRef = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("MyLocationPins");
+        static DatabaseReference mUserLocationPinRef = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("MyLocationPins");
         public static ArrayList<String> parkingAreas = new ArrayList<>();
 
         public static void setLocationPin(LocationPin locationPin) {

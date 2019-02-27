@@ -1,11 +1,13 @@
 package com.service.parking.theparker.Controller.Fragment;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +60,19 @@ public class OfferPlaceFragment extends Fragment {
 
         mFragmentName.setText("Offer Place");
 
-        mProfileView.setOnClickListener(v -> startActivity(new Intent(getContext(), ProfileActivity.class)));
+        mProfileView.setOnClickListener(v -> {
+            Intent toProfileActivity = new Intent(getContext(), ProfileActivity.class);
+            Pair pair = new Pair<View, String>(mProfileView,"circleImage");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
+            startActivity(toProfileActivity,options.toBundle());
+        });
 
-        mAddParkingBtn.setOnClickListener(v -> startActivity(new Intent(getContext(), ParkingPinActivity.class)));
+        mAddParkingBtn.setOnClickListener(v ->{
+            Intent addPin = new Intent(getContext(), ParkingPinActivity.class);
+            Pair pair = new Pair<View, String>(mAddParkingBtn,"circleBtn");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
+            startActivity(addPin,options.toBundle());
+        });
 
         locationPinList = new ArrayList<>();
         mySpotsAdapter = new MySpotsAdapter(locationPinList,getContext());

@@ -3,43 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controller.Fragment.PlacesFragment">
 
     <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:weightSum="2"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayout"
-        android:layout_below="@id/top_bar">
-
-        <TextView
-            android:id="@+id/areaNameField"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="10sp"
-            android:layout_gravity="center_vertical"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Search Area"
-            android:layout_width="0sp" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:id="@+id/searchBtn"
-            android:src="@drawable/icon_search"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/areaNameField"
+        android:layout_weight="1.7"
+        android:layout_height="wrap_content"
+        android:textAlignment="gravity"
+        android:layout_margin="5sp"
+        android:layout_below="@id/top_bar"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Search Area"
+        android:layout_width="match_parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/parkingSpotsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/linearLayout" />
+        android:layout_below="@id/areaNameField" />
+
+    <at.markushi.ui.CircleButton
+        android:id="@+id/searchBtn"
+        style="@style/SearchButton"
+        android:transitionName="parkerImage"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="10sp"
+        android:layout_marginEnd="10sp"
+        app:cb_color="@color/colorPrimary"
+        app:cb_pressedRingWidth="2.0dip" />
 
 </RelativeLayout>

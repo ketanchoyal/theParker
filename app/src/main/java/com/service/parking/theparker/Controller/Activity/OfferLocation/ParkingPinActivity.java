@@ -1,5 +1,6 @@
 package com.service.parking.theparker.Controller.Activity.OfferLocation;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -11,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Pair;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -76,7 +79,7 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
         mActionBarName.setText("Pin Parking Spot");
 
         mBackBtn.setOnClickListener(v -> {
-            finish();
+            onBackPressed();
             Theparker.animate(this);
         });
 
@@ -87,7 +90,9 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
                 areaAddress.putExtra(LocationConstants.address,address);
                 areaAddress.putExtra(LocationConstants.area,area);
                 areaAddress.putExtra(LocationConstants.pincode,pincode);
-                startActivity(areaAddress);
+                Pair pair = new Pair<View, String>(mNextBtn,"circleBtn");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, pair);
+                startActivity(areaAddress,options.toBundle());
             } else {
                 Toasty.error(this, "Please select parking first!").show();
             }

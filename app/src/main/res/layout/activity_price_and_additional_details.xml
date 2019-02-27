@@ -186,6 +186,7 @@
             >
 
             <at.markushi.ui.CircleButton
+                android:transitionName="circleBtn"
                 android:id="@+id/finish_btn"
                 style="@style/FinishButton"
                 android:layout_centerHorizontal="true"

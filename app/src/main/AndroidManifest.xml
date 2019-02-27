@@ -16,11 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-        <activity android:name=".Controller.Activity.OfferLocation.AreaAndAddressActivity"></activity>
-        <activity android:name=".Controller.Activity.StartActivity">
+
+        <activity android:name=".Controller.Activity.OfferLocation.AreaAndAddressActivity" />
+        <activity android:name=".Controller.Activity.StartActivity" />
+        <activity android:name=".Controller.Activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

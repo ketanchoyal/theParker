@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom|center"
+    android:orientation="vertical"
+    tools:context=".Controller.Activity.SplashScreenActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_main" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#d99a0007"
+        android:padding="16sp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:transitionName="parkerImage"
+            android:id="@+id/the_parker_icon"
+            android:layout_width="160.0dip"
+            android:layout_height="160.0dip"
+            android:paddingLeft="20sp"
+            android:layout_marginTop="50sp"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="20sp"
+            app:srcCompat="@drawable/ic_house_black_24dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_below="@id/the_parker_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/t_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="5sp"
+                app:lottie_rawRes="@raw/t"
+                app:lottie_repeatCount="2"
+                app:lottie_autoPlay="true"
+                />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/h_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/t_animate"
+                app:lottie_rawRes="@raw/h"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/e_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/h_animate"
+                app:lottie_rawRes="@raw/e"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/p_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/h_animate"
+                android:layout_below="@id/e_animate"
+                app:lottie_rawRes="@raw/p"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/a_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/p_animate"
+                android:layout_below="@id/e_animate"
+                app:lottie_rawRes="@raw/a"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/r_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/a_animate"
+                android:layout_below="@id/e_animate"
+                app:lottie_rawRes="@raw/r"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/k_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/r_animate"
+                android:layout_below="@id/e_animate"
+                app:lottie_rawRes="@raw/k"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ee_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/k_animate"
+                android:layout_below="@id/e_animate"
+                app:lottie_rawRes="@raw/e"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/rr_animate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50sp"
+                android:layout_marginStart="-50sp"
+                android:layout_toEndOf="@id/ee_animate"
+                android:layout_below="@id/e_animate"
+                app:lottie_rawRes="@raw/r"
+                app:lottie_autoPlay="true"
+                app:lottie_repeatCount="2"
+                />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+</RelativeLayout>

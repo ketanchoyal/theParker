@@ -38,6 +38,7 @@
             android:layout_alignParentStart="true">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:transitionName="circleImage"
                 android:id="@+id/custom_bar_image"
                 android:layout_width="40sp"
                 android:layout_height="40sp"

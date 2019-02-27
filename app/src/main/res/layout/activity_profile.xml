@@ -8,11 +8,13 @@
     tools:context=".Controller.Activity.ProfileActivity">
 
         <RelativeLayout
+            android:transitionName="loginTransition"
             android:layout_width="match_parent"
             android:layout_height="140sp"
             android:background="@color/colorPrimary">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:transitionName="circleImage"
                 android:id="@+id/myProfile_image_iv"
                 android:layout_width="140sp"
                 android:layout_height="140sp"

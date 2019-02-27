@@ -1,10 +1,12 @@
 package com.service.parking.theparker.Controller.Fragment;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +42,12 @@ public class BookingFragment extends Fragment {
 
         mFragmentName.setText("Bookings");
 
-        mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
+        mProfileView.setOnClickListener(v1 -> {
+            Intent toProfileActivity = new Intent(getContext(), ProfileActivity.class);
+            Pair pair = new Pair<View, String>(mProfileView,"circleImage");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
+            startActivity(toProfileActivity,options.toBundle());
+        });
         return v;
     }
 

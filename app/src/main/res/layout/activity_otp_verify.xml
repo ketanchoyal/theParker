@@ -159,6 +159,7 @@
                 </LinearLayout>
 
                 <at.markushi.ui.CircleButton
+                    android:transitionName="loginTransition"
                     android:id="@+id/btn_otp_verify_next"
                     style="@style/NextButton"
                     android:layout_marginTop="65.0dip"

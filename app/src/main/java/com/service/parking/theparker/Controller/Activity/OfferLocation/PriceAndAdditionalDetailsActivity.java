@@ -1,8 +1,10 @@
 package com.service.parking.theparker.Controller.Activity.OfferLocation;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,7 +69,9 @@ public class PriceAndAdditionalDetailsActivity extends AppCompatActivity {
                 Intent toMain = new Intent(this, StartActivity.class);
                 toMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 toMain.putExtra("position",position);
-                startActivity(toMain);
+                Pair pair = new Pair<View, String>(mFinishBtn,"circleBtn");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, pair);
+                startActivity(toMain,options.toBundle());
                 mFinishBtn.setEnabled(true);
             }
         });

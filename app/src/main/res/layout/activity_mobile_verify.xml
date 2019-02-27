@@ -143,6 +143,7 @@
                     android:textSize="16.0sp" />
 
                 <at.markushi.ui.CircleButton
+                    android:transitionName="loginTransition"
                     android:id="@+id/btn_phone_verify_next"
                     style="@style/NextButton"
                     android:layout_marginTop="25.0dip"

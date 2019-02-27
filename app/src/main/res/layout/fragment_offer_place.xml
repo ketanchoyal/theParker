@@ -27,6 +27,7 @@
         android:layout_below="@id/top_bar"/>
 
     <at.markushi.ui.CircleButton
+        android:transitionName="circleBtn"
         android:id="@+id/add_parking_btn"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"

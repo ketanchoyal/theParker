@@ -1,5 +1,6 @@
 package com.service.parking.theparker.Controller.Fragment;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +64,12 @@ public class PackagesFragment extends Fragment {
 
         NetworkServices.PackagesData.getPackages(packagesList,packageAdapter);
 
-        mProfileView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), ProfileActivity.class)));
+        mProfileView.setOnClickListener(v1 -> {
+            Intent toProfileActivity = new Intent(getContext(), ProfileActivity.class);
+            Pair pair = new Pair<View, String>(mProfileView,"circleImage");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
+            startActivity(toProfileActivity,options.toBundle());
+        });
         return rootView;
     }
 
