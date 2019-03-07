@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".Controller.Fragment.WalletFragment">
 
-    <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

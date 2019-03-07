@@ -36,12 +36,6 @@ public class PackagesFragment extends Fragment {
     PackageAdapter packageAdapter;
     List<Packages> packagesList;
 
-    @BindView(R.id.fragment_name)
-    TextView mFragmentName;
-
-    @BindView(R.id.custom_bar_image)
-    CircleImageView mProfileView;
-
     public PackagesFragment() {
 
     }
@@ -51,8 +45,6 @@ public class PackagesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_packages, container, false);
         ButterKnife.bind(this,rootView);
-
-        mFragmentName.setText("Packages");
 
         packagesList = new ArrayList<>();
         packageAdapter = new PackageAdapter(packagesList);
@@ -64,12 +56,6 @@ public class PackagesFragment extends Fragment {
 
         NetworkServices.PackagesData.getPackages(packagesList,packageAdapter);
 
-        mProfileView.setOnClickListener(v1 -> {
-            Intent toProfileActivity = new Intent(getContext(), ProfileActivity.class);
-            Pair pair = new Pair<View, String>(mProfileView,"circleImage");
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
-            startActivity(toProfileActivity,options.toBundle());
-        });
         return rootView;
     }
 

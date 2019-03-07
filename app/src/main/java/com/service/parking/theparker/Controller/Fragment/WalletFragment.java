@@ -21,12 +21,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class WalletFragment extends Fragment {
 
-    @BindView(R.id.fragment_name)
-    TextView mFragmentName;
-
-    @BindView(R.id.custom_bar_image)
-    CircleImageView mProfileView;
-
     public WalletFragment() {
         // Required empty public constructor
     }
@@ -38,14 +32,6 @@ public class WalletFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_wallet, container, false);
         ButterKnife.bind(this,v);
 
-        mFragmentName.setText("Wallet");
-
-        mProfileView.setOnClickListener(v1 -> {
-            Intent toProfileActivity = new Intent(getContext(), ProfileActivity.class);
-            Pair pair = new Pair<View, String>(mProfileView,"circleImage");
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
-            startActivity(toProfileActivity,options.toBundle());
-        });
         return v;
     }
 }

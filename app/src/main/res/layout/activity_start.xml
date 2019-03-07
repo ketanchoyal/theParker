@@ -13,12 +13,23 @@
         android:layout_height="match_parent">
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/framelayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50sp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
+
+        <FrameLayout
+            android:id="@+id/framelayout"
+            android:layout_below="@id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="wrap_content"

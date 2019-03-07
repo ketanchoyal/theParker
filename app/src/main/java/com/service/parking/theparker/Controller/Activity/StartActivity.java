@@ -1,5 +1,6 @@
 package com.service.parking.theparker.Controller.Activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -25,8 +27,10 @@ import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 import com.service.parking.theparker.View.ActivityAnimator;
 
+import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -38,12 +42,20 @@ public class StartActivity extends AppCompatActivity {
 
     TextView mEmail;
     TextView mName;
+    private String fragmentName;
+    CircleImageView mProfileImageView;
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
+
+    @BindView(R.id.custom_bar_image)
+    CircleImageView mProfileView;
+
+    @BindView(R.id.fragment_name)
+    TextView mFragmentName;
 
     int position = 0;
 
@@ -68,7 +80,10 @@ public class StartActivity extends AppCompatActivity {
     };
 
     private boolean profileActivity() {
-        startActivity(new Intent(this, ProfileActivity.class));
+        Intent toProfile = new Intent(this, ProfileActivity.class);
+        Pair pair = new Pair<View, String>(mProfileImageView,"circleImage");
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, pair);
+        startActivity(toProfile,options.toBundle());
         return false;
     }
 
@@ -88,26 +103,31 @@ public class StartActivity extends AppCompatActivity {
         Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.places_fragment:
+                        fragmentName = "Places";
                         fragment = new PlacesFragment();
                         position = 0;
                         break;
 
                     case R.id.packages_fragment:
+                        fragmentName = "Packages";
                         fragment = new PackagesFragment();
                         position = 4;
                         break;
 
                     case R.id.bookings_fragment:
+                        fragmentName = "Bookings";
                         fragment = new BookingFragment();
                         position = 1;
                         break;
 
                     case R.id.wallet_fragment:
+                        fragmentName = "Wallet";
                         fragment = new WalletFragment();
                         position = 2;
                         break;
 
                     case R.id.offer_place_fragment:
+                        fragmentName = "Offer Place";
                         fragment = new OfferPlaceFragment();
                         position = 3;
                         break;
@@ -125,6 +145,9 @@ public class StartActivity extends AppCompatActivity {
 
         mEmail = headerView.findViewById(R.id.email_view);
         mName = headerView.findViewById(R.id.name_view);
+        mProfileImageView = headerView.findViewById(R.id.profileimageView);
+
+        mProfileImageView.setOnClickListener(v -> profileActivity());
 
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
             NetworkServices.ProfileData.setData(mName,mEmail,null);
@@ -143,12 +166,17 @@ public class StartActivity extends AppCompatActivity {
         navigation.setCurrentItem(position);
 
         navigationView.setNavigationItemSelectedListener(mOnNavigationDrawerItemSelectedListener);
+
+        mProfileView.setOnClickListener(v1 -> {
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
+
     }
 
     private boolean loadFragment(Fragment fragment,int position) {
         //switching fragment
         if (fragment != null) {
-
+            mFragmentName.setText(fragmentName);
             navigation.enableShiftingMode(position,true);
             navigation.setItemBackgroundResource(R.color.colorPrimaryDark);
             navigation.setItemBackground(position,R.color.colorPrimary);

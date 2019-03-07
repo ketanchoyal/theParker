@@ -20,8 +20,8 @@
 
     <style name="DialogAnimations" />
     <style name="DialogAnimations.SmileWindow">
-        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
-        <item name="android:windowExitAnimation">@anim/slide_out_top</item>
+        <item name="android:windowEnterAnimation">@anim/unzoom_in</item>
+        <item name="android:windowExitAnimation">@anim/unzoom_out</item>
     </style>
 
     <style name="CodeEditText">

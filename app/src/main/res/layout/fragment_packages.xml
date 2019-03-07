@@ -5,14 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".Controller.Fragment.PackagesFragment">
 
-    <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relativeLayout2"
-        android:layout_above="@id/package_recyclerView"
-        android:layout_below="@id/top_bar">
+        android:layout_above="@id/package_recyclerView">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -48,7 +45,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_below="@id/top_bar"
         android:layout_height="80sp"
         android:orientation="horizontal"
         android:weightSum="2"

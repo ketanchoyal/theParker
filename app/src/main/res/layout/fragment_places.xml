@@ -6,15 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controller.Fragment.PlacesFragment">
 
-    <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
-
     <TextView
         android:id="@+id/areaNameField"
         android:layout_weight="1.7"
         android:layout_height="wrap_content"
         android:textAlignment="gravity"
         android:layout_margin="5sp"
-        android:layout_below="@id/top_bar"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"

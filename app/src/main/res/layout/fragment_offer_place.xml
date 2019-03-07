@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controller.Fragment.OfferPlaceFragment">
 
-    <include android:id="@+id/top_bar" layout="@layout/top_custom_bar" />
-
     <TextView
         android:id="@+id/no_parking_label"
         android:layout_width="wrap_content"
@@ -23,8 +21,7 @@
         android:id="@+id/mySpotRecyclerView"
         android:background="@color/colorWhite"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/top_bar"/>
+        android:layout_height="match_parent"/>
 
     <at.markushi.ui.CircleButton
         android:transitionName="circleBtn"

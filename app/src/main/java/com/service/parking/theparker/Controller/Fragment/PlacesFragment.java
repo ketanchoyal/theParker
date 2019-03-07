@@ -30,12 +30,6 @@ import static com.service.parking.theparker.Services.NetworkServices.ParkingPin.
 
 public class PlacesFragment extends Fragment {
 
-    @BindView(R.id.fragment_name)
-    TextView mFragmentName;
-
-    @BindView(R.id.custom_bar_image)
-    CircleImageView mProfileView;
-
     @BindView(R.id.searchBtn)
     CircleButton mSearchBtn;
 
@@ -50,7 +44,6 @@ public class PlacesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_places, container, false);
         ButterKnife.bind(this,view);
-        mFragmentName.setText("Places");
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             spinnerDialog=new SpinnerDialog(getActivity(),parkingAreas,"Select or Search Area",R.style.DialogAnimations_SmileWindow,"Close");
@@ -60,7 +53,7 @@ public class PlacesFragment extends Fragment {
 
         spinnerDialog.bindOnSpinerListener((item, position) -> {
             Toasty.info(getContext(), item + "  " + position).show();
-                mAreaNameField.setText(item + " Position: " + position);
+                mAreaNameField.setText(item);
         });
 
         mSearchBtn.setOnClickListener(v -> spinnerDialog.showSpinerDialog());
@@ -68,13 +61,6 @@ public class PlacesFragment extends Fragment {
         mSearchBtn.setOnLongClickListener(v -> {
             startActivity(new Intent(getContext(), SplashScreenActivity.class));
             return false;
-        });
-
-        mProfileView.setOnClickListener(v1 -> {
-            Intent toProfileActivity = new Intent(getContext(), ProfileActivity.class);
-            Pair pair = new Pair<View, String>(mProfileView,"circleImage");
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
-            startActivity(toProfileActivity,options.toBundle());
         });
 
         return view;

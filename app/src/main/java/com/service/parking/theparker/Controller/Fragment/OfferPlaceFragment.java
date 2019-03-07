@@ -37,12 +37,6 @@ public class OfferPlaceFragment extends Fragment {
     MySpotsAdapter mySpotsAdapter;
     List<LocationPin> locationPinList;
 
-    @BindView(R.id.fragment_name)
-    TextView mFragmentName;
-
-    @BindView(R.id.custom_bar_image)
-    CircleImageView mProfileView;
-
     @BindView(R.id.add_parking_btn)
     CircleButton mAddParkingBtn;
 
@@ -57,15 +51,6 @@ public class OfferPlaceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_offer_place, container, false);
         ButterKnife.bind(this,view);
-
-        mFragmentName.setText("Offer Place");
-
-        mProfileView.setOnClickListener(v -> {
-            Intent toProfileActivity = new Intent(getContext(), ProfileActivity.class);
-            Pair pair = new Pair<View, String>(mProfileView,"circleImage");
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
-            startActivity(toProfileActivity,options.toBundle());
-        });
 
         mAddParkingBtn.setOnClickListener(v ->{
             Intent addPin = new Intent(getContext(), ParkingPinActivity.class);

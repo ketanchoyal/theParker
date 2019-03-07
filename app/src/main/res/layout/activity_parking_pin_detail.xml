@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controller.Activity.ParkingPinDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/colorGray"
+        android:id="@+id/imglayer">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/no_image"
+            android:scaleType="centerCrop"
+            android:id="@+id/img"/>
+        <ImageView
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:src="@drawable/ic_close"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="10sp"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/imglayer"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        android:layout_marginTop="3dp"
+        android:id="@+id/layer2">
+
+        <co.ceryle.segmentedbutton.SegmentedButtonGroup
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/segmentedButtonGroup"
+            android:layout_margin="3dp"
+            app:sbg_animateSelector="anticipateOvershoot"
+            app:sbg_animateSelectorDuration="900"
+            app:sbg_backgroundColor="@color/colorWhite"
+            app:sbg_dividerColor="@color/colorPrimaryDark"
+            app:sbg_dividerPadding="10dp"
+            app:sbg_dividerRadius="10dp"
+            app:sbg_dividerSize="1dp"
+            app:sbg_position="0"
+            app:sbg_radius="2dp"
+            app:sbg_borderColor="@color/colorPrimary"
+            app:sbg_borderSize="2dp"
+            app:sbg_ripple="true"
+            app:sbg_rippleColor="@color/colorPrimary"
+            app:sbg_selectorColor="@color/colorPrimary">
+
+            <co.ceryle.segmentedbutton.SegmentedButton
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                app:sb_textColor="@color/colorPrimary"
+                app:sb_textSize="15sp"
+                app:sb_textColor_onSelection="@color/colorWhite"
+                app:sb_text="Spot Details"/>
+
+            <co.ceryle.segmentedbutton.SegmentedButton
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                app:sb_textColor="@color/colorPrimary"
+                app:sb_textColor_onSelection="@color/colorWhite"
+                app:sb_textSize="15sp"
+                app:sb_text="Booking Slots"/>
+        </co.ceryle.segmentedbutton.SegmentedButtonGroup>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layer2"
+        android:id="@+id/layer4"
+        android:visibility="visible"
+        android:background="@color/colorWhite">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/details"
+            android:layout_marginTop="15sp"
+            >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layer0">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hosted By"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/first"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="15sp"
+                    android:textStyle="bold"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/first"
+                    android:paddingLeft="15sp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50sp"
+                        android:src="@drawable/icon_profile_primary"
+                        android:layout_height="50sp"
+                        android:padding="5sp"
+                        android:id="@+id/prof_img" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/prof_img"
+                        android:layout_centerInParent="true"
+                        android:text="Person Name"
+                        android:textSize="17sp"
+                        android:paddingStart="30sp"
+                        android:textColor="@color/colorBlack"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layer3"
+                android:layout_below="@+id/layer0">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15sp"
+                    android:id="@+id/type"
+                    android:layout_marginTop="5sp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/type">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Driveaway"
+                        android:textSize="17dp"
+                        android:paddingLeft="15sp"
+                        android:textColor="@color/colorBlack"
+                        android:layout_marginTop="10sp"
+                        android:id="@+id/drive"/>
+                    <RelativeLayout
+                        android:layout_width="80sp"
+                        android:layout_height="35sp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/button_background_transparent"
+                        android:layout_marginRight="15sp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="₹4/hr"
+                            android:gravity="center"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="17sp"
+                            android:layout_marginRight="15sp"
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layer3"
+                android:layout_marginTop="10sp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textSize="17dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:paddingLeft="15sp"
+                    android:id="@+id/des"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5 min walk fom main bus stand and main road"
+                    android:textSize="17sp"
+                    android:layout_below="@+id/des"
+                    android:paddingLeft="15sp"
+                    android:layout_marginTop="5sp"
+                    android:textColor="@color/colorBlack"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/details"
+            android:gravity="center_vertical|center"
+            android:layout_marginTop="50sp">
+
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btn_phone_verify_next"
+                style="@style/NextButton"
+                android:layout_marginTop="20dip"
+                app:cb_color="@color/colorPrimary"
+                app:cb_pressedRingWidth="2.0dip" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layer2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Bookings"
+            android:gravity="center"
+            android:textSize="50sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center"
+            android:layout_marginTop="50sp">
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btn_phone_verify_next1"
+                style="@style/NextButton"
+                android:layout_marginTop="20dip"
+                app:cb_color="@color/colorPrimary"
+                app:cb_pressedRingWidth="2.0dip" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
