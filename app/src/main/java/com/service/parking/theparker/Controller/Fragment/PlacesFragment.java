@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,11 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.Controller.Activity.SplashScreenActivity;
+import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.View.SearchableSpinner.SpinnerDialog;
@@ -106,13 +109,13 @@ public class PlacesFragment extends Fragment {
             }
             googleMap.setMyLocationEnabled(true);
 
-            // For dropping a marker at a point on the Map
-//            LatLng sydney = new LatLng(-34, 151);
-//            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
-//
-//            // For zooming automatically to the location of the marker
-//            CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-//            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            googleMap.setOnMarkerClickListener(marker -> {
+
+                LocationPin pin = (LocationPin) marker.getTag();
+                Log.d("RANDOM TAG",pin.getAddress()+" "+pin.getPrice());
+
+                return false;
+            });
         });
     }
 

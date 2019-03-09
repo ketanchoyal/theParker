@@ -383,7 +383,7 @@ public class NetworkServices {
                     globalPins.put(pinkey,pin);
 
                     LatLng latLng = new LatLng(pinloc.get("lat"), pinloc.get("long"));
-                    googleMap.addMarker(new MarkerOptions().position(latLng).title("₹"+price+"/4 Hour"));
+                    googleMap.addMarker(new MarkerOptions().position(latLng).title("₹"+price+"/4 Hour")).setTag(pin);
 
                 }
 
