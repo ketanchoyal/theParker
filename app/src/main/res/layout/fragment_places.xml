@@ -4,26 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
     tools:context=".Controller.Fragment.PlacesFragment">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <TextView
         android:id="@+id/areaNameField"
-        android:layout_weight="1.7"
-        android:layout_height="wrap_content"
+        android:layout_height="40sp"
         android:textAlignment="gravity"
-        android:layout_margin="5sp"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:text="Search Area"
         android:layout_width="match_parent" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/parkingSpotsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/areaNameField" />
 
     <at.markushi.ui.CircleButton
         android:id="@+id/searchBtn"

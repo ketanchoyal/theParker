@@ -38,7 +38,6 @@ public class Theparker extends Application {
             startActivity(LoginIntent);
         }
         else  {
-            NetworkServices.ParkingPin.getParkingAreas();
             String uid = firebaseAuth.getCurrentUser().getUid();
             currentLocationpin.setBy(uid);
             NetworkServices.ProfileData.getProfileData();

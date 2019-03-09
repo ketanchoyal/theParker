@@ -63,6 +63,7 @@ public class SpinnerDialog {
         AlertDialog.Builder adb = new AlertDialog.Builder(context);
         View v = context.getLayoutInflater().inflate(R.layout.dialog_layout, null);
         TextView rippleViewClose = v.findViewById(R.id.close);
+        TextView showAllBtn = v.findViewById(R.id.showAll);
         TextView title = v.findViewById(R.id.spinerTitle);
         rippleViewClose.setText(closeTitle);
         title.setText(dTitle);
@@ -106,9 +107,15 @@ public class SpinnerDialog {
         });
 
         rippleViewClose.setOnClickListener(v1 -> closeSpinerDialog());
+        showAllBtn.setOnClickListener(v1 -> showAll());
         alertDialog.setCancelable(isCancellable());
         alertDialog.setCanceledOnTouchOutside(isCancellable());
         alertDialog.show();
+    }
+
+    public void showAll(){
+        onSpinerItemClick.onClick("All",0);
+        closeSpinerDialog();
     }
 
     public void closeSpinerDialog() {

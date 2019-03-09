@@ -10,7 +10,6 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
 
     LocationPin selectedPin;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

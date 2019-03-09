@@ -7,6 +7,9 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -219,6 +222,7 @@ public class NetworkServices {
         static DatabaseReference mGlobalLocationPinRef = REF.child("GlobalPins");
         static DatabaseReference mUserLocationPinRef = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("MyLocationPins");
         public static ArrayList<String> parkingAreas = new ArrayList<>();
+        public static Map<String,LocationPin> globalPins = new HashMap<>();
 
         public static void setLocationPin(LocationPin locationPin) {
 
@@ -299,18 +303,26 @@ public class NetworkServices {
             });
         }
 
-        public static void getParkingAreas() {
+        public static void getParkingAreas(GoogleMap googleMap) {
+
+            if(!parkingAreas.isEmpty()) {
+                for(String area : parkingAreas) {
+                    getParkingsOfArea(area,googleMap,false);
+                }
+            }
+
             mGlobalLocationPinRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     if (parkingAreas.isEmpty()) {
                         parkingAreas.add(dataSnapshot.getKey());
                         Log.d("RANDOM AREA :",parkingAreas.toString());
+                        getParkingsOfArea(dataSnapshot.getKey(),googleMap,false);
                     } else if (!parkingAreas.contains(dataSnapshot.getKey())) {
                         parkingAreas.add(dataSnapshot.getKey());
+                        getParkingsOfArea(dataSnapshot.getKey(),googleMap,false);
                         Log.d("RANDOM AREA :",parkingAreas.toString());
                     }
-
                 }
 
                 @Override
@@ -336,7 +348,14 @@ public class NetworkServices {
         }
 
         //Get the Parking Spots from the database of the passed Area
-        public static void getParkingsOfArea(String area) {
+        public static void getParkingsOfArea(String area, GoogleMap googleMap,Boolean fromFragment) {
+            if(fromFragment) {
+                googleMap.clear();
+            }
+            if(area == "All") {
+                googleMap.clear();
+                getParkingAreas(googleMap);
+            }
             mGlobalLocationPinRef.child(area).addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -361,6 +380,11 @@ public class NetworkServices {
                     Log.d("RANDOM :",by +" "+ description + " "+ price +" "+ type +" "+ features.toString() +" "+ pinloc.toString());
 
                     LocationPin pin = new LocationPin(by,description,price,type,numberofspot,pinkey,features,pinloc,address,mobile,area);
+                    globalPins.put(pinkey,pin);
+
+                    LatLng latLng = new LatLng(pinloc.get("lat"), pinloc.get("long"));
+                    googleMap.addMarker(new MarkerOptions().position(latLng).title("₹"+price+"/4 Hour"));
+
                 }
 
                 @Override
