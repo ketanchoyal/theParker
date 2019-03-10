@@ -161,7 +161,7 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
             Theparker.currentLocationpin.setPinloc(pinloc);
 
             Log.d("XYZ Location : ", v.latitude + " " + v.longitude);
-            Log.d("XYZ Address : ", addresses.get(0).getSubLocality());
+//            Log.d("XYZ Address : ", addresses.get(0).getSubLocality());
 
             Toasty.success(this, "Parking Selected").show();
 

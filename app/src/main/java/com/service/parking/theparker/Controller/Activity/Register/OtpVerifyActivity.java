@@ -356,6 +356,10 @@ public class OtpVerifyActivity extends Activity {
                         final Map<String,String> UserdataMap =new HashMap<>();
                         UserdataMap.put("Name",Theparker.Person_name);
                         UserdataMap.put("Mobile_no",Theparker.Mobile_no);
+                        UserdataMap.put("Total_spots","0");
+                        UserdataMap.put("Spots_used","0");
+                        UserdataMap.put("Balance","500");
+                        UserdataMap.put("Earnings","0");
 
                         String User_id = FirebaseAuth.getInstance().getUid();
 

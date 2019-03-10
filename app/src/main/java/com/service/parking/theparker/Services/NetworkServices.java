@@ -125,6 +125,7 @@ public class NetworkServices {
                     NetworkServices.userProfile = userProfile;
 
                     Log.d("XYZ ABC",NetworkServices.userProfile.Email + " " + NetworkServices.userProfile.Mobile_no + " " + NetworkServices.userProfile.Name);
+                    Log.d("XYZ ABC",NetworkServices.userProfile.Total_spots + " " + NetworkServices.userProfile.Balance + " " + NetworkServices.userProfile.Earnings);
                 }
 
                 @Override
@@ -256,50 +257,45 @@ public class NetworkServices {
             mUserLocationPinRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    Map<String, Object> pinsSnapshot = (Map<String, Object>) dataSnapshot.getValue();
+//                    Map<String, Object> pinsSnapshot = (Map<String, Object>) dataSnapshot.getValue();
 
-                    Log.d("ID : ",dataSnapshot.getKey());
+                    LocationPin pin = dataSnapshot.getValue(LocationPin.class);
 
-                    String by = pinsSnapshot.get(LocationConstants.by).toString();
-                    String description = pinsSnapshot.get(LocationConstants.description).toString();
-                    String price = pinsSnapshot.get(LocationConstants.price).toString();
-                    String type = pinsSnapshot.get(LocationConstants.type).toString();
-//                    String visibility = pinsSnapshot.get(LocationConstants.visibility).toString();
-                    String numberofspot = pinsSnapshot.get(LocationConstants.numberofspot).toString();
+//                    Log.d("ID : ",dataSnapshot.getKey());
+//
+//                    String by = pinsSnapshot.get(LocationConstants.by).toString();
+//                    String description = pinsSnapshot.get(LocationConstants.description).toString();
+//                    String price = pinsSnapshot.get(LocationConstants.price).toString();
+//                    String type = pinsSnapshot.get(LocationConstants.type).toString();
+////                    String visibility = pinsSnapshot.get(LocationConstants.visibility).toString();
+//                    String numberofspot = pinsSnapshot.get(LocationConstants.numberofspot).toString();
                     String pinkey = dataSnapshot.getKey();
-                    Map<String,Boolean> features = (Map<String, Boolean>) pinsSnapshot.get(LocationConstants.features);
-//                    String photos;
-                    Map<String,Double> pinloc  = (Map<String, Double>) pinsSnapshot.get(LocationConstants.pinloc);
-                    String address = pinsSnapshot.get(LocationConstants.address).toString();
-                    String mobile = pinsSnapshot.get(LocationConstants.mobile).toString();
-                    String area = pinsSnapshot.get(LocationConstants.area).toString();
-
-                    Log.d("RANDOM :",by +" "+ description + " "+ price +" "+ type +" "+ features.toString() +" "+ pinloc.toString());
-
-                    LocationPin pin = new LocationPin(by,description,price,type,numberofspot,pinkey,features,pinloc,address,mobile,area);
+//                    Map<String,Boolean> features = (Map<String, Boolean>) pinsSnapshot.get(LocationConstants.features);
+////                    String photos;
+//                    Map<String,Double> pinloc  = (Map<String, Double>) pinsSnapshot.get(LocationConstants.pinloc);
+//                    String address = pinsSnapshot.get(LocationConstants.address).toString();
+//                    String mobile = pinsSnapshot.get(LocationConstants.mobile).toString();
+//                    String area = pinsSnapshot.get(LocationConstants.area).toString();
+//
+//                    Log.d("RANDOM :",by +" "+ description + " "+ price +" "+ type +" "+ features.toString() +" "+ pinloc.toString());
+//
+//                    LocationPin pin = new LocationPin(by,description,price,type,numberofspot,pinkey,features,pinloc,address,mobile,area);
+                    pin.setPinkey(pinkey);
                     locationPinList.add(pin);
                     mySpotsAdapter.notifyDataSetChanged();
                 }
 
                 @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {    }
 
                 @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                }
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {    }
 
                 @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
+                public void onCancelled(@NonNull DatabaseError databaseError) { }
             });
         }
 
@@ -359,56 +355,55 @@ public class NetworkServices {
             mGlobalLocationPinRef.child(area).addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    Map<String, Object> pinsSnapshot = (Map<String, Object>) dataSnapshot.getValue();
+//                    Map<String, Object> pinsSnapshot = (Map<String, Object>) dataSnapshot.getValue();
 
-                    Log.d("ID : ",dataSnapshot.getKey());
+                    LocationPin pin = dataSnapshot.getValue(LocationPin.class);
 
-                    String by = pinsSnapshot.get(LocationConstants.by).toString();
-                    String description = pinsSnapshot.get(LocationConstants.description).toString();
-                    String price = pinsSnapshot.get(LocationConstants.price).toString();
-                    String type = pinsSnapshot.get(LocationConstants.type).toString();
-//                    String visibility = pinsSnapshot.get(LocationConstants.visibility).toString();
-                    String numberofspot = pinsSnapshot.get(LocationConstants.numberofspot).toString();
+//                    Log.d("ID : ",dataSnapshot.getKey());
+//
+//                    String by = pinsSnapshot.get(LocationConstants.by).toString();
+//                    String description = pinsSnapshot.get(LocationConstants.description).toString();
+//                    String price = pinsSnapshot.get(LocationConstants.price).toString();
+//                    String type = pinsSnapshot.get(LocationConstants.type).toString();
+////                    String visibility = pinsSnapshot.get(LocationConstants.visibility).toString();
+//                    String numberofspot = pinsSnapshot.get(LocationConstants.numberofspot).toString();
                     String pinkey = dataSnapshot.getKey();
-                    Map<String,Boolean> features = (Map<String, Boolean>) pinsSnapshot.get(LocationConstants.features);
-//                    String photos;
-                    Map<String,Double> pinloc  = (Map<String, Double>) pinsSnapshot.get(LocationConstants.pinloc);
-                    String address = pinsSnapshot.get(LocationConstants.address).toString();
-                    String mobile = pinsSnapshot.get(LocationConstants.mobile).toString();
-                    String area = pinsSnapshot.get(LocationConstants.area).toString();
-
-                    Log.d("RANDOM :",by +" "+ description + " "+ price +" "+ type +" "+ features.toString() +" "+ pinloc.toString());
-
-                    LocationPin pin = new LocationPin(by,description,price,type,numberofspot,pinkey,features,pinloc,address,mobile,area);
-                    globalPins.put(pinkey,pin);
-
-                    LatLng latLng = new LatLng(pinloc.get("lat"), pinloc.get("long"));
-                    googleMap.addMarker(new MarkerOptions().position(latLng).title("₹"+price+"/4 Hour")).setTag(pin);
-
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                    Map<String,Boolean> features = (Map<String, Boolean>) pinsSnapshot.get(LocationConstants.features);
+////                    String photos;
+//                    Map<String,Double> pinloc  = (Map<String, Double>) pinsSnapshot.get(LocationConstants.pinloc);
+//                    String address = pinsSnapshot.get(LocationConstants.address).toString();
+//                    String mobile = pinsSnapshot.get(LocationConstants.mobile).toString();
+//                    String area = pinsSnapshot.get(LocationConstants.area).toString();
+//
+//                    Log.d("RANDOM :",by +" "+ description + " "+ price +" "+ type +" "+ features.toString() +" "+ pinloc.toString());
+//
+//                    LocationPin pin = new LocationPin(by,description,price,type,numberofspot,pinkey,features,pinloc,address,mobile,area);
+//                    globalPins.put(pinkey,pin);
+                    pin.setPinkey(pinkey);
+                    LatLng latLng = new LatLng(pin.getPinloc().get("lat"), pin.getPinloc().get("long"));
+                    googleMap.addMarker(new MarkerOptions().position(latLng).title("₹"+pin.getPrice()+"/4 Hour")).setTag(pin);
 
                 }
 
                 @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                }
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {    }
 
                 @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {    }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  }
 
-                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) { }
             });
         }
+    }
 
+    public static class TransactioinData {
+        static DatabaseReference mGlobalTransactions = REF.child("GlobalTransaction").child("Transactions");
+        static DatabaseReference mGlobalBalance = REF.child("GlobalBalance");
+        static DatabaseReference mUserTransactions = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("Transaction");
     }
 
 }

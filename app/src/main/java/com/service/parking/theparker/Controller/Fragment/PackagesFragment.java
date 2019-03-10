@@ -1,22 +1,19 @@
 package com.service.parking.theparker.Controller.Fragment;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.Controller.Adapters.PackageAdapter;
 import com.service.parking.theparker.Model.Packages;
+import com.service.parking.theparker.Model.UserProfile;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 
@@ -25,7 +22,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class PackagesFragment extends Fragment {
@@ -36,15 +32,21 @@ public class PackagesFragment extends Fragment {
     PackageAdapter packageAdapter;
     List<Packages> packagesList;
 
+    @BindView(R.id.total_spots)
+    TextView mTotalSpots;
+    @BindView(R.id.spotAvai)
+    TextView mSpotAvailable;
+    @BindView(R.id.spotInUse)
+    TextView mSpotInUse;
+
     public PackagesFragment() {
 
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_packages, container, false);
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
 
         packagesList = new ArrayList<>();
         packageAdapter = new PackageAdapter(packagesList);
@@ -54,7 +56,15 @@ public class PackagesFragment extends Fragment {
         mPackageRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mPackageRecyclerView.setAdapter(packageAdapter);
 
-        NetworkServices.PackagesData.getPackages(packagesList,packageAdapter);
+        NetworkServices.PackagesData.getPackages(packagesList, packageAdapter);
+
+        UserProfile userProfile = NetworkServices.userProfile;
+        int totalSpots = Integer.parseInt(userProfile.Total_spots);
+        int spotsUsed = Integer.parseInt(userProfile.Spots_used);
+
+        mTotalSpots.setText(""+totalSpots);
+        mSpotInUse.setText(""+spotsUsed);
+        mSpotAvailable.setText(""+(totalSpots - spotsUsed));
 
         return rootView;
     }

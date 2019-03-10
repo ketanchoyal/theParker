@@ -56,7 +56,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/spotAvai"
+                android:id="@+id/spotAvaiLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -67,10 +67,11 @@
                 android:text="Spots Available"/>
 
             <TextView
+                android:id="@+id/spotAvai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/spotAvai"
+                android:layout_below="@id/spotAvaiLabel"
                 android:text="4"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
@@ -85,7 +86,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/spotInUse"
+                android:id="@+id/spotInUseLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -96,10 +97,11 @@
                 android:text="Spots in Use"/>
 
             <TextView
+                android:id="@+id/spotInUse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/spotInUse"
+                android:layout_below="@id/spotInUseLabel"
                 android:text="6"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"

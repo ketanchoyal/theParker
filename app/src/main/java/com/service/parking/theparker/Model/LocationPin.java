@@ -20,7 +20,6 @@ public class LocationPin {
     private String area;
 
     public LocationPin() { }
-
     public LocationPin(String by, String description, String price, String type, String visibility, String numberofspot, String pinkey, Map<String, Boolean> features, String photos, Map<String, Double> pinloc, String address, String mobile, String area) {
         this.by = by;
         this.description = description;
@@ -44,6 +43,19 @@ public class LocationPin {
         this.type = type;
         this.numberofspot = numberofspot;
         this.pinkey = pinkey;
+        this.features = features;
+        this.pinloc = pinloc;
+        this.address = address;
+        this.mobile = mobile;
+        this.area = area;
+    }
+
+    public LocationPin(String by, String description, String price, String type, String numberofspot, Map<String, Boolean> features, Map<String, Double> pinloc, String address, String mobile, String area) {
+        this.by = by;
+        this.description = description;
+        this.price = price;
+        this.type = type;
+        this.numberofspot = numberofspot;
         this.features = features;
         this.pinloc = pinloc;
         this.address = address;
