@@ -16,14 +16,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.service.parking.theparker.Controller.Adapters.MySpotsAdapter;
 import com.service.parking.theparker.Controller.Adapters.PackageAdapter;
 import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.Model.Packages;
+import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.Model.UserProfile;
 import com.service.parking.theparker.Utils.LocationConstants;
 import com.service.parking.theparker.Utils.PackageConstants;
+import com.service.parking.theparker.Utils.TransactionConstants;
 import com.service.parking.theparker.View.SnackbarWrapper;
 
 import java.util.ArrayList;
@@ -402,8 +405,68 @@ public class NetworkServices {
 
     public static class TransactioinData {
         static DatabaseReference mGlobalTransactions = REF.child("GlobalTransaction").child("Transactions");
-        static DatabaseReference mGlobalBalance = REF.child("GlobalBalance");
+        static DatabaseReference mGlobalBalance = REF.child("GlobalBalance").child("Transactions");
         static DatabaseReference mUserTransactions = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("Transaction");
+        static DatabaseReference mProfileReference = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
+
+        public static void doTransaction(Transaction transaction) {
+            Map<String,Object> transactionMap = new HashMap<>();
+
+            transactionMap.put(TransactionConstants.amount,transaction.getAmount());
+            transactionMap.put(TransactionConstants.by,transaction.getBy());
+            transactionMap.put(TransactionConstants.forr,transaction.getForr());
+            transactionMap.put(TransactionConstants.id,transaction.getId());
+            transactionMap.put(TransactionConstants.of,transaction.getOf());
+            transactionMap.put(TransactionConstants.timeStamp, ServerValue.TIMESTAMP);
+
+            String pinkey = mGlobalTransactions.push().getKey();
+
+            mGlobalTransactions.child(pinkey).setValue(transactionMap,(databaseError, databaseReference) -> {
+                if (databaseError == null) {
+                    if (transaction.getForr() == "Admin") {
+                        //add balance to globalbalance and deduct from loged in user here
+                        mGlobalBalance.child(pinkey).setValue(pinkey);
+                        mUserTransactions.child(pinkey).setValue(pinkey);
+                    } else if (transaction.getForr() == FirebaseAuth.getInstance().getCurrentUser().getUid()) {
+                        //Add balance in loged in user here
+                        int newbalance = Integer.parseInt(userProfile.Balance) + Integer.parseInt(transaction.getAmount());
+                        Map<String,Object> balanceUpdate = new HashMap<>();
+                        balanceUpdate.put("Balance",""+newbalance);
+                        mProfileReference.updateChildren(balanceUpdate);
+
+                        mUserTransactions.child(pinkey).setValue(pinkey);
+                    } else {
+                        //Add or Subtract balance/earning from both the users here
+
+                        //logged in user
+                        int newbalance = Integer.parseInt(userProfile.Balance) - Integer.parseInt(transaction.getAmount());
+                        Map<String,Object> balanceUpdate = new HashMap<>();
+                        balanceUpdate.put("Balance",""+newbalance);
+                        mProfileReference.updateChildren(balanceUpdate);
+
+                        //for spot holder earnings
+                        DatabaseReference spotHolder = REF.child("Users").child(transaction.getForr()).child("Profile");
+                        spotHolder.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                UserProfile spotHolderProfile = dataSnapshot.getValue(UserProfile.class);
+                                int newEarnings = Integer.parseInt(spotHolderProfile.Earnings) + Integer.parseInt(transaction.getAmount());
+                                Map<String,Object> earningUpdate = new HashMap<>();
+                                earningUpdate.put("Earnings",""+newEarnings);
+                                spotHolder.updateChildren(earningUpdate);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) { }
+                        });
+
+                        spotHolder.child("Transaction").child(pinkey).setValue(pinkey);
+                        mUserTransactions.child(pinkey).setValue(pinkey);
+                    }
+                }
+            });
+
+        }
     }
 
 }
