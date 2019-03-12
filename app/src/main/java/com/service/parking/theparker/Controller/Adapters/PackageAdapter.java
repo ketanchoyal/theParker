@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.Model.Packages;
+import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.R;
+import com.service.parking.theparker.Services.NetworkServices;
 
 import java.util.List;
 
@@ -45,7 +48,9 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         myViewHolder.mPrice.setText("₹"+model.getPrice());
 
         myViewHolder.buy_Btn.setOnClickListener(v -> {
-
+            String uid  = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            Transaction transaction = new Transaction(model.getPrice(),""+uid,"Admin",model.getId(),"Package","timestamp");
+            NetworkServices.TransactioinData.doTransaction(transaction);
         });
 
     }

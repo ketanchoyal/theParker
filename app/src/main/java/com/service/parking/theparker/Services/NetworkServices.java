@@ -405,7 +405,7 @@ public class NetworkServices {
 
     public static class TransactioinData {
         static DatabaseReference mGlobalTransactions = REF.child("GlobalTransaction").child("Transactions");
-        static DatabaseReference mGlobalBalance = REF.child("GlobalBalance").child("Transactions");
+        static DatabaseReference mGlobalBalance = REF.child("GlobalBalance");
         static DatabaseReference mUserTransactions = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("Transaction");
         static DatabaseReference mProfileReference = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
 
@@ -425,7 +425,32 @@ public class NetworkServices {
                 if (databaseError == null) {
                     if (transaction.getForr() == "Admin") {
                         //add balance to globalbalance and deduct from loged in user here
-                        mGlobalBalance.child(pinkey).setValue(pinkey);
+
+                        //update the global balance here(use of cloud functions)
+                        mGlobalBalance.child("Balance").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String globalBalance = dataSnapshot.getValue(String.class);
+                                int newGlobalBalance = Integer.parseInt(globalBalance) + Integer.parseInt(transaction.getAmount());
+                                Map<String,Object> balanceUpdate = new HashMap<>();
+                                balanceUpdate.put("Balance",""+newGlobalBalance);
+
+                                mGlobalBalance.updateChildren(balanceUpdate);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        mGlobalBalance.child("Transactions").child(pinkey).setValue(pinkey);
+
+                        //Updated the balance for logged in user
+                        int newbalance = Integer.parseInt(userProfile.Balance) - Integer.parseInt(transaction.getAmount());
+                        Map<String,Object> balanceUpdate = new HashMap<>();
+                        balanceUpdate.put("Balance",""+newbalance);
+                        mProfileReference.updateChildren(balanceUpdate);
+
                         mUserTransactions.child(pinkey).setValue(pinkey);
                     } else if (transaction.getForr() == FirebaseAuth.getInstance().getCurrentUser().getUid()) {
                         //Add balance in loged in user here
