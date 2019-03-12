@@ -50,7 +50,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         myViewHolder.buy_Btn.setOnClickListener(v -> {
             String uid  = FirebaseAuth.getInstance().getCurrentUser().getUid();
             Transaction transaction = new Transaction(model.getPrice(),""+uid,"Admin",model.getId(),"Package","timestamp");
-            NetworkServices.TransactioinData.doTransaction(transaction);
+            NetworkServices.TransactioinData.doTransaction(transaction,model);
         });
 
     }

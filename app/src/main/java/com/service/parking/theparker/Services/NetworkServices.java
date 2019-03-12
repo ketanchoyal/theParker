@@ -409,7 +409,7 @@ public class NetworkServices {
         static DatabaseReference mUserTransactions = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("Transaction");
         static DatabaseReference mProfileReference = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
 
-        public static void doTransaction(Transaction transaction) {
+        public static void doTransaction(Transaction transaction, Object package_or_booking_or_addbalance) {
             Map<String,Object> transactionMap = new HashMap<>();
 
             transactionMap.put(TransactionConstants.amount,transaction.getAmount());
@@ -439,16 +439,18 @@ public class NetworkServices {
                             }
 
                             @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
+                            public void onCancelled(@NonNull DatabaseError databaseError) { }
                         });
                         mGlobalBalance.child("Transactions").child(pinkey).setValue(pinkey);
 
-                        //Updated the balance for logged in user
+                        Packages packageToBuy = (Packages) package_or_booking_or_addbalance;
+
+                        //Updated the balance and totalSpots for logged in user
                         int newbalance = Integer.parseInt(userProfile.Balance) - Integer.parseInt(transaction.getAmount());
+                        int newTotal_spots = Integer.parseInt(userProfile.Total_spots) + Integer.parseInt(packageToBuy.getCars_selected());
                         Map<String,Object> balanceUpdate = new HashMap<>();
                         balanceUpdate.put("Balance",""+newbalance);
+                        balanceUpdate.put("Total_spots",""+newTotal_spots);
                         mProfileReference.updateChildren(balanceUpdate);
 
                         mUserTransactions.child(pinkey).setValue(pinkey);
