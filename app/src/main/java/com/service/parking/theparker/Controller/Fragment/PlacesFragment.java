@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.service.parking.theparker.Controller.Activity.SplashScreenActivity;
 import com.service.parking.theparker.Model.LocationPin;
+import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.View.SearchableSpinner.SpinnerDialog;
@@ -75,7 +76,10 @@ public class PlacesFragment extends Fragment {
         mSearchBtn.setOnClickListener(v -> spinnerDialog.showSpinerDialog());
 
         mSearchBtn.setOnLongClickListener(v -> {
-            startActivity(new Intent(getContext(), SplashScreenActivity.class));
+            //doTransaction Functioin demo
+//            String uid  = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//            Transaction transaction = new Transaction("200",""+uid,"tVKSi9PujnUUXRfzLNB1f0MRkvt2","-L_b8-YiUu883DeRJUfH","Parking","timestamp");
+//            NetworkServices.TransactioinData.doTransaction(transaction);
             return false;
         });
 

@@ -445,21 +445,36 @@ public class NetworkServices {
                         mProfileReference.updateChildren(balanceUpdate);
 
                         //for spot holder earnings
-                        DatabaseReference spotHolder = REF.child("Users").child(transaction.getForr()).child("Profile");
-                        spotHolder.addValueEventListener(new ValueEventListener() {
+                        DatabaseReference spotHolder = REF.child("Users").child(transaction.getForr());
+
+                        spotHolder.child("Profile").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 UserProfile spotHolderProfile = dataSnapshot.getValue(UserProfile.class);
                                 int newEarnings = Integer.parseInt(spotHolderProfile.Earnings) + Integer.parseInt(transaction.getAmount());
                                 Map<String,Object> earningUpdate = new HashMap<>();
                                 earningUpdate.put("Earnings",""+newEarnings);
-                                spotHolder.updateChildren(earningUpdate);
+                                spotHolder.child("Profile").updateChildren(earningUpdate);
                             }
 
                             @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) { }
-                        });
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                            }
+                        });
+//                        spotHolder.child("Profile").addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                UserProfile spotHolderProfile = dataSnapshot.getValue(UserProfile.class);
+//                                int newEarnings = Integer.parseInt(spotHolderProfile.Earnings) + Integer.parseInt(transaction.getAmount());
+//                                Map<String,Object> earningUpdate = new HashMap<>();
+//                                earningUpdate.put("Earnings",""+newEarnings);
+//                                spotHolder.child("Profile").updateChildren(earningUpdate);
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError databaseError) { }
+//                        });
                         spotHolder.child("Transaction").child(pinkey).setValue(pinkey);
                         mUserTransactions.child(pinkey).setValue(pinkey);
                     }
