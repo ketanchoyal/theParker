@@ -24,11 +24,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.service.parking.theparker.Controller.Activity.ParkingPinDetailActivity;
 import com.service.parking.theparker.Controller.Activity.SplashScreenActivity;
 import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
+import com.service.parking.theparker.Theparker;
 import com.service.parking.theparker.View.SearchableSpinner.SpinnerDialog;
 
 import at.markushi.ui.CircleButton;
@@ -56,6 +58,7 @@ public class PlacesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_places, container, false);
         ButterKnife.bind(this,view);
+        Theparker.animate(getActivity());
 
         mMapView = view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
@@ -117,6 +120,8 @@ public class PlacesFragment extends Fragment {
 
                 LocationPin pin = (LocationPin) marker.getTag();
                 Log.d("RANDOM TAG",pin.getAddress()+" "+pin.getPrice());
+
+                startActivity(new Intent(getContext(), ParkingPinDetailActivity.class));
 
                 return false;
             });

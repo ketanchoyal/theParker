@@ -16,13 +16,14 @@
             android:layout_height="match_parent"
             android:src="@drawable/no_image"
             android:scaleType="centerCrop"
-            android:id="@+id/img"/>
+            android:id="@+id/parking_spot_img"/>
         <ImageView
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:src="@drawable/ic_close"
             android:layout_marginTop="10sp"
-            android:layout_marginLeft="10sp"/>
+            android:layout_marginLeft="10sp"
+            android:id="@+id/detail_btn_close"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,15 +57,26 @@
             app:sbg_selectorColor="@color/colorPrimary">
 
             <co.ceryle.segmentedbutton.SegmentedButton
+
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:id="@+id/details_seg_spot_details"
+                app:sb_textColor="@color/colorPrimary"
+                app:sb_textSize="15sp"
+                app:sb_textColor_onSelection="@color/colorWhite"
+                app:sb_text="Spot Details"/>
+            <co.ceryle.segmentedbutton.SegmentedButton
                 android:layout_width="0dp"
                 android:layout_height="40sp"
                 android:layout_weight="1"
                 app:sb_textColor="@color/colorPrimary"
                 app:sb_textSize="15sp"
+                android:id="@+id/details_seg_spot_features"
                 app:sb_textColor_onSelection="@color/colorWhite"
-                app:sb_text="Spot Details"/>
-
+                app:sb_text="Features"/>
             <co.ceryle.segmentedbutton.SegmentedButton
+                android:id="@+id/detail_seg_booking_slots"
                 android:layout_width="0dp"
                 android:layout_height="40sp"
                 android:layout_weight="1"
@@ -76,12 +88,13 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layer2"
-        android:id="@+id/layer4"
+        android:id="@+id/spot_detail_layout"
         android:visibility="visible"
         android:background="@color/colorWhite">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,6 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/first"
+                    android:id="@+id/nameLayout"
                     android:paddingLeft="15sp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -115,14 +129,44 @@
                         android:padding="5sp"
                         android:id="@+id/prof_img" />
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/prof_img"
-                        android:layout_centerInParent="true"
                         android:text="Person Name"
                         android:textSize="17sp"
-                        android:paddingStart="30sp"
-                        android:textColor="@color/colorBlack"/>
+                        android:paddingStart="20sp"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/colorBlack"
+                        android:id="@+id/detail_person_name"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/nameLayout"
+                    android:id="@+id/mobileNoLayout"
+                    android:paddingLeft="15sp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50sp"
+                        android:src="@drawable/ic_call"
+                        android:layout_height="50sp"
+                        android:padding="5sp"
+                        android:id="@+id/call_img" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/call_img"
+                        android:text="+91 1234567890"
+                        android:textSize="17sp"
+                        android:paddingStart="20sp"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/colorBlack"
+                        android:id="@+id/detail_person_mobile_no"/>
+
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -147,20 +191,24 @@
                     android:layout_below="@+id/type">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35sp"
+                        android:gravity="center"
                         android:text="Driveaway"
                         android:textSize="17dp"
                         android:paddingLeft="15sp"
                         android:textColor="@color/colorBlack"
                         android:layout_marginTop="10sp"
-                        android:id="@+id/drive"/>
+                        android:id="@+id/spot_type"
+                        />
                     <RelativeLayout
                         android:layout_width="80sp"
                         android:layout_height="35sp"
                         android:layout_alignParentRight="true"
+                        android:layout_marginTop="10sp"
                         android:background="@drawable/button_background_transparent"
                         android:layout_marginRight="15sp">
                         <TextView
+                            android:id="@+id/spot_price"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="₹4/hr"
@@ -188,6 +236,7 @@
                     android:paddingLeft="15sp"
                     android:id="@+id/des"/>
                 <TextView
+                    android:id="@+id/spot_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="5 min walk fom main bus stand and main road"
@@ -201,13 +250,13 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/details"
-            android:gravity="center_vertical|center"
-            android:layout_marginTop="50sp">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="40sp"
+            android:gravity="center_vertical|center">
 
             <at.markushi.ui.CircleButton
-                android:id="@+id/btn_phone_verify_next"
+                android:id="@+id/detail_nextPage"
                 style="@style/NextButton"
                 android:layout_marginTop="20dip"
                 app:cb_color="@color/colorPrimary"
@@ -218,23 +267,155 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layer2">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Bookings"
-            android:gravity="center"
-            android:textSize="50sp"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layer2"
+        android:id="@+id/features_layout"
+        android:visibility="invisible">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|center"
-            android:layout_marginTop="50sp">
+            android:layout_height="wrap_content"
+            android:id="@+id/layer9"
+            android:paddingRight="20sp"
+            android:paddingLeft="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <ImageView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".7"
+                        android:src="@drawable/covered"
+                        android:padding="10sp"/>
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:text="Covered"
+                        android:textColor="@color/colorBlack"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        />
+                    <cn.refactor.library.SmoothCheckBox
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:layout_gravity="center_vertical"
+                        app:color_checked="@color/colorPrimary"
+                        app:color_unchecked="@color/colorWhite"
+                        android:id="@+id/detail_check_space_covered"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <ImageView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".7"
+                        android:src="@drawable/camera"
+                        android:padding="10sp"/>
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorBlack"
+                        android:text="Security Camera"/>
+                    <cn.refactor.library.SmoothCheckBox
+                        android:layout_width="0sp"
+                        android:id="@+id/detail_space_check_security"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:layout_gravity="center_vertical"
+                        app:color_unchecked="@color/colorWhite"
+                        app:color_checked="@color/colorPrimary"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <ImageView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".7"
+                        android:padding="10sp"
+                        android:src="@drawable/onsitestaff"/>
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:text="Onsite Staff"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        />
+                    <cn.refactor.library.SmoothCheckBox
+                        android:layout_width="0sp"
+                        android:id="@+id/detail_check_onsite"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:layout_gravity="center_vertical"
+                        app:color_unchecked="@color/colorWhite"
+                        app:color_checked="@color/colorPrimary"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <ImageView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".7"
+                        android:src="@drawable/disabled"
+                        android:padding="10sp"/>
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:text="Disabled Access"
+                        android:textColor="@color/colorBlack"
+                        android:gravity="center"
+                        android:textSize="16sp"/>
+                    <cn.refactor.library.SmoothCheckBox
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:layout_gravity="center_vertical"
+                        app:color_unchecked="@color/colorWhite"
+                        android:id="@+id/detail_space_check_disabled"
+                        app:color_checked="@color/colorPrimary"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="40sp"
+            android:gravity="center_vertical|center">
             <at.markushi.ui.CircleButton
-                android:id="@+id/btn_phone_verify_next1"
+                android:id="@+id/deails_btn_feature_next"
                 style="@style/NextButton"
                 android:layout_marginTop="20dip"
                 app:cb_color="@color/colorPrimary"
@@ -242,5 +423,33 @@
         </RelativeLayout>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/booking_layout"
+        android:layout_below="@id/layer2"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Bookings"
+            android:gravity="center"
+            android:textSize="50sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center"
+            android:paddingBottom="40sp"
+            android:layout_alignParentBottom="true">
+            <at.markushi.ui.CircleButton
+                android:id="@+id/deails_btn_booking_next"
+                style="@style/FinishButton"
+                app:cb_color="@color/colorPrimary"
+                app:cb_pressedRingWidth="2.0dip" />
+        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

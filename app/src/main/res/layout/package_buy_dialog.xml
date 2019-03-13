@@ -72,7 +72,7 @@
                 android:layout_below="@id/layer3">
 
                 <TextView
-                    android:id="@+id/layer4"
+                    android:id="@+id/spot_detail_layout"
                     android:layout_width="60sp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -85,7 +85,7 @@
                     android:id="@+id/dia_package_price"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/layer4"
+                    android:layout_toRightOf="@id/spot_detail_layout"
                     android:gravity="center_vertical"
                     android:text="500"
                     android:textColor="@color/colorWhite"

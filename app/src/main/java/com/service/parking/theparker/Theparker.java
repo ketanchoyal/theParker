@@ -23,6 +23,7 @@ public class Theparker extends Application {
 //    public static String SP_User_id = "user_id";
 
     public static LocationPin currentLocationpin = new LocationPin();
+    public static LocationPin selectedLocationPin = new LocationPin();
 
     @Override
     public void onCreate() {
@@ -53,6 +54,11 @@ public class Theparker extends Application {
     public static void animate(Activity activity) {
         try {
             ActivityAnimator.fadeAnimation(activity);
+        } catch (Exception ignore) {}
+    }
+    public static void animateSlide(Activity activity) {
+        try {
+            ActivityAnimator.slideInBottomAnimation(activity);
         } catch (Exception ignore) {}
     }
 }

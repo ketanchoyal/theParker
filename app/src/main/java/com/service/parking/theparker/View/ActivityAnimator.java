@@ -30,6 +30,11 @@ public class ActivityAnimator {
         a.overridePendingTransition(R.anim.appear_top_left_in, R.anim.appear_top_left_out);
     }
 
+    public static void slideInBottomAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out);
+    }
+
     public static void disappearBottomRightAnimation(Activity a)
     {
         a.overridePendingTransition(R.anim.disappear_bottom_right_in, R.anim.disappear_bottom_right_out);

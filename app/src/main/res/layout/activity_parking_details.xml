@@ -149,7 +149,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/layer4">
+            android:id="@+id/spot_detail_layout">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -163,7 +163,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layer4">
+            android:layout_below="@id/spot_detail_layout">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
