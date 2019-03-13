@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
+import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 
 import at.markushi.ui.CircleButton;
@@ -79,6 +80,12 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
 
     void init() {
         selectedPin = Theparker.selectedLocationPin;
+
+        NetworkServices.ProfileData.getProfileDataById(selectedPin.getBy(),detailPersonName);
+        detailPersonMobileNo.setText(selectedPin.getMobile());
+        spotDescription.setText(selectedPin.getDescription());
+        spotPrice.setText("₹"+selectedPin.getPrice());
+        spotType.setText(selectedPin.getType());
 
         detailCloseBtn.setOnClickListener(v -> {
             Theparker.animateSlide(ParkingPinDetailActivity.this);

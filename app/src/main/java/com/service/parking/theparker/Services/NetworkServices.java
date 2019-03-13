@@ -138,17 +138,15 @@ public class NetworkServices {
             });
         }
 
-        public static UserProfile getProfileDataById(String id) {
-            CountDownLatch done = new CountDownLatch(1);
+        public static void getProfileDataById(String id,TextView nameview) {
             DatabaseReference userRef = REF.child("Users").child(id).child("Profile");
-            final UserProfile[] user = new UserProfile[1];
 
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    user[0] = dataSnapshot.getValue(UserProfile.class);
-                    done.countDown();
+                    UserProfile user = dataSnapshot.getValue(UserProfile.class);
+                    nameview.setText(user.Name);
 
                 }
 
@@ -157,13 +155,6 @@ public class NetworkServices {
 
                 }
             });
-
-            try {
-                done.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return user[0];
         }
 
     }

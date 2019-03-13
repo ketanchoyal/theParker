@@ -119,6 +119,7 @@ public class PlacesFragment extends Fragment {
             googleMap.setOnMarkerClickListener(marker -> {
 
                 LocationPin pin = (LocationPin) marker.getTag();
+                Theparker.selectedLocationPin = pin;
                 Log.d("RANDOM TAG",pin.getAddress()+" "+pin.getPrice());
 
                 startActivity(new Intent(getContext(), ParkingPinDetailActivity.class));
