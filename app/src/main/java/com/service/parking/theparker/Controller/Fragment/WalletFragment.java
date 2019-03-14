@@ -1,25 +1,28 @@
 package com.service.parking.theparker.Controller.Fragment;
 
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.R;
+import com.service.parking.theparker.Services.NetworkServices;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
+import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 
 public class WalletFragment extends Fragment {
+
+    @BindView(R.id.wallet_available_balance)
+    TextView wallet_available_balance;
+    @BindView(R.id.wallet_available_earning)
+    TextView wallet_available_earning;
 
     public WalletFragment() {
         // Required empty public constructor
@@ -31,6 +34,10 @@ public class WalletFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_wallet, container, false);
         ButterKnife.bind(this,v);
+
+        wallet_available_balance.setText(NetworkServices.userProfile.Balance);
+        wallet_available_earning.setText(NetworkServices.userProfile.Earnings);
+        //Toast.makeText(getContext(),"Balance is"+NetworkServices.userProfile.Balance,Toast.LENGTH_LONG).show();
 
         return v;
     }

@@ -3,12 +3,279 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.Fragment.WalletFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Controller.Fragment.WalletFragment"
+    android:background="@color/colorWhite">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Wallet Fragment" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
+                android:text="My Wallet"
+                android:gravity="center"
+                android:id="@+id/wallet_wallet"
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="15sp"
+                android:paddingLeft="10sp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10sp"
+                android:weightSum="2"
+                android:id="@+id/wallet_myWallet_transactions"
+                android:orientation="horizontal"
+                android:layout_toRightOf="@id/wallet_wallet"
+                android:layout_marginLeft="50sp"
+                android:layout_marginTop="15sp"
+                android:gravity="center_vertical">
+
+                <TextView
+
+                    android:layout_width="0sp"
+                    android:textSize="20sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="50sp"
+                    android:text="Transactions"/>
+                <ImageView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:src="@drawable/ic_play_arrow"
+                    android:padding="3sp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:gravity="center"
+                android:layout_below="@id/wallet_myWallet_transactions"
+                android:text="The amount from the wallet is used when you want to book any Parking Slot"
+                android:paddingLeft="20sp"
+                android:id="@+id/text1"
+                android:paddingRight="20sp"
+                android:textSize="20sp"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="70sp"
+                android:background="@drawable/bg_rectangle_rounded"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30sp"
+                android:id="@+id/layer4">
+                <TextView
+                    android:layout_width="70sp"
+                    android:layout_height="match_parent"
+                    android:text="₹"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="50sp"
+                    android:id="@+id/rupees1"
+                    android:textColor="@color/colorWhite"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="00.0"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="50sp"
+                    android:layout_toRightOf="@+id/rupees1"
+                    android:id="@+id/wallet_available_balance"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginRight="10sp"/>
+            </RelativeLayout>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/wallet_recharge_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/layer4"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                app:panelBackgroundColor="@color/colorWhite"
+                app:labelText="Amount to add in Wallet">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/edit_text_wallet_payout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:prefix="₹ " />
+
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_margin="12sp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/button_background_transparent"
+                android:text="Recharge My Wallet"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/wallet_btn_recharge"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:id="@+id/layer6">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
+                android:layout_marginTop="10sp"
+                android:gravity="center"
+                android:layout_marginLeft="10sp"
+                android:layout_below="@+id/layer1"
+                android:text="My Earnings"
+                android:id="@+id/earnings"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorBlack"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10sp"
+                android:weightSum="2"
+                android:id="@+id/wallet_earning_transaction"
+                android:orientation="horizontal"
+                android:layout_toRightOf="@id/earnings"
+                android:layout_marginLeft="50sp"
+                android:layout_marginTop="6sp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:textSize="20sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="50sp"
+                    android:text="Transactions"/>
+                <ImageView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:src="@drawable/ic_play_arrow"
+                    android:padding="3sp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
+                android:layout_below="@+id/earnings"
+                android:text="Available for payout: "
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:id="@+id/payout"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
+                android:text="₹ 0.00"
+                android:layout_toRightOf="@+id/payout"
+                android:textSize="18sp"
+                android:layout_below="@id/earnings"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:id="@+id/wallet_payout_balance"
+                android:textColor="@color/colorBlack"/>
+            <ImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/ic_info_outline"
+                android:layout_alignParentRight="true"
+                android:id="@+id/wallet_img_information"
+                android:layout_below="@id/wallet_earning_transaction"
+                android:layout_marginRight="10sp"
+                android:padding="5sp"
+                android:layout_marginTop="5sp"
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="70sp"
+                android:background="@drawable/bg_rectangle_rounded"
+                android:layout_below="@id/wallet_payout_balance"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20sp"
+                android:id="@+id/layer3">
+                <TextView
+                    android:layout_width="70sp"
+                    android:layout_height="match_parent"
+                    android:text="₹"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="50sp"
+                    android:id="@+id/rupees"
+                    android:textColor="@color/colorWhite"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="00.0"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="50sp"
+                    android:layout_toRightOf="@+id/rupees"
+                    android:id="@+id/wallet_available_earning"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginRight="10sp"/>
+            </RelativeLayout>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/wallet_payout_amount_request"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/layer3"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                app:panelBackgroundColor="@color/colorWhite"
+                app:labelText="Enter Payout Amount">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/edit_text_earning_payout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:prefix="₹ " />
+
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_margin="12sp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/button_background_transparent"
+                android:text="Request for Payout"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/wallet_btn_payout"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
