@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
+import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 import com.suke.widget.SwitchButton;
 
@@ -28,6 +29,8 @@ import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
+
+import static com.service.parking.theparker.Services.NetworkServices.userProfile;
 
 public class ParkingDetailsActivity extends AppCompatActivity {
 
@@ -145,6 +148,15 @@ public class ParkingDetailsActivity extends AppCompatActivity {
 
     boolean checkData() {
         noOFSpots = mNoOfSpots.getEditableText().toString();
+
+        int totalSpots = Integer.parseInt(userProfile.Total_spots);
+        int spotsUsed = Integer.parseInt(userProfile.Spots_used);
+
+        if (Integer.parseInt(noOFSpots) > (totalSpots-spotsUsed)) {
+            Toasty.error(this,"You have " +(totalSpots-spotsUsed) + "available").show();
+            return false;
+        }
+
         if(parkingType.isEmpty() || noOFSpots.isEmpty()) {
             Toasty.error(this,"Please fill the information correctly").show();
             return false;

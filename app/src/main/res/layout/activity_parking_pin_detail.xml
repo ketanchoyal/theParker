@@ -24,6 +24,7 @@
             android:layout_marginTop="10sp"
             android:layout_marginLeft="10sp"
             android:id="@+id/detail_btn_close"/>
+
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -304,15 +305,13 @@
                         android:text="Covered"
                         android:textColor="@color/colorBlack"
                         android:gravity="center"
-                        android:textSize="20sp"
-                        />
-                    <cn.refactor.library.SmoothCheckBox
+                        android:textSize="20sp" />
+                    <ImageView
                         android:layout_width="0sp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".2"
                         android:layout_gravity="center_vertical"
-                        app:color_checked="@color/colorPrimary"
-                        app:color_unchecked="@color/colorWhite"
+                        android:src="@drawable/ic_close"
                         android:id="@+id/detail_check_space_covered"/>
                 </LinearLayout>
                 <LinearLayout
@@ -335,14 +334,13 @@
                         android:textSize="16sp"
                         android:textColor="@color/colorBlack"
                         android:text="Security Camera"/>
-                    <cn.refactor.library.SmoothCheckBox
+                    <ImageView
                         android:layout_width="0sp"
                         android:id="@+id/detail_space_check_security"
                         android:layout_height="wrap_content"
                         android:layout_weight=".2"
-                        android:layout_gravity="center_vertical"
-                        app:color_unchecked="@color/colorWhite"
-                        app:color_checked="@color/colorPrimary"/>
+                        android:src="@drawable/ic_close"
+                        android:layout_gravity="center_vertical"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -365,14 +363,13 @@
                         android:textSize="16sp"
                         android:gravity="center"
                         />
-                    <cn.refactor.library.SmoothCheckBox
+                    <ImageView
                         android:layout_width="0sp"
-                        android:id="@+id/detail_check_onsite"
                         android:layout_height="wrap_content"
                         android:layout_weight=".2"
                         android:layout_gravity="center_vertical"
-                        app:color_unchecked="@color/colorWhite"
-                        app:color_checked="@color/colorPrimary"/>
+                        android:src="@drawable/ic_close"
+                        android:id="@+id/detail_check_onsite" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -394,14 +391,13 @@
                         android:textColor="@color/colorBlack"
                         android:gravity="center"
                         android:textSize="16sp"/>
-                    <cn.refactor.library.SmoothCheckBox
+                    <ImageView
                         android:layout_width="0sp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".2"
                         android:layout_gravity="center_vertical"
-                        app:color_unchecked="@color/colorWhite"
-                        android:id="@+id/detail_space_check_disabled"
-                        app:color_checked="@color/colorPrimary"/>
+                        android:src="@drawable/ic_close"
+                        android:id="@+id/detail_space_check_disabled"/>
                 </LinearLayout>
 
             </LinearLayout>

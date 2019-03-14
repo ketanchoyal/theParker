@@ -3,6 +3,7 @@ package com.service.parking.theparker.Controller.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
+
+import java.util.Map;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
@@ -52,13 +55,13 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
     @BindView(R.id.spot_detail_layout)
     RelativeLayout spotDetailLayout;
     @BindView(R.id.detail_check_space_covered)
-    SmoothCheckBox CoveredFeatureCheck;
+    ImageView CoveredFeatureCheck;
     @BindView(R.id.detail_space_check_security)
-    SmoothCheckBox SecurityFeatureCheck;
+    ImageView SecurityFeatureCheck;
     @BindView(R.id.detail_check_onsite)
-    SmoothCheckBox CheckOnsiteFeatureCheck;
+    ImageView CheckOnsiteFeatureCheck;
     @BindView(R.id.detail_space_check_disabled)
-    SmoothCheckBox DisabledFeatureCheck;
+    ImageView DisabledFeatureCheck;
     @BindView(R.id.deails_btn_feature_next)
     CircleButton feature_next_Btn;
     @BindView(R.id.features_layout)
@@ -80,6 +83,8 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
 
     void init() {
         selectedPin = Theparker.selectedLocationPin;
+        Map<String, Boolean> features = selectedPin.getFeatures();
+        features(features);
 
         NetworkServices.ProfileData.getProfileDataById(selectedPin.getBy(),detailPersonName);
         detailPersonMobileNo.setText(selectedPin.getMobile());
@@ -117,19 +122,41 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
         });
     }
 
-    void showSpotDetail() {
+    private void features(Map<String, Boolean> features) {
+
+        Boolean coveredFeature = features.get("Covered");
+        Boolean staffFeature = features.get("Onsite Staff");
+        Boolean cameraFeature = features.get("Security Camera");
+        Boolean disabledAccessFeature = features.get("Disabled Access");
+
+        isFeatureAvailabel(coveredFeature, CoveredFeatureCheck);
+        isFeatureAvailabel(cameraFeature, SecurityFeatureCheck);
+        isFeatureAvailabel(staffFeature,CheckOnsiteFeatureCheck);
+        isFeatureAvailabel(disabledAccessFeature,DisabledFeatureCheck);
+
+    }
+
+    private void isFeatureAvailabel(Boolean feature, ImageView imageView) {
+        if (feature) {
+            imageView.setImageResource(R.drawable.ic_check);
+        } else {
+            imageView.setImageResource(R.drawable.ic_close);
+        }
+    }
+
+    private void showSpotDetail() {
         spotDetailLayout.setVisibility(View.VISIBLE);
         featuresLayout.setVisibility(View.INVISIBLE);
         bookingLayout.setVisibility(View.INVISIBLE);
     }
 
-    void showFeatures() {
+    private void showFeatures() {
         spotDetailLayout.setVisibility(View.INVISIBLE);
         featuresLayout.setVisibility(View.VISIBLE);
         bookingLayout.setVisibility(View.INVISIBLE);
     }
 
-    void showBookings() {
+    private void showBookings() {
         spotDetailLayout.setVisibility(View.INVISIBLE);
         featuresLayout.setVisibility(View.INVISIBLE);
         bookingLayout.setVisibility(View.VISIBLE);
