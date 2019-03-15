@@ -8,16 +8,17 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.service.parking.theparker.View.ActivityAnimator;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends Activity {
 
@@ -35,6 +36,12 @@ public class ProfileActivity extends Activity {
 
     @BindView(R.id.myProfile_back_btn)
     ImageButton mProfileBackbtn;
+
+    @BindView(R.id.myProfile_image_iv)
+    CircleImageView myProfileImageIv;
+
+    @BindView(R.id.myProfile_save_btn)
+    Button myProfileSaveBtn;
 
     //PackageConstants
     private Boolean isEditEnable = true;
@@ -66,18 +73,21 @@ public class ProfileActivity extends Activity {
 
         });
 
-        fromLogin = getIntent().getBooleanExtra("from",false);
+        fromLogin = getIntent().getBooleanExtra("from", false);
 
         if (fromLogin) {
             mProfileBackbtn.setVisibility(View.INVISIBLE);
-        }
-        else {
+        } else {
             mProfileBackbtn.setVisibility(View.VISIBLE);
         }
 
-        mProfileBackbtn.setOnClickListener(v ->{
+        mProfileBackbtn.setOnClickListener(v -> {
             onBackPressed();
             Theparker.animate(this);
+        });
+
+        myProfileSaveBtn.setOnClickListener(v -> {
+            UI_Update();
         });
 
     }
@@ -119,7 +129,7 @@ public class ProfileActivity extends Activity {
             mProfileEditbtn.setBackgroundResource(R.drawable.icon_edit);
 
             if (fromLogin) {
-                startActivity(new Intent(this,StartActivity.class));
+                startActivity(new Intent(this, StartActivity.class));
                 finish();
                 Theparker.animate(this);
             }

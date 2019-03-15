@@ -123,43 +123,43 @@
                     android:paddingRight="12sp"
                     android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="100.0dip"
-                    android:layout_height="16sp"
-                    android:layout_marginTop="12sp"
-                    android:gravity="bottom"
-                    android:paddingStart="6sp"
-                    android:text="Vehicle Info"
-                    android:textColor="@color/colorDarkGray"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                <!--<TextView-->
+                    <!--android:layout_width="100.0dip"-->
+                    <!--android:layout_height="16sp"-->
+                    <!--android:layout_marginTop="12sp"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:paddingStart="6sp"-->
+                    <!--android:text="Vehicle Info"-->
+                    <!--android:textColor="@color/colorDarkGray"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:textStyle="bold" />-->
 
-                <TextView
-                    android:id="@+id/myProfile_no_vehicle_info_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="22sp"
-                    android:paddingTop="8sp"
-                    android:paddingRight="22sp"
-                    android:paddingBottom="8sp"
-                    android:text="You haven't added any vehicle info yet. This is needed to book a spot."
-                    android:textColor="@color/cardview_shadow_start_color"
-                    android:textSize="18sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/myProfile_no_vehicle_info_tv"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingLeft="22sp"-->
+                    <!--android:paddingTop="8sp"-->
+                    <!--android:paddingRight="22sp"-->
+                    <!--android:paddingBottom="8sp"-->
+                    <!--android:text="You haven't added any vehicle info yet. This is needed to book a spot."-->
+                    <!--android:textColor="@color/cardview_shadow_start_color"-->
+                    <!--android:textSize="18sp" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/myProfile_vehicle_list_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="150.0dip"
-                    android:scrollbars="vertical" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/myProfile_vehicle_list_container"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150.0dip"-->
+                    <!--android:scrollbars="vertical" />-->
 
                 <Button
-                    android:id="@+id/myProfile_add_vehicle_btn"
+                    android:id="@+id/myProfile_save_btn"
                     android:layout_width="200sp"
                     android:layout_height="48sp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16sp"
                     android:background="@drawable/ef_btn_rectangle_rounded_disenable"
-                    android:text="Add New Vehicle"
+                    android:text="Save Profile"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
                     android:textSize="18sp" />

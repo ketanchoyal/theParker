@@ -11,5 +11,5 @@
     <color name="colorPrimary">#d32f2f</color>
     <color name="colorPrimaryDark">#d99a0007</color>
     <color name="colorRed">#ffff0000</color>
-    <color name="colorWhite">#ffffffff</color>
+    <color name="colorWhite">#ffffff</color>
 </resources>

@@ -18,6 +18,7 @@
         android:layout_height="match_parent"
         android:id="@+id/spotMapImageView"
         android:scaleType="centerCrop"
+        android:src="@drawable/background_main"
         android:contentDescription="Map Image" />
 
     <TextView
@@ -75,5 +76,14 @@
         android:textColor="@color/colorPrimary"
         android:id="@+id/no_of_spots"
         android:text="5"/>
+
+    <ImageView
+        android:layout_width="25sp"
+        android:layout_height="25sp"
+        android:src="@drawable/setting"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>
