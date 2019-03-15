@@ -243,6 +243,12 @@ public class NetworkServices {
             mGlobalLocationPinRef.child(area).child(pinkey).setValue(locationpin, (databaseError, databaseReference) -> {
                 if (databaseError == null) {
                     mUserLocationPinRef.child(pinkey).setValue(locationpin);
+
+                    int Spots_used = Integer.parseInt(userProfile.Spots_used) + Integer.parseInt(locationPin.getNumberofspot());
+                    Map<String,Object> spotsUpdate = new HashMap<>();
+                    spotsUpdate.put("Spots_used",""+Spots_used);
+                    ProfileData.mProfileReference.updateChildren(spotsUpdate);
+
                 }
             });
         }
@@ -398,7 +404,6 @@ public class NetworkServices {
         static DatabaseReference mGlobalTransactions = REF.child("GlobalTransaction").child("Transactions");
         static DatabaseReference mGlobalBalance = REF.child("GlobalBalance");
         static DatabaseReference mUserTransactions = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("Transaction");
-        static DatabaseReference mProfileReference = REF.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Profile");
 
         public static void doTransaction(Transaction transaction, Object package_or_booking_or_addbalance) {
             Map<String,Object> transactionMap = new HashMap<>();
@@ -442,7 +447,7 @@ public class NetworkServices {
                         Map<String,Object> balanceUpdate = new HashMap<>();
                         balanceUpdate.put("Balance",""+newbalance);
                         balanceUpdate.put("Total_spots",""+newTotal_spots);
-                        mProfileReference.updateChildren(balanceUpdate);
+                        ProfileData.mProfileReference.updateChildren(balanceUpdate);
 
                         mUserTransactions.child(pinkey).setValue(pinkey);
                     } else if (transaction.getForr() == FirebaseAuth.getInstance().getCurrentUser().getUid()) {
@@ -450,7 +455,7 @@ public class NetworkServices {
                         int newbalance = Integer.parseInt(userProfile.Balance) + Integer.parseInt(transaction.getAmount());
                         Map<String,Object> balanceUpdate = new HashMap<>();
                         balanceUpdate.put("Balance",""+newbalance);
-                        mProfileReference.updateChildren(balanceUpdate);
+                        ProfileData.mProfileReference.updateChildren(balanceUpdate);
 
                         mUserTransactions.child(pinkey).setValue(pinkey);
                     } else {
@@ -460,7 +465,7 @@ public class NetworkServices {
                         int newbalance = Integer.parseInt(userProfile.Balance) - Integer.parseInt(transaction.getAmount());
                         Map<String,Object> balanceUpdate = new HashMap<>();
                         balanceUpdate.put("Balance",""+newbalance);
-                        mProfileReference.updateChildren(balanceUpdate);
+                        ProfileData.mProfileReference.updateChildren(balanceUpdate);
 
                         //for spot holder earnings
                         DatabaseReference spotHolder = REF.child("Users").child(transaction.getForr());

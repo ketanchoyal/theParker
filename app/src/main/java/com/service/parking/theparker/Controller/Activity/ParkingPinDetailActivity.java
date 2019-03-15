@@ -18,7 +18,6 @@ import java.util.Map;
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.refactor.library.SmoothCheckBox;
 import co.ceryle.segmentedbutton.SegmentedButton;
 import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 import de.hdodenhof.circleimageview.CircleImageView;
