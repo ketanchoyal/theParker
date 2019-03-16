@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Booking Fragment" />
+        android:textSize="18sp"
+        android:text="You currently don't have any parking booked" />
 
 </RelativeLayout>

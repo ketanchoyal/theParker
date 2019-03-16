@@ -42,7 +42,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             } else {
                 gotToStart();
             }
-        },4000);
+        },3000);
     }
 
     @Override

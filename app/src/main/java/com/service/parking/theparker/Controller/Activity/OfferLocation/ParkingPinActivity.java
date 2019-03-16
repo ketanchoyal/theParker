@@ -44,7 +44,7 @@ import es.dmoral.toasty.Toasty;
 public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private static final float DEFAULT_ZOOM = 15;
+    private static final float DEFAULT_ZOOM = 12;
 
     @BindView(R.id.action_bar_name)
     TextView mActionBarName;
@@ -152,7 +152,11 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
 
             address = addresses.get(0).getAddressLine(0);
             pincode = addresses.get(0).getPostalCode();
+
             area = addresses.get(0).getSubLocality();
+            if (area == null) {
+                area = addresses.get(0).getLocality();
+            }
 
             Map<String,Double> pinloc = new HashMap<>();
             pinloc.put("lat",v.latitude);
@@ -161,7 +165,7 @@ public class ParkingPinActivity extends AppCompatActivity implements OnMapReadyC
             Theparker.currentLocationpin.setPinloc(pinloc);
 
             Log.d("XYZ Location : ", v.latitude + " " + v.longitude);
-//            Log.d("XYZ Address : ", addresses.get(0).getSubLocality());
+            Log.d("XYZ Address : ", addresses.toString());
 
             Toasty.success(this, "Parking Selected").show();
 
