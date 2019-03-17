@@ -87,6 +87,7 @@ public class ProfileActivity extends Activity {
         });
 
         myProfileSaveBtn.setOnClickListener(v -> {
+            isEditEnable = false;
             UI_Update();
         });
 

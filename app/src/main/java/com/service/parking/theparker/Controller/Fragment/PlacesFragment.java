@@ -128,14 +128,14 @@ public class PlacesFragment extends Fragment {
             updateLocationUI();
             getDeviceLocation();
 
-            Location location = googleMap.getMyLocation();
-
-            if (location != null) {
-                LatLng myLocation = new LatLng(location.getLatitude(),
-                        location.getLongitude());
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLocation,
-                        12));
-            }
+//            Location location = googleMap.getMyLocation();
+//
+//            if (location != null) {
+//                LatLng myLocation = new LatLng(location.getLatitude(),
+//                        location.getLongitude());
+//                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLocation,
+//                        12));
+//            }
 
             googleMap.setOnMarkerClickListener(marker -> {
 
