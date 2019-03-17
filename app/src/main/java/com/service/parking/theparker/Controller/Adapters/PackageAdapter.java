@@ -1,5 +1,6 @@
 package com.service.parking.theparker.Controller.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import com.service.parking.theparker.Model.Packages;
 import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
+import com.service.parking.theparker.View.PackageBuyDialog;
 
 import java.util.List;
 
@@ -24,10 +26,14 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
 
     private List<Packages>  packagelist;
     private Context con;
+    private Activity activity;
     private Object packageStatus;
+    private PackageBuyDialog packageBuyDialog;
+    private Runnable funcBuyPackege;
 
-    public PackageAdapter(List<Packages> packagelist){
+    public PackageAdapter(List<Packages> packagelist, Activity activity){
         this.packagelist= packagelist;
+        this.activity =activity;
     }
     @NonNull
     @Override
@@ -48,9 +54,17 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
         myViewHolder.mPrice.setText("₹"+model.getPrice());
 
         myViewHolder.buy_Btn.setOnClickListener(v -> {
-            String uid  = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            Transaction transaction = new Transaction(model.getPrice(),""+uid,"Admin",model.getId(),"Package","timestamp");
-            NetworkServices.TransactioinData.doTransaction(transaction,model);
+
+            funcBuyPackege = () -> {
+                String uid  = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                Transaction transaction = new Transaction(model.getPrice(),""+uid,"Admin",model.getId(),"Package","timestamp");
+                NetworkServices.TransactioinData.doTransaction(transaction,model);
+            };
+
+            packageBuyDialog = new PackageBuyDialog(model,activity,funcBuyPackege,R.style.PackageBuyAnimation_SmileWindow);
+            packageBuyDialog.setCancellable(true);
+            packageBuyDialog.showAlertDialog();
+
         });
 
     }

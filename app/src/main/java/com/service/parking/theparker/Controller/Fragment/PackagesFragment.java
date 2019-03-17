@@ -1,6 +1,7 @@
 package com.service.parking.theparker.Controller.Fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -49,7 +50,7 @@ public class PackagesFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         packagesList = new ArrayList<>();
-        packageAdapter = new PackageAdapter(packagesList);
+        packageAdapter = new PackageAdapter(packagesList,getActivity());
 
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getContext());
         mPackageRecyclerView.setLayoutManager(mLayoutmanager);
@@ -58,13 +59,21 @@ public class PackagesFragment extends Fragment {
 
         NetworkServices.PackagesData.getPackages(packagesList, packageAdapter);
 
-        UserProfile userProfile = NetworkServices.userProfile;
-        int totalSpots = Integer.parseInt(userProfile.Total_spots);
-        int spotsUsed = Integer.parseInt(userProfile.Spots_used);
+        Handler handler = new Handler();
+        int delay = 2000; //milliseconds
 
-        mTotalSpots.setText(""+totalSpots);
-        mSpotInUse.setText(""+spotsUsed);
-        mSpotAvailable.setText(""+(totalSpots - spotsUsed));
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                UserProfile userProfile = NetworkServices.userProfile;
+                int totalSpots = Integer.parseInt(userProfile.Total_spots);
+                int spotsUsed = Integer.parseInt(userProfile.Spots_used);
+
+                mTotalSpots.setText(""+totalSpots);
+                mSpotInUse.setText(""+spotsUsed);
+                mSpotAvailable.setText(""+(totalSpots - spotsUsed));
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
 
         return rootView;
     }

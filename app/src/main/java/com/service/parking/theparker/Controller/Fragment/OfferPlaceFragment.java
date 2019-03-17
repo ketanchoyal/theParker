@@ -3,6 +3,8 @@ package com.service.parking.theparker.Controller.Fragment;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +43,9 @@ public class OfferPlaceFragment extends Fragment {
     @BindView(R.id.add_parking_btn)
     CircleButton mAddParkingBtn;
 
+    @BindView(R.id.floating_add_parking_btn)
+    FloatingActionButton mFloatingAddParkingBtn;
+
     public OfferPlaceFragment() {
         // Required empty public constructor
     }
@@ -60,6 +65,13 @@ public class OfferPlaceFragment extends Fragment {
             startActivity(addPin,options.toBundle());
         });
 
+        mFloatingAddParkingBtn.setOnClickListener(v -> {
+            Intent addPin = new Intent(getContext(), ParkingPinActivity.class);
+            Pair pair = new Pair<View, String>(mFloatingAddParkingBtn,"circleBtn");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair);
+            startActivity(addPin,options.toBundle());
+        });
+
         locationPinList = new ArrayList<>();
         mySpotsAdapter = new MySpotsAdapter(locationPinList,getContext());
 
@@ -69,6 +81,22 @@ public class OfferPlaceFragment extends Fragment {
         mMySpotsRecyclerView.setAdapter(mySpotsAdapter);
 
         NetworkServices.ParkingPin.getMyLocationPins(locationPinList,mySpotsAdapter);
+
+        mMySpotsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                    mFloatingAddParkingBtn.show();
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 || dy < 0 && mFloatingAddParkingBtn.isShown())
+                    mFloatingAddParkingBtn.hide();
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
         return view;
     }

@@ -24,6 +24,12 @@
         <item name="android:windowExitAnimation">@anim/unzoom_out</item>
     </style>
 
+    <style name="PackageBuyAnimation" />
+    <style name="PackageBuyAnimation.SmileWindow">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
     <style name="CodeEditText">
         <item name="android:layout_width">0.0dip</item>
         <item name="android:layout_height">wrap_content</item>

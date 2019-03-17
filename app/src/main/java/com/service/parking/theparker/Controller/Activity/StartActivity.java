@@ -173,7 +173,7 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    private boolean loadFragment(Fragment fragment,int position) {
+    public boolean loadFragment(Fragment fragment,int position) {
         //switching fragment
         if (fragment != null) {
             mFragmentName.setText(fragmentName);

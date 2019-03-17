@@ -172,7 +172,7 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/layer3"
                 android:layout_below="@+id/layer0">
@@ -187,7 +187,7 @@
                     android:id="@+id/type"
                     android:layout_marginTop="5sp" />
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/type">
                     <TextView
@@ -202,7 +202,7 @@
                         android:id="@+id/spot_type"
                         />
                     <RelativeLayout
-                        android:layout_width="80sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="35sp"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="10sp"
@@ -210,7 +210,7 @@
                         android:layout_marginRight="15sp">
                         <TextView
                             android:id="@+id/spot_price"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="₹4/hr"
                             android:gravity="center"

@@ -1,6 +1,7 @@
 package com.service.parking.theparker.Controller.Fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +36,16 @@ public class WalletFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_wallet, container, false);
         ButterKnife.bind(this,v);
 
-        wallet_available_balance.setText(NetworkServices.userProfile.Balance);
-        wallet_available_earning.setText(NetworkServices.userProfile.Earnings);
-        //Toast.makeText(getContext(),"Balance is"+NetworkServices.userProfile.Balance,Toast.LENGTH_LONG).show();
+        Handler handler = new Handler();
+        int delay = 2000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                wallet_available_balance.setText(NetworkServices.userProfile.Balance);
+                wallet_available_earning.setText(NetworkServices.userProfile.Earnings);
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
 
         return v;
     }

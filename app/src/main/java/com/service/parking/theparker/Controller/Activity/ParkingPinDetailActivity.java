@@ -3,7 +3,6 @@ package com.service.parking.theparker.Controller.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -88,7 +87,7 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
         NetworkServices.ProfileData.getProfileDataById(selectedPin.getBy(),detailPersonName);
         detailPersonMobileNo.setText(selectedPin.getMobile());
         spotDescription.setText(selectedPin.getDescription());
-        spotPrice.setText("₹"+selectedPin.getPrice());
+        spotPrice.setText("₹"+selectedPin.getPrice()+"/4 Hour");
         spotType.setText(selectedPin.getType());
 
         detailCloseBtn.setOnClickListener(v -> {

@@ -45,7 +45,7 @@
                 android:layout_marginTop="10sp"
                 android:layout_marginStart="5sp"
                 app:lottie_rawRes="@raw/t"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 app:lottie_autoPlay="true"
                 />
             <com.airbnb.lottie.LottieAnimationView
@@ -57,7 +57,7 @@
                 android:layout_toEndOf="@id/t_animate"
                 app:lottie_rawRes="@raw/h"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/e_animate"
@@ -68,7 +68,7 @@
                 android:layout_toEndOf="@id/h_animate"
                 app:lottie_rawRes="@raw/e"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -81,7 +81,7 @@
                 android:layout_below="@id/e_animate"
                 app:lottie_rawRes="@raw/p"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -94,7 +94,7 @@
                 android:layout_below="@id/e_animate"
                 app:lottie_rawRes="@raw/a"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -107,7 +107,7 @@
                 android:layout_below="@id/e_animate"
                 app:lottie_rawRes="@raw/r"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -120,7 +120,7 @@
                 android:layout_below="@id/e_animate"
                 app:lottie_rawRes="@raw/k"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -133,7 +133,7 @@
                 android:layout_below="@id/e_animate"
                 app:lottie_rawRes="@raw/e"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -146,7 +146,7 @@
                 android:layout_below="@id/e_animate"
                 app:lottie_rawRes="@raw/r"
                 app:lottie_autoPlay="true"
-                app:lottie_repeatCount="2"
+                app:lottie_repeatCount="1"
                 />
 
         </RelativeLayout>

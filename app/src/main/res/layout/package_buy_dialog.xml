@@ -69,11 +69,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_below="@id/layer3">
 
                 <TextView
                     android:id="@+id/spot_detail_layout"
-                    android:layout_width="60sp"
+                    android:layout_width="40sp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="₹"
@@ -83,7 +84,7 @@
 
                 <TextView
                     android:id="@+id/dia_package_price"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/spot_detail_layout"
                     android:gravity="center_vertical"
@@ -115,11 +116,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_below="@id/layer7">
 
                 <TextView
                     android:id="@+id/layer8"
-                    android:layout_width="60sp"
+                    android:layout_width="40sp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="₹"
@@ -129,7 +131,7 @@
 
                 <TextView
                     android:id="@+id/dia_wallet_balance"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/layer8"
                     android:gravity="center_vertical"
@@ -153,15 +155,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/dia_balance"
-            android:text="Balance after buying this Package: ₹"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dia_balance_left"
-            android:layout_toEndOf="@id/dia_balance"
-            android:text="200"/>
+            android:id="@+id/dia_after_balance"
+            android:text="Balance after buying this Package: ₹200"/>
 
     </RelativeLayout>
 
