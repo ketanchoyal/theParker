@@ -1,9 +1,11 @@
 package com.service.parking.theparker.Controller.Fragment;
 
-import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -56,7 +58,7 @@ public class PlacesFragment extends Fragment {
     FusedLocationProviderClient mFusedLocationProviderClient;
 
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private static final float DEFAULT_ZOOM = 12;
+    private static final float DEFAULT_ZOOM = 10;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,18 +113,13 @@ public class PlacesFragment extends Fragment {
             googleMap = mMap;
             NetworkServices.ParkingPin.getParkingAreas(googleMap);
             // For showing a move to my location button
-            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            googleMap.setMyLocationEnabled(true);
+//            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                    && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                // TODO: Consider calling
+//                //    ActivityCompat#requestPermissions
+//                return;
+//            }
+//            googleMap.setMyLocationEnabled(true);
 
             getLocationPermission();
             updateLocationUI();
@@ -195,7 +192,7 @@ public class PlacesFragment extends Fragment {
             } else {
                 googleMap.setMyLocationEnabled(false);
                 googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-                mLastKnownLocation = null;
+//                mLastKnownLocation = null;
                 getLocationPermission();
             }
         } catch (SecurityException e)  {
@@ -214,10 +211,14 @@ public class PlacesFragment extends Fragment {
                 locationResult.addOnCompleteListener(getActivity(), task -> {
                     if (task.isSuccessful()) {
                         // Set the map's camera position to the current location of the device.
-                        mLastKnownLocation = task.getResult();
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                new LatLng(mLastKnownLocation.getLatitude(),
-                                        mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                        if (checkGPSStatus(getActivity())) {
+                            mLastKnownLocation = task.getResult();
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                    new LatLng(mLastKnownLocation.getLatitude(),
+                                            mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                        } else {
+
+                        }
 
                     } else {
                         Log.d("XYZ", "Current location is null. Using defaults.");
@@ -231,6 +232,15 @@ public class PlacesFragment extends Fragment {
             Log.e("Exception: %s", e.getMessage());
         }
     }
+
+    public static boolean checkGPSStatus(Context context){
+        LocationManager manager = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        }
+        boolean statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        return statusOfGPS;
+    };
 
     public PlacesFragment() {
         // Required empty public constructor
