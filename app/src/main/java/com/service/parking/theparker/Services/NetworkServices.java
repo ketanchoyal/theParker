@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +52,7 @@ public class NetworkServices {
 
         public static void updateData(String Name, String email, Context con) {
 
-            final Map<String,Object> UserdataMap =new HashMap<>();
+            final Map<String,Object> UserdataMap = new HashMap<>();
             UserdataMap.put("Name",Name);
             UserdataMap.put("Email",email);
 
@@ -505,6 +507,50 @@ public class NetworkServices {
             });
 
         }
+    }
+
+    public static class ParkingBooking{
+        static DatabaseReference mGlobalLocationPinRef = REF.child("GlobalPins");
+        static DatabaseReference mUserLocationPinRef = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("MyLocationPins");
+
+        public static void getSlotData(LocationPin locationPin, int year, int monthOfYear, int dayOfMonth) {
+            mGlobalLocationPinRef.child(locationPin.getArea()).child(locationPin.getPinkey()).child("booking").child(year + "").child("" + (monthOfYear + 1)).child(dayOfMonth + "")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.hasChildren()) {
+                                //Adapter code for booking slots display
+                            } else {
+                                ParkingBooking.setDefaultValues(locationPin, year, monthOfYear, dayOfMonth);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+        }
+
+        private static void setDefaultValues(LocationPin locationPin, int year, int monthOfYear, int dayOfMonth) {
+            int time=0;
+
+            Map<String,Object> mains=new HashMap<>();
+
+            for(int i=1;i<=6;i++)
+            {
+                String st=time+" to "+(time+4);
+
+                time=time+4;
+                Map<String,String> s=new HashMap<>();
+                s.put("capacity",locationPin.getNumberofspot());
+                s.put("booked","0");
+                s.put("slot",st);
+                mains.put("slot"+i,s);
+            }
+            mGlobalLocationPinRef.child(locationPin.getArea()).child(locationPin.getPinkey()).child("booking").child(year + "").child("" + (monthOfYear + 1)).child(dayOfMonth + "").setValue(mains);
+        }
+
     }
 
 }

@@ -100,8 +100,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/details"
-            android:layout_marginTop="15sp"
-            >
+            android:layout_marginTop="15sp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -426,13 +426,99 @@
         android:layout_below="@id/layer2"
         android:visibility="invisible">
 
-        <TextView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Bookings"
-            android:gravity="center"
-            android:textSize="50sp"/>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/timepickerplace">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="Pick"
+                        android:textColor="@color/colorWhite"
+                        android:background="@drawable/bg_rectangle_rounded"
+                        android:id="@+id/btnpick"/>
+                    <EditText
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/date"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/btnpick"
+                        android:background="@drawable/button_background_transparent"
+                        android:textColor="@color/colorBlack"
+                        android:enabled="false"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:id="@+id/dated"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/date"
+                        android:text=" / "
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:textSize="20dp"/>
+
+                    <EditText
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/month"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/dated"
+                        android:background="@drawable/button_background_transparent"
+                        android:textColor="@color/colorBlack"
+                        android:enabled="false"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:id="@+id/monthd"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/month"
+                        android:text=" / "
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:textSize="20dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/year"
+                        android:text="2019"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/monthd"
+                        android:background="@drawable/button_background_transparent"
+                        android:textColor="@color/colorBlack"
+                        android:enabled="false"
+                        android:gravity="center"/>
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="540dp"
+                    android:visibility="gone"
+                    android:id="@+id/recy"
+                    android:layout_below="@+id/timepickerplace"
+                    android:layout_margin="10dp"/>
+
+            </RelativeLayout>
+
+        </ScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"

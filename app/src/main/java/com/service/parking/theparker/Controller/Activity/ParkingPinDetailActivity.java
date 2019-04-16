@@ -2,7 +2,10 @@ package com.service.parking.theparker.Controller.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +14,7 @@ import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
+import com.shagi.materialdatepicker.date.DatePickerFragmentDialog;
 
 import java.util.Map;
 
@@ -68,6 +72,22 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
     CircleButton booking_final_Btn;
     @BindView(R.id.booking_layout)
     RelativeLayout bookingLayout;
+    @BindView(R.id.mobileNoLayout)
+    RelativeLayout mobileNoLayout;
+    @BindView(R.id.layer0)
+    RelativeLayout layer0;
+    @BindView(R.id.type)
+    TextView type;
+    @BindView(R.id.btnpick)
+    Button DatePickButton;
+    @BindView(R.id.date)
+    EditText date;
+    @BindView(R.id.month)
+    EditText month;
+    @BindView(R.id.year)
+    EditText year;
+    @BindView(R.id.recy)
+    RecyclerView SlorRecycleeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +104,10 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
         Map<String, Boolean> features = selectedPin.getFeatures();
         features(features);
 
-        NetworkServices.ProfileData.getProfileDataById(selectedPin.getBy(),detailPersonName);
+        NetworkServices.ProfileData.getProfileDataById(selectedPin.getBy(), detailPersonName);
         detailPersonMobileNo.setText(selectedPin.getMobile());
         spotDescription.setText(selectedPin.getDescription());
-        spotPrice.setText("₹"+selectedPin.getPrice()+"/4 Hour");
+        spotPrice.setText("₹" + selectedPin.getPrice() + "/4 Hour");
         spotType.setText(selectedPin.getType());
 
         detailCloseBtn.setOnClickListener(v -> {
@@ -118,6 +138,17 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
                     break;
             }
         });
+//        NetworkServices.ParkingBooking.setDefaultValues(selectedPin,2019,04,17);
+
+        DatePickButton.setOnClickListener(v -> {
+            dataPickerDialog();
+            NetworkServices.ParkingBooking.getSlotData(selectedPin,2019,04,17);
+        });
+
+    }
+
+    private void dataPickerDialog() {
+
     }
 
     private void features(Map<String, Boolean> features) {
@@ -129,8 +160,8 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
 
         isFeatureAvailabel(coveredFeature, CoveredFeatureCheck);
         isFeatureAvailabel(cameraFeature, SecurityFeatureCheck);
-        isFeatureAvailabel(staffFeature,CheckOnsiteFeatureCheck);
-        isFeatureAvailabel(disabledAccessFeature,DisabledFeatureCheck);
+        isFeatureAvailabel(staffFeature, CheckOnsiteFeatureCheck);
+        isFeatureAvailabel(disabledAccessFeature, DisabledFeatureCheck);
 
     }
 

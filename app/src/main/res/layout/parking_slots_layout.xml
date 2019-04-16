@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="true"
+    android:clickable="true"
+    android:paddingLeft="5dp"
+    android:background="@color/colorGray"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_access_time"
+        android:padding="5dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/img"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1:00 to 4:00 am"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:id="@+id/time"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_toRightOf="@+id/img"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/img"
+        android:layout_below="@+id/time"
+        android:id="@+id/rell">
+        <ImageView
+            android:layout_width="50dp"
+            android:id="@+id/plus"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:textSize="12dp"
+            app:srcCompat="@drawable/plus"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:id="@+id/min"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:textSize="12dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/subtract"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="17dp"
+            android:id="@+id/cars"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 booked"
+        android:id="@+id/booked"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/rell"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 available"
+        android:id="@+id/avail"
+        android:layout_above="@+id/booked"
+        android:layout_toRightOf="@+id/rell"/>
+
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlue"
+        android:layout_alignParentRight="true"></RelativeLayout>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:padding="10dp"
+        android:id="@+id/book"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/book"/>
+</RelativeLayout>
