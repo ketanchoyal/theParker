@@ -60,7 +60,7 @@ public class PackagesFragment extends Fragment {
         NetworkServices.PackagesData.getPackages(packagesList, packageAdapter);
 
         Handler handler = new Handler();
-        int delay = 2000; //milliseconds
+        int delay = 1000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){

@@ -20,14 +20,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.service.parking.theparker.Controller.Activity.ParkingPinDetailActivity;
 import com.service.parking.theparker.Controller.Adapters.MySpotsAdapter;
 import com.service.parking.theparker.Controller.Adapters.PackageAdapter;
+import com.service.parking.theparker.Controller.Adapters.SlotsAdapter;
 import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.Model.Packages;
+import com.service.parking.theparker.Model.ParkingBooking;
 import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.Model.UserProfile;
 import com.service.parking.theparker.Utils.LocationConstants;
 import com.service.parking.theparker.Utils.PackageConstants;
+import com.service.parking.theparker.Utils.ParkingBookingConstants;
 import com.service.parking.theparker.Utils.TransactionConstants;
 import com.service.parking.theparker.View.SnackbarWrapper;
 
@@ -36,8 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 //import retrofit2.Retrofit;
 
@@ -193,7 +195,7 @@ public class NetworkServices {
                     String keyID =dataSnapshot.getKey();
                     for(int i = 0;i<=list.size()-1;i++)
                     {
-                        com.service.parking.theparker.Model.Packages object = list.get(i);
+                        Packages object = list.get(i);
                         if(object.getId().equals(keyID))
                         {
                             list.remove(object);
@@ -402,7 +404,7 @@ public class NetworkServices {
         }
     }
 
-    public static class TransactioinData {
+    public static class TransactionData {
         static DatabaseReference mGlobalTransactions = REF.child("GlobalTransaction").child("Transactions");
         static DatabaseReference mGlobalBalance = REF.child("GlobalBalance");
         static DatabaseReference mUserTransactions = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("Transaction");
@@ -410,12 +412,14 @@ public class NetworkServices {
         public static void doTransaction(Transaction transaction, Object package_or_booking_or_addbalance) {
             Map<String,Object> transactionMap = new HashMap<>();
 
+            Map<String, String> timeStamp = ServerValue.TIMESTAMP;
+
             transactionMap.put(TransactionConstants.amount,transaction.getAmount());
             transactionMap.put(TransactionConstants.by,transaction.getBy());
             transactionMap.put(TransactionConstants.forr,transaction.getForr());
             transactionMap.put(TransactionConstants.id,transaction.getId());
             transactionMap.put(TransactionConstants.of,transaction.getOf());
-            transactionMap.put(TransactionConstants.timeStamp, ServerValue.TIMESTAMP);
+            transactionMap.put(TransactionConstants.timeStamp, timeStamp);
 
             String pinkey = mGlobalTransactions.push().getKey();
 
@@ -454,6 +458,8 @@ public class NetworkServices {
                         mUserTransactions.child(pinkey).setValue(pinkey);
                     } else if (transaction.getForr() == FirebaseAuth.getInstance().getCurrentUser().getUid()) {
                         //Add balance in loged in user here
+                        //of = "Add Balance"
+                        //id = "Add Balance"
                         int newbalance = Integer.parseInt(userProfile.Balance) + Integer.parseInt(transaction.getAmount());
                         Map<String,Object> balanceUpdate = new HashMap<>();
                         balanceUpdate.put("Balance",""+newbalance);
@@ -461,9 +467,12 @@ public class NetworkServices {
 
                         mUserTransactions.child(pinkey).setValue(pinkey);
                     } else {
+                        //of = "Parking"
+                        //id = "parkingid"
                         //Add or Subtract balance/earning from both the users here
 
                         //logged in user
+                        ParkingBooking parkingBooking = (ParkingBooking) package_or_booking_or_addbalance;
                         int newbalance = Integer.parseInt(userProfile.Balance) - Integer.parseInt(transaction.getAmount());
                         Map<String,Object> balanceUpdate = new HashMap<>();
                         balanceUpdate.put("Balance",""+newbalance);
@@ -479,7 +488,10 @@ public class NetworkServices {
                                 int newEarnings = Integer.parseInt(spotHolderProfile.Earnings) + Integer.parseInt(transaction.getAmount());
                                 Map<String,Object> earningUpdate = new HashMap<>();
                                 earningUpdate.put("Earnings",""+newEarnings);
-                                spotHolder.child("Profile").updateChildren(earningUpdate);
+                                spotHolder.child("Profile").updateChildren(earningUpdate).addOnCompleteListener(task -> {
+                                    parkingBooking.setTransactionId(pinkey);
+                                    Booking.bookParkingSpot(parkingBooking);
+                                });
                             }
 
                             @Override
@@ -487,19 +499,7 @@ public class NetworkServices {
 
                             }
                         });
-//                        spotHolder.child("Profile").addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                UserProfile spotHolderProfile = dataSnapshot.getValue(UserProfile.class);
-//                                int newEarnings = Integer.parseInt(spotHolderProfile.Earnings) + Integer.parseInt(transaction.getAmount());
-//                                Map<String,Object> earningUpdate = new HashMap<>();
-//                                earningUpdate.put("Earnings",""+newEarnings);
-//                                spotHolder.child("Profile").updateChildren(earningUpdate);
-//                            }
 //
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) { }
-//                        });
                         spotHolder.child("Transaction").child(pinkey).setValue(pinkey);
                         mUserTransactions.child(pinkey).setValue(pinkey);
                     }
@@ -509,19 +509,28 @@ public class NetworkServices {
         }
     }
 
-    public static class ParkingBooking{
+    public static class Booking {
         static DatabaseReference mGlobalLocationPinRef = REF.child("GlobalPins");
-        static DatabaseReference mUserLocationPinRef = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("MyLocationPins");
+        static DatabaseReference mGlobalBookings = REF.child("GlobalBookings");
+        static DatabaseReference mUserParkingBookingsRef = REF.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("MyParkingBookings");
 
-        public static void getSlotData(LocationPin locationPin, int year, int monthOfYear, int dayOfMonth) {
-            mGlobalLocationPinRef.child(locationPin.getArea()).child(locationPin.getPinkey()).child("booking").child(year + "").child("" + (monthOfYear + 1)).child(dayOfMonth + "")
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
+        public static void getSlotData(LocationPin locationPin, int year, int monthOfYear, int dayOfMonth, List<Map<String,Object>> slotsDataList, SlotsAdapter slotsAdapter) {
+            mGlobalLocationPinRef.child(locationPin.getArea()).child(locationPin.getPinkey()).child("booking").child(year + "").child("" + (monthOfYear)).child(dayOfMonth + "")
+                    .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.hasChildren()) {
                                 //Adapter code for booking slots display
+                                slotsAdapter.notifyDataSetChanged();
+
+                                for(int i=1;i<=6;i++) {
+                                    String slotname = "slot"+i;
+                                    Map<String,Object> slot = (Map<String,Object>)dataSnapshot.child(slotname).getValue();
+                                    slotsDataList.add(slot);
+                                    slotsAdapter.notifyDataSetChanged();
+                                }
                             } else {
-                                ParkingBooking.setDefaultValues(locationPin, year, monthOfYear, dayOfMonth);
+                                Booking.setDefaultValues(locationPin, year, monthOfYear, dayOfMonth);
                             }
                         }
 
@@ -548,7 +557,39 @@ public class NetworkServices {
                 s.put("slot",st);
                 mains.put("slot"+i,s);
             }
-            mGlobalLocationPinRef.child(locationPin.getArea()).child(locationPin.getPinkey()).child("booking").child(year + "").child("" + (monthOfYear + 1)).child(dayOfMonth + "").setValue(mains);
+            mGlobalLocationPinRef.child(locationPin.getArea()).child(locationPin.getPinkey()).child("booking").child(year + "").child("" + (monthOfYear)).child(dayOfMonth + "").setValue(mains).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+
+                }
+            });
+        }
+
+        private static void bookParkingSpot(ParkingBooking parkingBooking) {
+            Map<String,Object> bookingMap = new HashMap<>();
+
+            bookingMap.put(ParkingBookingConstants.by,parkingBooking.getBy());
+            bookingMap.put(ParkingBookingConstants.parkingArea,parkingBooking.getParkingArea());
+            bookingMap.put(ParkingBookingConstants.parkingId,parkingBooking.getParkingId());
+            bookingMap.put(ParkingBookingConstants.slotNo,parkingBooking.getSlotNo());
+            bookingMap.put(ParkingBookingConstants.spotHost,parkingBooking.getSpotHost());
+            bookingMap.put(ParkingBookingConstants.timestamp,ServerValue.TIMESTAMP);
+            bookingMap.put(ParkingBookingConstants.transactionId,parkingBooking.getTransactionId());
+
+            String key = mGlobalBookings.push().toString();
+
+            Map<String,Object> spotBookedUpdate = new HashMap<>();
+            spotBookedUpdate.put("booked",""+ParkingPinDetailActivity.noOfSlotsToBeBooked);
+
+            mGlobalLocationPinRef.child(parkingBooking.getParkingArea()+"/"+parkingBooking.getParkingId()+"/booking"+"/"+ParkingPinDetailActivity.Year+"/"
+                    +ParkingPinDetailActivity.monthOfYear+"/"+ParkingPinDetailActivity.dayOfMonth+"/"+parkingBooking.getSlotNo()).updateChildren(spotBookedUpdate)
+                    .addOnCompleteListener(task -> mGlobalBookings.child(key).setValue(bookingMap, (databaseError, databaseReference) -> {
+                        if (databaseError == null) {
+                            mUserParkingBookingsRef.child(key).setValue(key);
+                        } else {
+                            //remove transaction and add that balance back
+                        }
+                    }));
         }
 
     }

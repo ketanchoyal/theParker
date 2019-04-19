@@ -2,7 +2,10 @@ package com.service.parking.theparker.Controller.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,12 +13,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.service.parking.theparker.Controller.Adapters.SlotsAdapter;
 import com.service.parking.theparker.Model.LocationPin;
+import com.service.parking.theparker.Model.ParkingBooking;
+import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
-import com.shagi.materialdatepicker.date.DatePickerFragmentDialog;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import at.markushi.ui.CircleButton;
@@ -87,7 +94,18 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
     @BindView(R.id.year)
     EditText year;
     @BindView(R.id.recy)
-    RecyclerView SlorRecycleeView;
+    RecyclerView SlotRecycleeView;
+
+    SlotsAdapter slotsAdapter;
+    List<Map<String, Object>> slotsData;
+
+    public static TextView AmountToPay;
+    public static RelativeLayout AmountToPayLayout;
+
+    public static int Year, monthOfYear, dayOfMonth;
+    public static String noOfSlotsToBeBooked;
+    public static ParkingBooking parkingBooking = new ParkingBooking();
+    public static Transaction parkingBookingTransation = new Transaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +113,10 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_parking_pin_detail);
         ButterKnife.bind(this);
         Theparker.animateSlide(this);
+
+        AmountToPay = findViewById(R.id.amountToPay);
+        AmountToPayLayout = findViewById(R.id.amountPayLayout);
+
         init();
 
     }
@@ -103,6 +125,13 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
         selectedPin = Theparker.selectedLocationPin;
         Map<String, Boolean> features = selectedPin.getFeatures();
         features(features);
+
+        slotsData = new ArrayList<>();
+
+//        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(this);
+//        SlotRecycleeView.setLayoutManager(mLayoutmanager);
+//        SlotRecycleeView.setItemAnimator(new DefaultItemAnimator());
+//        SlotRecycleeView.setAdapter(slotsAdapter);
 
         NetworkServices.ProfileData.getProfileDataById(selectedPin.getBy(), detailPersonName);
         detailPersonMobileNo.setText(selectedPin.getMobile());
@@ -138,12 +167,23 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
                     break;
             }
         });
-//        NetworkServices.ParkingBooking.setDefaultValues(selectedPin,2019,04,17);
 
         DatePickButton.setOnClickListener(v -> {
+            Log.d("Here: ","Clicked");
+            SlotRecycleeView.setVisibility(View.VISIBLE);
             dataPickerDialog();
-            NetworkServices.ParkingBooking.getSlotData(selectedPin,2019,04,17);
+            Year = 2019;
+            monthOfYear = 4;
+            dayOfMonth = 17;
+            slotsAdapter = new SlotsAdapter(slotsData);
+            RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(this);
+            SlotRecycleeView.setLayoutManager(mLayoutmanager);
+            SlotRecycleeView.setItemAnimator(new DefaultItemAnimator());
+            SlotRecycleeView.setAdapter(slotsAdapter);
+            NetworkServices.Booking.getSlotData(selectedPin, 2019, 4, 17, slotsData, slotsAdapter);
         });
+
+        booking_final_Btn.setOnClickListener(v -> NetworkServices.TransactionData.doTransaction(parkingBookingTransation,parkingBooking));
 
     }
 

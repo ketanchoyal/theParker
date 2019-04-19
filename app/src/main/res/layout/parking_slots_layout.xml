@@ -6,8 +6,9 @@
     android:focusable="true"
     android:clickable="true"
     android:paddingLeft="5dp"
+    android:id="@+id/slot_layout_view"
     android:background="@color/colorGray"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="5dp"
     android:orientation="vertical">
 
     <ImageView
@@ -62,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:textSize="17dp"
-            android:id="@+id/cars"
+            android:id="@+id/slots"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
 
@@ -73,21 +74,23 @@
         android:layout_height="wrap_content"
         android:text="0 booked"
         android:id="@+id/booked"
-        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10sp"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/rell"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1 available"
-        android:id="@+id/avail"
-        android:layout_above="@+id/booked"
+        android:id="@+id/available"
+        android:layout_marginStart="10sp"
+        android:layout_below="@+id/booked"
         android:layout_toRightOf="@+id/rell"/>
 
     <RelativeLayout
         android:layout_width="60dp"
         android:layout_height="match_parent"
-        android:background="@color/colorBlue"
-        android:layout_alignParentRight="true"></RelativeLayout>
+        android:layout_alignParentRight="true"/>
 
     <ImageView
         android:layout_width="60dp"

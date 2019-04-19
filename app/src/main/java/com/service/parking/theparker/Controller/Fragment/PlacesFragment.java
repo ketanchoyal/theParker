@@ -92,7 +92,7 @@ public class PlacesFragment extends Fragment {
             //doTransaction Functioin demo
 //            String uid  = FirebaseAuth.getInstance().getCurrentUser().getUid();
 //            Transaction transaction = new Transaction("200",""+uid,"tVKSi9PujnUUXRfzLNB1f0MRkvt2","-L_b8-YiUu883DeRJUfH","Parking","timestamp");
-//            NetworkServices.TransactioinData.doTransaction(transaction);
+//            NetworkServices.TransactionData.doTransaction(transaction);
             return false;
         });
 
@@ -153,7 +153,7 @@ public class PlacesFragment extends Fragment {
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-        if (ContextCompat.checkSelfPermission(getActivity(),
+        if (ContextCompat.checkSelfPermission(getContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mLocationPermissionGranted = true;

@@ -429,7 +429,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp">
+            android:layout_marginBottom="60sp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -510,7 +510,7 @@
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="540dp"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:id="@+id/recy"
                     android:layout_below="@+id/timepickerplace"
@@ -520,18 +520,60 @@
 
         </ScrollView>
 
-        <RelativeLayout
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        android:visibility="gone"
+        android:id="@+id/amountPayLayout"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center"
-            android:paddingBottom="40sp"
-            android:layout_alignParentBottom="true">
+            android:layout_height="match_parent"
+            android:src="@drawable/button_background_transparent"
+            android:background="@color/colorWhite"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginEnd="5sp"
+            android:layout_alignParentEnd="true">
+
             <at.markushi.ui.CircleButton
                 android:id="@+id/deails_btn_booking_next"
                 style="@style/FinishButton"
                 app:cb_color="@color/colorPrimary"
                 app:cb_pressedRingWidth="2.0dip" />
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total :"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:id="@+id/totall"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginStart="20sp"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100 /-"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:id="@+id/amountToPay"
+            android:layout_toRightOf="@id/totall"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginStart="10sp"
+            android:layout_centerVertical="true"
+            />
+
     </RelativeLayout>
 
 </RelativeLayout>

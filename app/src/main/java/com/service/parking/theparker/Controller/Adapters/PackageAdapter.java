@@ -58,7 +58,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.PackageV
             funcBuyPackege = () -> {
                 String uid  = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Transaction transaction = new Transaction(model.getPrice(),""+uid,"Admin",model.getId(),"Package","timestamp");
-                NetworkServices.TransactioinData.doTransaction(transaction,model);
+                NetworkServices.TransactionData.doTransaction(transaction,model);
             };
 
             packageBuyDialog = new PackageBuyDialog(model,activity,funcBuyPackege,R.style.PackageBuyAnimation_SmileWindow);
