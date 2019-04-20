@@ -433,80 +433,48 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:weightSum="3"
+                    android:orientation="horizontal"
                     android:id="@+id/timepickerplace">
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:text="Pick"
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:text="Today"
+                        android:layout_marginRight="5sp"
+                        android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:background="@drawable/bg_rectangle_rounded"
-                        android:id="@+id/btnpick"/>
-                    <EditText
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/date"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/btnpick"
-                        android:background="@drawable/button_background_transparent"
-                        android:textColor="@color/colorBlack"
-                        android:enabled="false"
-                        android:gravity="center"/>
+                        android:id="@+id/btnpicktoday"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:id="@+id/dated"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@+id/date"
-                        android:text=" / "
-                        android:gravity="center"
-                        android:layout_centerVertical="true"
-                        android:textSize="20dp"/>
+                    <Button
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:text="Tomorrow"
+                        android:layout_marginRight="5sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorWhite"
+                        android:background="@drawable/bg_rectangle_rounded"
+                        android:id="@+id/btnpicktomorrow"/>
 
-                    <EditText
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/month"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/dated"
-                        android:background="@drawable/button_background_transparent"
-                        android:textColor="@color/colorBlack"
-                        android:enabled="false"
-                        android:gravity="center"/>
+                    <Button
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:text="Day After Tomorrow"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorWhite"
+                        android:background="@drawable/bg_rectangle_rounded"
+                        android:id="@+id/btnpickdayaftertomorrow"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:id="@+id/monthd"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@+id/month"
-                        android:text=" / "
-                        android:gravity="center"
-                        android:layout_centerVertical="true"
-                        android:textSize="20dp"/>
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_marginRight="5dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/year"
-                        android:text="2019"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/monthd"
-                        android:background="@drawable/button_background_transparent"
-                        android:textColor="@color/colorBlack"
-                        android:enabled="false"
-                        android:gravity="center"/>
-
-                </RelativeLayout>
+                </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"

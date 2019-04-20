@@ -21,9 +21,13 @@ import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
@@ -83,16 +87,12 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
     RelativeLayout mobileNoLayout;
     @BindView(R.id.layer0)
     RelativeLayout layer0;
-    @BindView(R.id.type)
-    TextView type;
-    @BindView(R.id.btnpick)
-    Button DatePickButton;
-    @BindView(R.id.date)
-    EditText date;
-    @BindView(R.id.month)
-    EditText month;
-    @BindView(R.id.year)
-    EditText year;
+    @BindView(R.id.btnpicktoday)
+    Button DatePickButtonToday;
+    @BindView(R.id.btnpicktomorrow)
+    Button DatePickButtonTomorrow;
+    @BindView(R.id.btnpickdayaftertomorrow)
+    Button DatePickButtonDayAfterTomorrow;
     @BindView(R.id.recy)
     RecyclerView SlotRecycleeView;
 
@@ -168,23 +168,53 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
             }
         });
 
-        DatePickButton.setOnClickListener(v -> {
-            Log.d("Here: ","Clicked");
-            SlotRecycleeView.setVisibility(View.VISIBLE);
-            dataPickerDialog();
-            Year = 2019;
-            monthOfYear = 4;
-            dayOfMonth = 17;
-            slotsAdapter = new SlotsAdapter(slotsData);
-            RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(this);
-            SlotRecycleeView.setLayoutManager(mLayoutmanager);
-            SlotRecycleeView.setItemAnimator(new DefaultItemAnimator());
-            SlotRecycleeView.setAdapter(slotsAdapter);
-            NetworkServices.Booking.getSlotData(selectedPin, 2019, 4, 17, slotsData, slotsAdapter);
+        DatePickButtonToday.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int date = calendar.get(Calendar.DATE);
+
+            picBtnPressed(year,month,date);
+        });
+
+        DatePickButtonTomorrow.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int date = calendar.get(Calendar.DATE) + 1;
+
+            picBtnPressed(year,month,date);
+        });
+
+        DatePickButtonDayAfterTomorrow.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int date = calendar.get(Calendar.DATE) + 2;
+
+            picBtnPressed(year,month,date);
         });
 
         booking_final_Btn.setOnClickListener(v -> NetworkServices.TransactionData.doTransaction(parkingBookingTransation,parkingBooking));
 
+    }
+
+    void picBtnPressed(int year, int month, int day) {
+        Log.d("Here: ","Clicked");
+        SlotRecycleeView.setVisibility(View.VISIBLE);
+        dataPickerDialog();
+        Year = year;
+        monthOfYear = month;
+        dayOfMonth = day;
+
+        slotsData.clear();
+
+        slotsAdapter = new SlotsAdapter(slotsData);
+        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(this);
+        SlotRecycleeView.setLayoutManager(mLayoutmanager);
+        SlotRecycleeView.setItemAnimator(new DefaultItemAnimator());
+        SlotRecycleeView.setAdapter(slotsAdapter);
+        NetworkServices.Booking.getSlotData(selectedPin, year, month, day, slotsData, slotsAdapter);
     }
 
     private void dataPickerDialog() {
@@ -217,12 +247,14 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
         spotDetailLayout.setVisibility(View.VISIBLE);
         featuresLayout.setVisibility(View.INVISIBLE);
         bookingLayout.setVisibility(View.INVISIBLE);
+        AmountToPayLayout.setVisibility(View.INVISIBLE);
     }
 
     private void showFeatures() {
         spotDetailLayout.setVisibility(View.INVISIBLE);
         featuresLayout.setVisibility(View.VISIBLE);
         bookingLayout.setVisibility(View.INVISIBLE);
+        AmountToPayLayout.setVisibility(View.INVISIBLE);
     }
 
     private void showBookings() {

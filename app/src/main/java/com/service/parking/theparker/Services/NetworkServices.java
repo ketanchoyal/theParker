@@ -56,7 +56,7 @@ public class NetworkServices {
 
             final Map<String,Object> UserdataMap = new HashMap<>();
             UserdataMap.put("Name",Name);
-            UserdataMap.put("Email",email);
+            UserdataMap.put("Email",email.trim());
 
             mProfileReference.updateChildren(UserdataMap).addOnCompleteListener(v -> {
 
