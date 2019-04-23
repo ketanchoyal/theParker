@@ -33,6 +33,8 @@ import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 import com.service.parking.theparker.View.SearchableSpinner.SpinnerDialog;
 
+import java.util.Objects;
+
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -112,27 +114,12 @@ public class PlacesFragment extends Fragment {
         mMapView.getMapAsync(mMap -> {
             googleMap = mMap;
             NetworkServices.ParkingPin.getParkingAreas(googleMap);
-            // For showing a move to my location button
-//            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                    && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                // TODO: Consider calling
-//                //    ActivityCompat#requestPermissions
-//                return;
-//            }
-//            googleMap.setMyLocationEnabled(true);
 
             getLocationPermission();
+//            mLocationPermissionGranted = true;
             updateLocationUI();
             getDeviceLocation();
 
-//            Location location = googleMap.getMyLocation();
-//
-//            if (location != null) {
-//                LatLng myLocation = new LatLng(location.getLatitude(),
-//                        location.getLongitude());
-//                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLocation,
-//                        12));
-//            }
 
             googleMap.setOnMarkerClickListener(marker -> {
 
@@ -153,15 +140,15 @@ public class PlacesFragment extends Fragment {
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-        if (ContextCompat.checkSelfPermission(getContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mLocationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }
+            if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                mLocationPermissionGranted = true;
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            }
     }
 
     @Override
@@ -194,6 +181,7 @@ public class PlacesFragment extends Fragment {
                 googleMap.getUiSettings().setMyLocationButtonEnabled(false);
 //                mLastKnownLocation = null;
                 getLocationPermission();
+//                mLocationPermissionGranted = true;
             }
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
@@ -208,7 +196,7 @@ public class PlacesFragment extends Fragment {
         try {
             if (mLocationPermissionGranted) {
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(getActivity(), task -> {
+                locationResult.addOnCompleteListener(Objects.requireNonNull(getActivity()), task -> {
                     if (task.isSuccessful()) {
                         // Set the map's camera position to the current location of the device.
                         if (checkGPSStatus(getActivity())) {

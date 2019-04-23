@@ -86,6 +86,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.SlotViewHold
                 slotViewHolder.mNoOfSlots.setText(""+a);
                 changeColor(slotViewHolder);
                 updateData(slotViewHolder,i);
+                ParkingPinDetailActivity.noOfSlotsToBeBooked = "" + (Integer.parseInt(slot.get("booked").toString()) + Integer.parseInt(slotViewHolder.mNoOfSlots.getText().toString()));
             }
         });
 
@@ -96,6 +97,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.SlotViewHold
                 slotViewHolder.mNoOfSlots.setText(""+a);
                 changeColor(slotViewHolder);
                 updateData(slotViewHolder,i);
+                ParkingPinDetailActivity.noOfSlotsToBeBooked = "" + (Integer.parseInt(slot.get("booked").toString()) + Integer.parseInt(slotViewHolder.mNoOfSlots.getText().toString()));
             }
         });
 
@@ -120,7 +122,6 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.SlotViewHold
         ParkingPinDetailActivity.AmountToPayLayout.setVisibility(View.VISIBLE);
 
         String slotNo = "slot"+ (i+1);
-        ParkingPinDetailActivity.noOfSlotsToBeBooked = slotViewHolder.mNoOfSlots.getText().toString();
 
         ParkingBooking parkingBooking = ParkingPinDetailActivity.parkingBooking;
         parkingBooking.setSlotNo(slotNo);

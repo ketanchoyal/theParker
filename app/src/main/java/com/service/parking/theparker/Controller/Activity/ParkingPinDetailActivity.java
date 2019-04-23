@@ -202,7 +202,6 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
     void picBtnPressed(int year, int month, int day) {
         Log.d("Here: ","Clicked");
         SlotRecycleeView.setVisibility(View.VISIBLE);
-        dataPickerDialog();
         Year = year;
         monthOfYear = month;
         dayOfMonth = day;
@@ -215,10 +214,6 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
         SlotRecycleeView.setItemAnimator(new DefaultItemAnimator());
         SlotRecycleeView.setAdapter(slotsAdapter);
         NetworkServices.Booking.getSlotData(selectedPin, year, month, day, slotsData, slotsAdapter);
-    }
-
-    private void dataPickerDialog() {
-
     }
 
     private void features(Map<String, Boolean> features) {

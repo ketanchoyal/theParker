@@ -566,23 +566,30 @@ public class NetworkServices {
         }
 
         private static void bookParkingSpot(ParkingBooking parkingBooking) {
-            Map<String,Object> bookingMap = new HashMap<>();
+            Map<String, Object> bookingMap = new HashMap<>();
 
-            bookingMap.put(ParkingBookingConstants.by,parkingBooking.getBy());
-            bookingMap.put(ParkingBookingConstants.parkingArea,parkingBooking.getParkingArea());
-            bookingMap.put(ParkingBookingConstants.parkingId,parkingBooking.getParkingId());
-            bookingMap.put(ParkingBookingConstants.slotNo,parkingBooking.getSlotNo());
-            bookingMap.put(ParkingBookingConstants.spotHost,parkingBooking.getSpotHost());
-            bookingMap.put(ParkingBookingConstants.timestamp,ServerValue.TIMESTAMP);
-            bookingMap.put(ParkingBookingConstants.transactionId,parkingBooking.getTransactionId());
+            bookingMap.put(ParkingBookingConstants.by, parkingBooking.getBy());
+            bookingMap.put(ParkingBookingConstants.parkingArea, parkingBooking.getParkingArea());
+            bookingMap.put(ParkingBookingConstants.parkingId, parkingBooking.getParkingId());
+            bookingMap.put(ParkingBookingConstants.slotNo, parkingBooking.getSlotNo());
+            bookingMap.put(ParkingBookingConstants.spotHost, parkingBooking.getSpotHost());
+            bookingMap.put(ParkingBookingConstants.timestamp, System.currentTimeMillis());
+            bookingMap.put(ParkingBookingConstants.transactionId, parkingBooking.getTransactionId());
 
-            String key = mGlobalBookings.push().toString();
+            NetworkServices.logg(parkingBooking.getBy());
+            logg(parkingBooking.getParkingArea());
+            logg(parkingBooking.getParkingId());
+            logg(parkingBooking.getSlotNo());
+            logg(parkingBooking.getSpotHost());
+            logg(parkingBooking.getTransactionId());
 
-            Map<String,Object> spotBookedUpdate = new HashMap<>();
-            spotBookedUpdate.put("booked",""+ParkingPinDetailActivity.noOfSlotsToBeBooked);
+            String key = REF.child("GlobalBookings").push().getKey();
 
-            mGlobalLocationPinRef.child(parkingBooking.getParkingArea()+"/"+parkingBooking.getParkingId()+"/booking"+"/"+ParkingPinDetailActivity.Year+"/"
-                    +ParkingPinDetailActivity.monthOfYear+"/"+ParkingPinDetailActivity.dayOfMonth+"/"+parkingBooking.getSlotNo()).updateChildren(spotBookedUpdate)
+            Map<String, Object> spotBookedUpdate = new HashMap<>();
+            spotBookedUpdate.put("booked", "" + ParkingPinDetailActivity.noOfSlotsToBeBooked);
+
+            mGlobalLocationPinRef.child(parkingBooking.getParkingArea() + "/" + parkingBooking.getParkingId() + "/booking" + "/" + ParkingPinDetailActivity.Year + "/"
+                    + ParkingPinDetailActivity.monthOfYear + "/" + ParkingPinDetailActivity.dayOfMonth + "/" + parkingBooking.getSlotNo()).updateChildren(spotBookedUpdate)
                     .addOnCompleteListener(task -> mGlobalBookings.child(key).setValue(bookingMap, (databaseError, databaseReference) -> {
                         if (databaseError == null) {
                             mUserParkingBookingsRef.child(key).setValue(key);
@@ -590,8 +597,11 @@ public class NetworkServices {
                             //remove transaction and add that balance back
                         }
                     }));
+            }
         }
 
+    public static void logg(String msg) {
+        Log.d("PQR",msg);
     }
 
 }
