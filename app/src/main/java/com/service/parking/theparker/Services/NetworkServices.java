@@ -573,7 +573,7 @@ public class NetworkServices {
             bookingMap.put(ParkingBookingConstants.parkingId, parkingBooking.getParkingId());
             bookingMap.put(ParkingBookingConstants.slotNo, parkingBooking.getSlotNo());
             bookingMap.put(ParkingBookingConstants.spotHost, parkingBooking.getSpotHost());
-            bookingMap.put(ParkingBookingConstants.timestamp, System.currentTimeMillis());
+            bookingMap.put(ParkingBookingConstants.timestamp, ServerValue.TIMESTAMP);
             bookingMap.put(ParkingBookingConstants.transactionId, parkingBooking.getTransactionId());
 
             NetworkServices.logg(parkingBooking.getBy());

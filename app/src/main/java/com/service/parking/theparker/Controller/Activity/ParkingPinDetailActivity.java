@@ -35,6 +35,7 @@ import butterknife.ButterKnife;
 import co.ceryle.segmentedbutton.SegmentedButton;
 import co.ceryle.segmentedbutton.SegmentedButtonGroup;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class ParkingPinDetailActivity extends AppCompatActivity {
 
@@ -195,7 +196,11 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
             picBtnPressed(year,month,date);
         });
 
-        booking_final_Btn.setOnClickListener(v -> NetworkServices.TransactionData.doTransaction(parkingBookingTransation,parkingBooking));
+        booking_final_Btn.setOnClickListener(v -> {
+            NetworkServices.TransactionData.doTransaction(parkingBookingTransation,parkingBooking);
+            bookingLayout.setVisibility(View.INVISIBLE);
+            Toasty.success(this,"Parking Booked Successfully").show();
+        });
 
     }
 
