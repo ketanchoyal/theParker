@@ -198,7 +198,8 @@ public class ParkingPinDetailActivity extends AppCompatActivity {
 
         booking_final_Btn.setOnClickListener(v -> {
             NetworkServices.TransactionData.doTransaction(parkingBookingTransation,parkingBooking);
-            bookingLayout.setVisibility(View.INVISIBLE);
+//            bookingLayout.setVisibility(View.INVISIBLE);
+            AmountToPayLayout.setVisibility(View.INVISIBLE);
             Toasty.success(this,"Parking Booked Successfully").show();
         });
 
