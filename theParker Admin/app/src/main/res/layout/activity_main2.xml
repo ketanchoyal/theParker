@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main2Activity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/mapbackground"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#d99a0007"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/E_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E_wallet" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:layout_marginTop="50dp"
+            >
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="40dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_person_black_24dp"
+                    android:id="@+id/img_admin"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/activity_login_line_width"
+                    android:layout_height="5dp"
+                    android:background="@color/colorGray"
+                    android:textSize="30dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_login_line_margin"
+                    android:layout_marginRight="@dimen/activity_login_line_margin"
+                    android:text="@string/activity_login_admin_login"
+                    android:textColor="@color/colorGray"
+                    android:textSize="35dp"
+                    android:id="@+id/admin_text"/>
+
+                <TextView
+                    android:layout_width="@dimen/activity_login_line_width"
+                    android:layout_height="5dp"
+                    android:background="@color/colorGray" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="445dp"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <EditText
+                android:id="@+id/admin_id"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/transparency"
+                android:hint="Enter Admin email"
+                android:padding="20dp"
+                android:gravity="right"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/colorGray"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:textColor="@color/colorGray"
+                />
+
+            <EditText
+                android:id="@+id/admin_password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/transparency"
+                android:hint="Enter Admin Password"
+                android:inputType="textPassword"
+                android:padding="20dp"
+                android:textColorHint="@color/colorGray"
+                android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                android:gravity="right"
+                android:textColor="@color/colorGray"/>
+
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btn_phone_verify_next"
+                style="@style/NextButton"
+                android:layout_marginTop="20dip"
+                app:cb_color="@color/colorWhite"
+                app:cb_pressedRingWidth="2.0dip" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_aggree_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:gravity="bottom|center"
+        android:text="@string/agree_terms"
+        android:textColor="@color/colorGray"
+        android:textSize="14sp" />
+
+
+</RelativeLayout>

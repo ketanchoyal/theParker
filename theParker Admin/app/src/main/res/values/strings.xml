@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TheParker_AdminApp</string>
+    <string name="title_activity_login_activity">login_activity</string>
+    <string name="activity_login_admin_login">Admin Login</string>
+    <string name="agree_terms">By signing in, you agree to our Terms and Condition and Privacy Policy</string>
+    <string name="title_activity_main3">Main3Activity</string>
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="activity_login_btn_matgin_top">50.0dip</dimen>
+    <dimen name="activity_login_btn_width">100.0dip</dimen>
+    <dimen name="activity_login_fb_logo_size">45.0dip</dimen>
+    <dimen name="activity_login_fb_margin_horizontal">30.0dip</dimen>
+    <dimen name="activity_login_google_logo_size">60dp</dimen>
+    <dimen name="activity_login_image_margin_top">24.0dip</dimen>
+    <dimen name="activity_login_in_margin_vertical">15.0dip</dimen>
+    <dimen name="activity_login_line_margin">20.0dip</dimen>
+    <dimen name="activity_login_line_width">40.0dip</dimen>
+    <dimen name="activity_login_logo_horizontal_padding">20.0dip</dimen>
+    <dimen name="activity_login_text_size">20.0sp</dimen>
+    <dimen name="activity_total_margin">8.0dip</dimen>
+</resources>

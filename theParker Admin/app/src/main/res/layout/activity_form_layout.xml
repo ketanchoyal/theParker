@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Form_layoutActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/layer1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Choose the type of your Parking space"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:fontFamily="monospace"
+                android:paddingLeft="15dp"
+                android:gravity="center_vertical"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_below="@+id/layer1"
+            android:paddingLeft="5sp"
+            android:paddingRight="5sp"
+            android:layout_marginTop="3dp"
+            android:id="@+id/layer2">
+
+            <co.ceryle.segmentedbutton.SegmentedButtonGroup
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/segmentedButtonGroup"
+
+                android:layout_margin="3dp"
+                app:sbg_animateSelector="anticipateOvershoot"
+                app:sbg_animateSelectorDuration="900"
+                app:sbg_backgroundColor="@color/colorWhite"
+                app:sbg_dividerColor="@color/colorPrimaryDark"
+                app:sbg_dividerPadding="10dp"
+                app:sbg_dividerRadius="10dp"
+                app:sbg_dividerSize="1dp"
+                app:sbg_position="1"
+                app:sbg_radius="2dp"
+                app:sbg_borderColor="@color/colorPrimary"
+                app:sbg_borderSize="2dp"
+                app:sbg_ripple="true"
+                app:sbg_rippleColor="@color/colorPrimary"
+                app:sbg_selectorColor="@color/colorPrimary"
+                >
+
+                <co.ceryle.segmentedbutton.SegmentedButton
+                    android:layout_width="0dp"
+                    android:layout_height="40sp"
+                    android:layout_weight="1"
+                    app:sb_textColor="@color/colorPrimary"
+                    app:sb_textSize="15sp"
+                    app:sb_textColor_onSelection="@color/colorWhite"
+                    app:sb_text="Car Pool"/>
+
+                <co.ceryle.segmentedbutton.SegmentedButton
+                    android:layout_width="0dp"
+                    android:layout_height="40sp"
+                    android:layout_weight="1"
+                    app:sb_textColor="@color/colorPrimary"
+                    app:sb_textColor_onSelection="@color/colorWhite"
+                    app:sb_textSize="15sp"
+                    app:sb_text="Empty Plot"/>
+
+                <co.ceryle.segmentedbutton.SegmentedButton
+                    android:layout_width="0dp"
+                    android:layout_height="40sp"
+                    android:layout_weight="1"
+                    app:sb_textColor="@color/colorPrimary"
+                    app:sb_textColor_onSelection="@color/colorWhite"
+                    app:sb_textSize="15sp"
+                    app:sb_text="Garage"/>
+
+                <co.ceryle.segmentedbutton.SegmentedButton
+                    android:layout_width="0dp"
+                    android:layout_height="40sp"
+                    android:layout_weight="1"
+                    app:sb_textColor="@color/colorPrimary"
+                    app:sb_textColor_onSelection="@color/colorWhite"
+                    app:sb_textSize="15sp"
+                    app:sb_text="Others"/>
+
+            </co.ceryle.segmentedbutton.SegmentedButtonGroup>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layer3"
+            android:layout_below="@+id/layer2"
+            android:layout_marginTop="3dp"
+            android:paddingTop="4dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How many Spots do you want to rent out?"
+                android:textSize="16sp"
+                android:paddingStart="15dp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/layer3"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            android:layout_marginTop="3dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Eg: 2"
+                android:textSize="18sp"
+                android:paddingLeft="20dp"
+                android:fontFamily="monospace"
+                android:inputType="number"
+                android:id="@+id/fl_edit_number"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/main2"
+        android:layout_below="@id/main">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/layer4">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Additional Features"
+                android:gravity="center_vertical"
+                android:textSize="20dp"
+                android:fontFamily="monospace"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layer4">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="4"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_person_black_24dp"
+                        android:padding="10dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:text="Covered"
+                        android:textSize="20dp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        />
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".7"
+                        android:paddingEnd="15sp"
+                        android:paddingStart="15sp">
+
+                        <com.suke.widget.SwitchButton
+                            android:layout_centerInParent="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:sb_checked_color="@color/colorPrimary"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_person_black_24dp"
+                        android:padding="10dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:text="Security Camera"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace"
+                        android:gravity="center_vertical"/>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".7"
+                        android:paddingEnd="15sp"
+                        android:paddingStart="15sp">
+
+                        <com.suke.widget.SwitchButton
+                            android:layout_centerInParent="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:sb_checked_color="@color/colorPrimary"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_person_black_24dp"
+                        android:padding="10dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:text="Onsite Staff"
+                        android:textSize="20dp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"/>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".7"
+                        android:paddingEnd="15sp"
+                        android:paddingStart="15sp">
+
+                        <com.suke.widget.SwitchButton
+                            android:layout_centerInParent="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:sb_checked_color="@color/colorPrimary"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_person_black_24dp"
+                        android:padding="10dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:text="Disabled Access"
+                        android:textSize="20dp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"/>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".7"
+                        android:paddingEnd="15sp"
+                        android:paddingStart="15sp">
+
+                        <com.suke.widget.SwitchButton
+                            android:layout_centerInParent="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:sb_checked_color="@color/colorPrimary"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/form_layout1_btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            android:fontFamily="monospace"
+            android:text="Next ->"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>
