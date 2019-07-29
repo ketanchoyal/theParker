@@ -6,6 +6,8 @@ Theparker is the app build for Android using Java and an iOS version is Already 
 
 It uses Firebase Realtime Database and Firebase Storage.(Currently it uses static payment, nom payment gateway is added)  
 
+There is an Admin App to create packages for Parking
+
 ## FeatureS:
 
 - [ ] Login using Google.
