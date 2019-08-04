@@ -18,15 +18,35 @@ There is an Admin App to create packages for Parking
 - [ ] Check previous transactions.
 - [ ] Add my Cars.
 - [x] Book Parking.
-- [ ] Upload parking Photos.
+- [ ] Upload parking screenshots.
 - [x] Get direction to the parking spot.
 - [x] Call the spot owner.
 - [x] See previous parking Spot Added.
 - [x] Check previous Booking.
-- [x] Local Notification.
-- [ ] Profile.
+- [ ] Local Notification.
+- [X] Profile.
 
 ## Screenshots
 
-
-
+<table style={border:"none"}>
+<tr><td align="center"><figure><img src="screenshots/1.png" /><figcaption>Splash Screen</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/2.png" /><figcaption>Login Screen</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/3.png" /><figcaption>Mobile No Login Screen</figcaption></figure></td></tr>
+<tr><td align="center"><figure><img src="screenshots/4.png" /><figcaption>OTP Fetch Screen</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/5_1.png" /><figcaption>Parking Pins on Map</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/12.png" /><figcaption>Profile</figcaption></figure></td>
+</tr>
+<tr><td align="center"><figure><img src="screenshots/5_2.png" /><figcaption>Parking Details-1</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/5_3.png" /><figcaption>Parking Details-2</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/5_4.png" /><figcaption>Parking Details-3</figcaption></figure></td></tr>
+<tr>
+<td align="center"><figure><img src="screenshots/7.png" /><figcaption>Packages</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/8.png" /><figcaption>Package Buy Dialog Box</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/6.png" /><figcaption>Wallet</figcaption></figure></td>
+</tr>
+<tr>
+<td align="center"><figure><img src="screenshots/9.png" /><figcaption>My Places</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/10.png" /><figcaption>Offer Place-1</figcaption></figure></td>
+<td align="center"><figure><img src="screenshots/11.png" /><figcaption>Offer Place-2</figcaption></figure></td>
+</tr>
+</table>

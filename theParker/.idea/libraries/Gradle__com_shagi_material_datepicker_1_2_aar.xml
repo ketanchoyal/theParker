@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.shagi:material-datepicker:1.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0c990cc11fb269133ef96e1808492f17/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0c990cc11fb269133ef96e1808492f17/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.shagi/material-datepicker/1.2/26968b058d0dfe7d2dc7c2a95fbcc064198d8339/material-datepicker-1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
