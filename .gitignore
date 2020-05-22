@@ -31,5 +31,7 @@
 *.jks
 proguard-rules.pro
 
-google-services.json
+theParker\ Admin/app/google-services.json
+theParker/app/google-services.json
+theParker/app/src/debug/res/google_maps_api.xml
 google_maps_api.xml
