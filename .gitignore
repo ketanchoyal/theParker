@@ -1,10 +1,9 @@
-*.iml
+.iml
 .gradle
-/local.properties
+*/local.properties
 /.idea/caches/build_file_checksums.ser
 /.idea/libraries
 /.idea/modules.xml
-/.idea/workspace.xml
 .DS_Store
 /build
 /captures
@@ -20,18 +19,16 @@
 **/build
 
 # Android related
-**/android/**/gradle-wrapper.jar
-**/android/.gradle
-**/android/captures/
-**/android/gradlew
-**/android/gradlew.bat
-**/android/local.properties
+**/**/**/gradle-wrapper.jar
+**/*/.gradle
+**/**/captures/
+**/*/local.properties
 **/android/**/GeneratedPluginRegistrant.java
-**/android/key.properties
+**/**/key.properties
 *.jks
 proguard-rules.pro
 
-theParker\ Admin/app/google-services.json
-theParker/app/google-services.json
+theParker/.idea/workspace.xml
+*/app/google-services.json
 theParker/app/src/debug/res/google_maps_api.xml
 google_maps_api.xml

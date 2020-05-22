@@ -8,6 +8,15 @@ It uses Firebase Realtime Database and Firebase Storage.(Currently it uses stati
 
 There is an Admin App to create packages for Parking
 
+---
+## How To Start?
+#### Set up your firebase account
+#### Enable email and mobile login
+#### Add google-services.json file for both theParker and theParker Admin app\
+#### Add a admin email and password manually in firebase (to use admin app)
+#### Note: You will need to add api key in manifest file for google map(google "how to enable google map api")
+---
+
 ## FeatureS:
 
 - [ ] Login using Google.
