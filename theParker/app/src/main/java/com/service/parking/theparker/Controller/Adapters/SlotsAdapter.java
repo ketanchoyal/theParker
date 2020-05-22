@@ -1,9 +1,8 @@
 package com.service.parking.theparker.Controller.Adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.service.parking.theparker.Controller.Activity.ParkingPinDetailActivity;
 import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.Model.ParkingBooking;
 import com.service.parking.theparker.Model.Transaction;
 import com.service.parking.theparker.R;
-import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,10 +27,10 @@ import butterknife.ButterKnife;
 
 public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.SlotViewHolder> {
 
-    List<Map<String,Object>> slotsDataList;
-    LocationPin selectedPin;
-    List<RelativeLayout>relativeLayoutList = new ArrayList<>();
-    Context context;
+    private List<Map<String,Object>> slotsDataList;
+    private LocationPin selectedPin;
+    private List<RelativeLayout>relativeLayoutList = new ArrayList<>();
+    private Context context;
 
     public SlotsAdapter(List<Map<String,Object>> slotsDataList) {
         this.slotsDataList = slotsDataList;
@@ -144,7 +137,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.SlotViewHold
         return slotsDataList.size();
     }
 
-    public class SlotViewHolder extends RecyclerView.ViewHolder {
+    class SlotViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.plus)
         ImageView mPlus;
@@ -170,7 +163,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.SlotViewHold
         @BindView(R.id.slot_layout_view)
         RelativeLayout relativeLayout;
 
-        public SlotViewHolder(@NonNull View itemView) {
+        SlotViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }

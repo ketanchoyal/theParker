@@ -112,7 +112,7 @@
 
     </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="2sp"
             android:layout_below="@id/relativeLayout"
             android:layout_width="match_parent"

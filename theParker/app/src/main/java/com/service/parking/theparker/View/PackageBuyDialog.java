@@ -3,17 +3,11 @@ package com.service.parking.theparker.View;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.service.parking.theparker.Controller.Fragment.WalletFragment;
 import com.service.parking.theparker.Model.Packages;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;

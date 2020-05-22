@@ -3,21 +3,19 @@ package com.service.parking.theparker.Controller.Fragment;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.service.parking.theparker.Controller.Activity.OfferLocation.ParkingPinActivity;
-import com.service.parking.theparker.Controller.Activity.ProfileActivity;
 import com.service.parking.theparker.Controller.Adapters.MySpotsAdapter;
 import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
@@ -29,7 +27,6 @@ import java.util.List;
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class OfferPlaceFragment extends Fragment {

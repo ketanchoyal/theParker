@@ -2,7 +2,7 @@ package com.service.parking.theparker.Controller.Activity.OfferLocation;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -15,7 +15,6 @@ import com.service.parking.theparker.Model.LocationPin;
 import com.service.parking.theparker.R;
 import com.service.parking.theparker.Services.NetworkServices;
 import com.service.parking.theparker.Theparker;
-import com.service.parking.theparker.View.ActivityAnimator;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
